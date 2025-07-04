@@ -3,360 +3,203 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>دكتور محمد الجمال - موسوعة الجمال الطبية للكتب والكورسات</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Dr. Mohamed Al-Gamal - وجهتك الشاملة للمعرفة والمنتجات الطبية</title>
+    <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <header class="header">
+
+    <header class="main-header">
         <div class="container">
-            <div class="logo">
-                <span>الجَمَال</span>
-                <p>موسوعة طبية ومحتوى رقمي</p>
+            <div class="header-right">
+                <a href="index.html" class="site-logo">
+                    <img src="images/your_logo.png" alt="Dr. Mohamed Al-Gamal Logo">
+                </a>
+                <p class="site-slogan">وجهتك الشاملة للمعرفة والمنتجات الطبية</p>
             </div>
-            <nav class="main-nav">
+            
+            <nav class="main-nav desktop-nav">
                 <ul class="nav-links">
-                    <li><a href="index.html" class="active">الرئيسية</a></li>
-                    <li class="dropdown">
-                        <a href="#main-categories" class="dropbtn">المكتبات الطبية <i class="fas fa-caret-down"></i></a>
-                        <div class="dropdown-content">
-                            <a href="categories/human-medicine.html">الطب البشري</a>
-                            <a href="categories/pharmacy.html">الصيدلة</a>
-                            <a href="categories/nursing.html">التمريض</a>
-                            <a href="categories/labs.html">التحاليل الطبية</a>
-                            <a href="categories/dentistry.html">طب الأسنان</a>
-                            <a href="categories/general-medical.html">صحة عامة</a>
-                            <a href="categories/questions-banks.html">بنوك الأسئلة الطبية</a>
-                            <a href="categories/medical-fundamentals.html">أساسيات الطب</a>
-                        </div>
-                    </li>
-                    <li><a href="books/all-books.html">كل الكتب والمقالات</a></li>
-                    <li><a href="ads/index.html">إعلانات وكورسات</a></li>
-                    <li><a href="#about">عن د. محمد الجمال</a></li>
-                    <li><a href="#contact">تواصل معنا</a></li>
+                    <li><a href="index.html#purchase-methods" class="nav-link">طرق الشراء</a></li>
+                    <li><a href="sections/human-medicine.html" class="nav-link">الطب البشري</a></li>
+                    <li><a href="sections/pharmacy.html" class="nav-link">الصيدلة</a></li>
+                    <li><a href="sections/nursing.html" class="nav-link">التمريض</a></li>
+                    <li><a href="sections/medical-labs.html" class="nav-link">التحاليل الطبية</a></li>
+                    <li><a href="sections/dentistry.html" class="nav-link">الأسنان</a></li>
+                    <li><a href="sections/other-medical.html" class="nav-link">تخصصات أخرى</a></li>
                 </ul>
-                <div class="menu-toggle" id="mobile-menu">
-                    <span class="bar"></span>
-                    <span class="bar"></span>
-                    <span class="bar"></span>
-                </div>
             </nav>
+            
+            <button class="menu-toggle" aria-label="Toggle Navigation">
+                <i class="fas fa-bars"></i>
+            </button>
         </div>
     </header>
 
-    <main>
-        <section class="hero-section animate-on-scroll">
-            <div class="container">
-                <h1>علم، معرفة، شفاء: مكتبة د. محمد الجمال الطبية</h1>
-                <p>بوابتك الشاملة لأحدث الكتب والمحتوى الطبي الموثوق، المصمم خصيصًا لتمكينك بمعرفة صحية عميقة ومبسطة.</p>
-                <div class="hero-buttons">
-                    <a href="#main-categories" class="btn btn-primary animate-on-scroll" data-delay="0.2"><i class="fas fa-book-medical"></i> استكشف المكتبات</a>
-                    <a href="ads/index.html" class="btn btn-secondary animate-on-scroll" data-delay="0.4"><i class="fas fa-bullhorn"></i> إعلانات وكورسات</a>
-                </div>
-            </div>
-        </section>
+    <nav class="mobile-nav">
+        <button class="close-menu"><i class="fas fa-times"></i></button>
+        <ul class="mobile-nav-links">
+            <li><a href="index.html#purchase-methods"><i class="fas fa-shopping-cart"></i> طرق الشراء</a></li>
+            <li><a href="sections/human-medicine.html">الطب البشري</a></li> 
+            <li><a href="sections/pharmacy.html">الصيدلة</a></li> 
+            <li><a href="sections/nursing.html">التمريض</a></li> 
+            <li><a href="sections/medical-labs.html">التحاليل الطبية</a></li> 
+            <li><a href="sections/dentistry.html">الأسنان</a></li> 
+            <li><a href="sections/other-medical.html">تخصصات طبية أخرى</a></li> 
+        </ul>
+    </nav>
+    <div class="overlay"></div> 
 
-        <section id="main-categories" class="section-padded">
+    <section class="adverts-section">
+        <div class="container">
+            <div class="advert-banner">
+                <p>✨ **عروض حصرية لفترة محدودة:** خصم 25% على جميع الدورات والكورسات! <a href="#">تسوق الآن!</a> ✨</p>
+            </div>
+            <div class="advert-note">
+                <h3>هل ترغب في الوصول لجمهورنا المتخصص؟</h3>
+                <p>نحن نقدم فرصًا إعلانية فريدة للشركات، المؤسسات التعليمية، والخبراء في المجال الطبي. عزز علامتك التجارية وانشر رسالتك عبر منصتنا الرائدة.</p>
+                <a href="#" class="btn btn-advertise">اعلن معنا الآن! <i class="fas fa-bullhorn"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <main class="main-content">
+        <section class="categories-section" id="categories-section">
             <div class="container">
-                <h2 class="section-title animate-on-scroll"><i class="fas fa-tags"></i> تصفح المكتبات الطبية المتخصصة</h2>
-                <p class="section-description animate-on-scroll">اختر التخصص الذي يهمك لتجد مجموعة متكاملة من الكتب والمقالات وبنوك الأسئلة والمحتوى المعرفي.</p>
+                <h2>أقسامنا الطبية المتخصصة</h2>
+                <p class="section-description">نقدم لك محتوى ومنتجات مختارة بعناية لتلبية احتياجاتك في مختلف فروع الطب:</p>
+
                 <div class="categories-grid">
-                    <a href="categories/human-medicine.html" class="category-card animate-on-scroll" data-delay="0.1">
-                        <i class="fas fa-user-md category-icon"></i>
+                    <div class="category-card" id="human-medicine">
+                        <div class="category-icon"><i class="fas fa-user-md"></i></div>
                         <h3>الطب البشري</h3>
-                        <p>كتب ومقالات عن صحة الإنسان وأمراضه.</p>
-                    </a>
-                    <a href="categories/pharmacy.html" class="category-card animate-on-scroll" data-delay="0.2">
-                        <i class="fas fa-pills category-icon"></i>
+                        <p>تصفح أحدث الكتب والمراجع، سجل في الدورات التدريبية المتقدمة، واحصل على أفضل المنتجات لدعم مسيرتك في الطب البشري.</p>
+                        <a href="sections/human-medicine.html" class="btn btn-primary">استكشف القسم <i class="fas fa-arrow-left"></i></a> 
+                    </div>
+
+                    <div class="category-card" id="pharmacy">
+                        <div class="category-icon"><i class="fas fa-pills"></i></div>
                         <h3>الصيدلة</h3>
-                        <p>دليلك الشامل للأدوية والاستخدام الآمن.</p>
-                    </a>
-                    <a href="categories/nursing.html" class="category-card animate-on-scroll" data-delay="0.3">
-                        <i class="fas fa-user-nurse category-icon"></i>
+                        <p>كل ما يحتاجه الصيدلي والطالب من مراجع علمية، دورات عملية، وأدوات أساسية لتعزيز المعرفة والممارسة الصيدلانية.</p>
+                        <a href="sections/pharmacy.html" class="btn btn-primary">استكشف القسم <i class="fas fa-arrow-left"></i></a> 
+                    </div>
+
+                    <div class="category-card" id="nursing">
+                        <div class="category-icon"><i class="fas fa-user-nurse"></i></div>
                         <h3>التمريض</h3>
-                        <p>كل ما يخص الرعاية التمريضية والإسعافات.</p>
-                    </a>
-                    <a href="categories/labs.html" class="category-card animate-on-scroll" data-delay="0.4">
-                        <i class="fas fa-vial category-icon"></i>
+                        <p>موارد شاملة لتطوير مهنة التمريض، تشمل كتبًا إرشادية، دورات تدريبية متخصصة، وأدوات عملية لرفع كفاءة الممرضين والممرضات.</p>
+                        <a href="sections/nursing.html" class="btn btn-primary">استكشف القسم <i class="fas fa-arrow-left"></i></a> 
+                    </div>
+
+                    <div class="category-card" id="medical-labs">
+                        <div class="category-icon"><i class="fas fa-flask"></i></div>
                         <h3>التحاليل الطبية</h3>
-                        <p>فهم نتائج التحاليل ودلالاتها.</p>
-                    </a>
-                    <a href="categories/dentistry.html" class="category-card animate-on-scroll" data-delay="0.5">
-                        <i class="fas fa-tooth category-icon"></i>
-                        <h3>طب الأسنان</h3>
-                        <p>العناية بالفم والأسنان وعلاجاتها.</p>
-                    </a>
-                    <a href="categories/general-medical.html" class="category-card animate-on-scroll" data-delay="0.6">
-                        <i class="fas fa-notes-medical category-icon"></i>
-                        <h3>صحة عامة</h3>
-                        <p>نصائح يومية لحياة صحية ومتوازنة.</p>
-                    </a>
-                    <a href="categories/questions-banks.html" class="category-card animate-on-scroll" data-delay="0.7">
-                        <i class="fas fa-question-circle category-icon"></i>
-                        <h3>بنوك الأسئلة الطبية</h3>
-                        <p>استعد لامتحاناتك مع بنوك أسئلة شاملة.</p>
-                    </a>
-                    <a href="categories/medical-fundamentals.html" class="category-card animate-on-scroll" data-delay="0.8">
-                        <i class="fas fa-chalkboard-teacher category-icon"></i>
-                        <h3>أساسيات الطب</h3>
-                        <p>بناء قاعدتك المعرفية من الصفر.</p>
-                    </a>
-                </div>
-            </div>
-        </section>
-        
-        <section id="trending-content" class="section-padded bg-light">
-            <div class="container">
-                <h2 class="section-title animate-on-scroll"><i class="fas fa-fire"></i> الأكثر رواجاً ومبيعاً</h2>
-                <p class="section-description animate-on-scroll">أكثر الكتب والمقالات قراءة وشعبية بين زوارنا حالياً.</p>
-                <div class="books-grid">
-                    <div class="book-card trending-card animate-on-scroll" data-delay="0.1">
-                        <div class="book-cover"><i class="fas fa-heartbeat"></i></div>
-                        <h3>**كتاب فن الوقاية من أمراض القلب**</h3>
-                        <p>الأكثر مبيعاً: دليل شامل للحفاظ على صحة قلبك وشرايينك.</p>
-                        <span class="price">99.00 جنيه مصري</span>
-                        <a href="books/book-example-1.html" class="btn btn-secondary">عرض التفاصيل <i class="fas fa-arrow-left"></i></a>
+                        <p>تعمق في عالم التحاليل الطبية مع تشكيلتنا من الكتب المتخصصة والدورات التدريبية التي تغطي أحدث التقنيات والأساليب المخبرية الدقيقة.</p>
+                        <a href="sections/medical-labs.html" class="btn btn-primary">استكشف القسم <i class="fas fa-arrow-left"></i></a> 
                     </div>
-                    <div class="book-card trending-card animate-on-scroll" data-delay="0.2">
-                        <div class="book-cover"><i class="fas fa-flask"></i></div>
-                        <h3>فهم تحاليل الدم الشاملة</h3>
-                        <p>مقال عن قراءة التحاليل الطبية.</p>
-                        <span class="price">مقال مجاني</span>
-                        <a href="books/book-example-2.html" class="btn btn-secondary">اقرأ المقال <i class="fas fa-arrow-left"></i></a>
-                    </div>
-                    <div class="book-card trending-card animate-on-scroll" data-delay="0.3">
-                        <div class="book-cover"><i class="fas fa-pills"></i></div>
-                        <h3>الأدوية الشائعة وتفاعلاتها</h3>
-                        <p>كتاب في الصيدلة لفهم تأثيرات الأدوية.</p>
-                        <span class="price">70.00 جنيه مصري</span>
-                        <a href="books/book-example-3.html" class="btn btn-secondary">عرض التفاصيل <i class="fas fa-arrow-left"></i></a>
-                    </div>
-                    <div class="book-card trending-card animate-on-scroll" data-delay="0.4">
-                        <div class="book-cover"><i class="fas fa-user-nurse"></i></div>
-                        <h3>دليل الإسعافات الأولية للمبتدئين</h3>
-                        <p>كتاب في التمريض للطوارئ.</p>
-                        <span class="price">55.00 جنيه مصري</span>
-                        <a href="books/book-example-4.html" class="btn btn-secondary">عرض التفاصيل <i class="fas fa-arrow-left"></i></a>
-                    </div>
-                    <div class="book-card trending-card animate-on-scroll" data-delay="0.5">
-                        <div class="book-cover"><i class="fas fa-child"></i></div>
-                        <h3>صحة طفلك: دليل الأبوين</h3>
-                        <p>نصائح وإرشادات لرعاية الأطفال حديثي الولادة.</p>
-                        <span class="price">110.00 جنيه مصري</span>
-                        <a href="books/book-example-5.html" class="btn btn-secondary">عرض التفاصيل <i class="fas fa-arrow-left"></i></a>
-                    </div>
-                    <div class="book-card trending-card animate-on-scroll" data-delay="0.6">
-                        <div class="book-cover"><i class="fas fa-notes-medical"></i></div>
-                        <h3>أهمية الفحص الدوري</h3>
-                        <p>مقال مجاني: لماذا الفحص الدوري مهم لصحتك.</p>
-                        <span class="price">مقال مجاني</span>
-                        <a href="books/book-example-6.html" class="btn btn-secondary">اقرأ المقال <i class="fas fa-arrow-left"></i></a>
-                    </div>
-                </div>
-                <div class="text-center mt-5 animate-on-scroll" data-delay="0.7">
-                    <a href="books/all-books.html?sort=trending" class="btn btn-primary"><i class="fas fa-chart-line"></i> عرض كل الكتب الأكثر رواجاً</a>
-                </div>
-            </div>
-        </section>
-        
-        <section id="latest-content" class="section-padded">
-            <div class="container">
-                <h2 class="section-title animate-on-scroll"><i class="fas fa-calendar-alt"></i> أحدث المقالات والإصدارات</h2>
-                <p class="section-description animate-on-scroll">كن على اطلاع دائم بآخر ما أضفناه إلى موسوعتنا من كتب قيمة ومقالات علمية حديثة.</p>
-                <div class="books-grid">
-                    <div class="book-card animate-on-scroll" data-delay="0.1">
-                        <div class="book-cover"><i class="fas fa-heartbeat"></i></div>
-                        <h3>فن الوقاية من أمراض القلب</h3>
-                        <p>دليل شامل للحفاظ على صحة قلبك وشرايينك.</p>
-                        <span class="price">99.00 جنيه مصري</span>
-                        <a href="books/book-example-1.html" class="btn btn-secondary">عرض التفاصيل <i class="fas fa-arrow-left"></i></a>
-                    </div>
-                    <div class="book-card animate-on-scroll" data-delay="0.2">
-                        <div class="book-cover"><i class="fas fa-brain"></i></div>
-                        <h3>الصحة النفسية والعافية الذهنية</h3>
-                        <p>استراتيجيات عملية لتعزيز الهدوء والتوازن النفسي.</p>
-                        <span class="price">85.00 جنيه مصري</span>
-                        <a href="books/book-example-2.html" class="btn btn-secondary">عرض التفاصيل <i class="fas fa-arrow-left"></i></a>
-                    </div>
-                    <div class="book-card animate-on-scroll" data-delay="0.3">
-                        <div class="book-cover"><i class="fas fa-capsules"></i></div>
-                        <h3>فهم الأدوية: دليل المبتدئين</h3>
-                        <p>تبسيط المعلومات الدوائية لاستخدام آمن وفعال.</p>
-                        <span class="price">75.00 جنيه مصري</span>
-                        <a href="books/book-example-3.html" class="btn btn-secondary">عرض التفاصيل <i class="fas fa-arrow-left"></i></a>
-                    </div>
-                    <div class="book-card animate-on-scroll" data-delay="0.4">
-                        <div class="book-cover"><i class="fas fa-tooth"></i></div>
-                        <h3>دليل العناية بالأسنان الشامل</h3>
-                        <p>كل ما تحتاج معرفته عن صحة الفم والأسنان.</p>
-                        <span class="price">60.00 جنيه مصري</span>
-                        <a href="books/book-example-4.html" class="btn btn-secondary">عرض التفاصيل <i class="fas fa-arrow-left"></i></a>
-                    </div>
-                    <div class="book-card animate-on-scroll" data-delay="0.5">
-                        <div class="book-cover"><i class="fas fa-lungs"></i></div>
-                        <h3>الصحة التنفسية في زمن التغيرات</h3>
-                        <p>مقال مهم: كيف تحمي جهازك التنفسي؟</p>
-                        <span class="price">مقال مجاني</span>
-                        <a href="books/book-example-5.html" class="btn btn-secondary">اقرأ المقال <i class="fas fa-arrow-left"></i></a>
-                    </div>
-                    <div class="book-card animate-on-scroll" data-delay="0.6">
-                        <div class="book-cover"><i class="fas fa-apple-alt"></i></div>
-                        <h3>دليلك للتغذية السليمة</h3>
-                        <p>محتوى حصري: خطط غذائية ونظام حياة صحي.</p>
-                        <span class="price">120.00 جنيه مصري</span>
-                        <a href="books/book-example-6.html" class="btn btn-secondary">عرض التفاصيل <i class="fas fa-arrow-left"></i></a>
-                    </div>
-                </div>
-                <div class="text-center mt-5 animate-on-scroll" data-delay="0.7">
-                    <a href="books/all-books.html?sort=latest" class="btn btn-primary"><i class="fas fa-th-list"></i> عرض جميع الإصدارات (حسب تاريخ النشر)</a>
-                </div>
-            </div>
-        </section>
-        
-        <section id="featured-ads" class="section-padded bg-light">
-            <div class="container">
-                <h2 class="section-title animate-on-scroll"><i class="fas fa-bullhorn"></i> إعلانات وكورسات مميزة</h2>
-                <p class="section-description animate-on-scroll">اكتشف أفضل الكورسات والكتب المقدمة من نخبة من خبراء الطب.</p>
-                <div class="books-grid">
-                    <div class="book-card ad-card animate-on-scroll" data-delay="0.1">
-                        <div class="book-cover ad-cover"><i class="fas fa-user-graduate"></i></div>
-                        <h3>كورس "أساسيات الجراحة العامة"</h3>
-                        <p>د. أحمد الشريف - كورس مكثف للمبتدئين.</p>
-                        <span class="price ad-price">تفاصيل الدورة</span>
-                        <a href="ads/ad-example-1.html" class="btn btn-secondary">عرض الإعلان <i class="fas fa-arrow-left"></i></a>
-                    </div>
-                    <div class="book-card ad-card animate-on-scroll" data-delay="0.2">
-                        <div class="book-cover ad-cover"><i class="fas fa-laptop-medical"></i></div>
-                        <h3>كتاب "الذكاء الاصطناعي في التشخيص"</h3>
-                        <p>م. سارة فهمي - رؤية مستقبلية للطب.</p>
-                        <span class="price ad-price">متاح للشراء</span>
-                        <a href="ads/ad-example-2.html" class="btn btn-secondary">عرض الإعلان <i class="fas fa-arrow-left"></i></a>
-                    </div>
-                    <div class="book-card ad-card animate-on-scroll" data-delay="0.3">
-                        <div class="book-cover ad-cover"><i class="fas fa-dna"></i></div>
-                        <h3>دورة "الوراثة الإكلينيكية"</h3>
-                        <p>بروفيسور خالد زكي - دورة متقدمة للأطباء.</p>
-                        <span class="price ad-price">احجز الآن</span>
-                        <a href="ads/ad-example-3.html" class="btn btn-secondary">عرض الإعلان <i class="fas fa-arrow-left"></i></a>
-                    </div>
-                    <div class="book-card ad-card animate-on-scroll" data-delay="0.4">
-                        <div class="book-cover ad-cover"><i class="fas fa-notes-medical"></i></div>
-                        <h3>كورس "أساسيات طب الطوارئ"</h3>
-                        <p>د. رنا محمود - تدريب عملي للحالات الحرجة.</p>
-                        <span class="price ad-price">سجل الآن</span>
-                        <a href="ads/ad-example-4.html" class="btn btn-secondary">عرض الإعلان <i class="fas fa-arrow-left"></i></a>
-                    </div>
-                    <div class="book-card ad-card animate-on-scroll" data-delay="0.5">
-                        <div class="book-cover ad-cover"><i class="fas fa-hands-helping"></i></div>
-                        <h3>كتاب "إدارة عيادتك بنجاح"</h3>
-                        <p>نور مدحت - دليل شامل لرواد الأعمال الطبية.</p>
-                        <span class="price ad-price">متوفر للشراء</span>
-                        <a href="ads/ad-example-5.html" class="btn btn-secondary">عرض الإعلان <i class="fas fa-arrow-left"></i></a>
-                    </div>
-                    <div class="book-card ad-card animate-on-scroll" data-delay="0.6">
-                        <div class="book-cover ad-cover"><i class="fas fa-user-md"></i></div>
-                        <h3>دورة "مهارات التواصل مع المريض"</h3>
-                        <p>أ. محمد سعيد - تطوير المهارات الشخصية.</p>
-                        <span class="price ad-price">ابدأ التعلم</span>
-                        <a href="ads/ad-example-6.html" class="btn btn-secondary">عرض الإعلان <i class="fas fa-arrow-left"></i></a>
-                    </div>
-                </div>
-                <div class="text-center mt-5 animate-on-scroll" data-delay="0.7">
-                    <a href="ads/index.html" class="btn btn-primary"><i class="fas fa-th-list"></i> تصفح كل الإعلانات والكورسات</a>
-                </div>
-            </div>
-        </section>
 
-        <section id="about" class="section-padded">
-            <div class="container">
-                <h2 class="section-title animate-on-scroll"><i class="fas fa-user-md"></i> عن دكتور محمد الجمال</h2>
-                <div class="about-content">
-                    <div class="about-text animate-on-scroll">
-                        <p>مرحباً بكم في مكتبتي الرقمية! أنا دكتور محمد الجمال، وأهديكم خلاصة سنوات من الدراسة والخبرة في المجال الطبي والمعرفي. أؤمن بأن المعرفة هي أساس الصحة الحقيقية، ليس فقط للجسد، بل للعقل والروح أيضاً.</p>
-                        <p>هدفي من هذا الموقع هو تقديم محتوى طبي موثوق ومبسط، على شكل كتب رقمية ودورات معرفية، تساعدكم على فهم أعمق لجوانب الصحة المختلفة. من الوقاية والعلاج إلى التغذية السليمة والصحة النفسية، كل كتاب هنا مصمم ليكون رفيقك في رحلة نحو حياة أكثر صحة ووعيًا.</p>
-                        <p>أسعى لتبسيط المعقد، وإتاحة المعلومة الموثوقة للجميع، مع التركيز على الجوانب العملية التي يمكنك تطبيقها في حياتك اليومية. انضم إلينا في هذه الرحلة المعرفية المثرية.</p>
+                    <div class="category-card" id="dentistry">
+                        <div class="category-icon"><i class="fas fa-tooth"></i></div>
+                        <h3>الأسنان</h3>
+                        <p>سواء كنت طالبًا أو طبيب أسنان، ستجد لدينا كل ما تحتاجه من كتب وموارد لتعزيز ممارستك وفهمك لطب الأسنان الحديث بأحدث التقنيات.</p>
+                        <a href="sections/dentistry.html" class="btn btn-primary">استكشف القسم <i class="fas fa-arrow-left"></i></a> 
                     </div>
-                    <div class="about-stats animate-on-scroll">
-                        <div class="stat-item">
-                            <i class="fas fa-book-open"></i>
-                            <span>+10</span>
-                            <p>كتب طبية ومحتوى</p>
-                        </div>
-                        <div class="stat-item">
-                            <i class="fas fa-user-graduate"></i>
-                            <span>+1500</span>
-                            <p>قارئ ومستفيد</p>
-                        </div>
-                        <div class="stat-item">
-                            <i class="fas fa-calendar-check"></i>
-                            <span>+5</span>
-                            <p>سنوات خبرة</p>
-                        </div>
+
+                    <div class="category-card" id="other-medical">
+                        <div class="category-icon"><i class="fas fa-plus-circle"></i></div>
+                        <h3>تخصصات طبية أخرى</h3>
+                        <p>يضم هذا القسم موارد ومنتجات تغطي تخصصات طبية متنوعة ومجالات داعمة، لتوفير معرفة شاملة ومتكاملة لكل العاملين في القطاع الصحي.</p>
+                        <a href="sections/other-medical.html" class="btn btn-primary">استكشف القسم <i class="fas fa-arrow-left"></i></a> 
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="testimonials" class="section-padded bg-light">
+        <section class="promo-section">
             <div class="container">
-                <h2 class="section-title animate-on-scroll"><i class="fas fa-quote-right"></i> ماذا يقول القراء؟</h2>
+                <div class="promo-content">
+                    <h2>لماذا تختار Dr. Mohamed Al-Gamal؟</h2>
+                    <p>في **Dr. Mohamed Al-Gamal**، نؤمن بأن المعرفة المتجددة هي مفتاح التطور والتميز في المجال الطبي. لذلك، نسعى جاهدين لتوفير منصة فريدة تجمع بين أحدث المنتجات الطبية عالية الجودة، وأهم الكتب والمراجع العلمية الموثوقة، وأكثر الدورات التدريبية احترافية لتطوير مهاراتك. هدفنا هو دعم رحلتك التعليمية والمهنية، وتزويدك بكل ما تحتاجه لتكون دائمًا في طليعة التطورات الطبية.</p>
+                    <p>معنا، **أنت لست مجرد متسوق، بل شريك في النجاح والتقدم العلمي.**</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="purchase-methods-section" id="purchase-methods">
+            <div class="container">
+                <h2>طرق الشراء والدفع السهلة</h2>
+                <p class="section-description">نوفر لك خيارات دفع مرنة وآمنة لضمان تجربة تسوق مريحة وموثوقة:</p>
+                <div class="methods-grid">
+                    <div class="method-card">
+                        <i class="fas fa-credit-card"></i>
+                        <h3>الدفع ببطاقات الائتمان/الخصم</h3>
+                        <p>استخدم بطاقتك الائتمانية أو بطاقة الخصم لإتمام عملية الشراء بأمان وسهولة تامة.</p>
+                    </div>
+                    <div class="method-card">
+                        <i class="fas fa-hand-holding-usd"></i>
+                        <h3>الدفع عند الاستلام</h3>
+                        <p> (إذا كان متاحاً في منطقتك) ادفع نقداً عند استلام طلبك مباشرةً، لراحة بالك.</p>
+                    </div>
+                    <div class="method-card special-offer">
+                        <i class="fas fa-mobile-alt"></i>
+                        <h3>توفير خاص: الدفع عبر Instapay</h3>
+                        <p>**وفر 10% فورًا!** عند اختيار الدفع من خلال تطبيق Instapay. اغتنم الفرصة للحصول على أفضل الموارد بأقل تكلفة!</p>
+                        <i class="fas fa-tags discount-tag"></i>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="testimonials-section">
+            <div class="container">
+                <h2>ماذا يقول عملاؤنا عنّا؟</h2>
                 <div class="testimonials-grid">
-                    <div class="testimonial-card animate-on-scroll">
-                        <p>"كتب دكتور محمد الجمال غيرت نظرتي للصحة تمامًا. معلومات دقيقة ومبسطة ومفيدة جداً."</p>
-                        <h4>- أحمد المصري</h4>
-                    </div>
-                    <div class="testimonial-card animate-on-scroll">
-                        <p>"المحتوى غني جداً والأسلوب سلس. أنصح بها كل من يبحث عن معلومات طبية موثوقة وعملية."</p>
-                        <h4>- سارة علي</h4>
+                    <div class="testimonial-card">
+                        <i class="fas fa-quote-left"></i>
+                        <p>"تجربة شراء ممتازة! وجدت كل الكتب اللي محتاجها والدورات كانت فعلاً قيمة ومفيدة جدًا. شكرًا لكم على المجهود."</p>
+                        <div class="client-info">
+                            <span class="client-name">أ.د. سارة أحمد</span>
+                        </div>
                     </div>
                     <div class="testimonial-card">
-                        <p>"أكثر من مجرد كتب، إنها دليل شامل للعناية بالذات. استثمار حقيقي في صحتك."</p>
-                        <h4>- فاطمة الزهراء</h4>
+                        <i class="fas fa-quote-left"></i>
+                        <p>"الموقع منظم وسهل التصفح، والمنتجات المعروضة ذات جودة عالية. استلمت طلبي بسرعة، وهكرر التجربة بالتأكيد."</p>
+                        <div class="client-info">
+                            <span class="client-name">م. صيدلي خالد منصور</span>
+                        </div>
                     </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="contact" class="section-padded">
-            <div class="container">
-                <h2 class="section-title animate-on-scroll"><i class="fas fa-envelope"></i> تواصل معنا</h2>
-                <p class="section-description animate-on-scroll">للاستفسارات، الدعم الفني، أو أي اقتراحات، لا تتردد في التواصل معنا عبر النموذج التالي أو وسائل التواصل الاجتماعي.</p>
-                <div class="contact-form animate-on-scroll">
-                    <form>
-                        <div class="form-group">
-                            <input type="text" placeholder="اسمك الكريم" required>
-                            <input type="email" placeholder="بريدك الإلكتروني" required>
+                    <div class="testimonial-card">
+                        <i class="fas fa-quote-left"></i>
+                        <p>"الخصم على Instapay كان حافز قوي بالنسبة لي، وتفاجئت فعلاً بجودة المحتوى التعليمي. أنصح به بشدة لكل زملائي."</p>
+                        <div class="client-info">
+                            <span class="client-name">د. نورهان السيد</span>
                         </div>
-                        <div class="form-group">
-                            <input type="text" placeholder="عنوان الرسالة" required>
-                        </div>
-                        <div class="form-group">
-                            <textarea placeholder="رسالتك هنا..." rows="6" required></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-primary">إرسال الرسالة <i class="fas fa-paper-plane"></i></button>
-                    </form>
+                    </div>
                 </div>
             </div>
         </section>
     </main>
 
-    <footer class="footer">
+    <footer class="main-footer">
         <div class="container">
-            <p>&copy; 2025 دكتور محمد الجمال. جميع الحقوق محفوظة.</p>
+            <p>&copy; 2024 Dr. Mohamed Al-Gamal. جميع الحقوق محفوظة.</p>
             <div class="footer-links">
                 <a href="#">سياسة الخصوصية</a>
                 <a href="#">شروط الاستخدام</a>
-                <a href="#">المدونة</a>
+                <a href="#">الأسئلة الشائعة</a>
             </div>
-            <div class="social-icons">
-                <a href="#" aria-label="فيسبوك"><i class="fab fa-facebook-f"></i></a>
-                <a href="#" aria-label="تويتر"><i class="fab fa-twitter"></i></a>
-                <a href="#" aria-label="لينكدإن"><i class="fab fa-linkedin-in"></i></a>
-                <a href="#" aria-label="يوتيوب"><i class="fab fa-youtube"></i></a>
+            <div class="social-links">
+                <h4>تواصل معنا وتابعنا على:</h4>
+                <a href="https://facebook.com/algmmal" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://instagram.com/algmmal" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="https://twitter.com/algmmal" target="_blank" aria-label="Twitter / X"><i class="fab fa-twitter"></i></a>
+                <a href="https://linkedin.com/in/algmmal" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                <a href="https://wa.me/201XXXXXXXXXX" target="_blank" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a> <a href="mailto:info@algmmal.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
             </div>
         </div>
     </footer>
-    <script src="script.js"></script>
+
+    <script src="js/script.js"></script>
+
 </body>
 </html>

@@ -1,0 +1,1058 @@
+/* General Styles */
+:root {
+    /* Final Color Palette - More Richness and Depth */
+    --primary-deep: #002244; /* Darker Navy for main backgrounds/headings */
+    --primary-accent: #007BFF; /* Bright Medical Blue for interactive elements */
+    --secondary-green: #28A745; /* Vibrant Medical Green for secondary highlights */
+    --accent-gold: #FFC107; /* Warm Gold for special offers/alerts */
+    --text-color: #343A40; /* Dark Charcoal for general text, high contrast */
+    --light-bg: #F8F9FA; /* Very light grey for section backgrounds */
+    --white-bg: #ffffff;
+    --border-color: #dee2e6;
+    --shadow-light: rgba(0, 0, 0, 0.08);
+    --shadow-medium: rgba(0, 0, 0, 0.15);
+    --header-gradient-start: #002244; /* Start of header gradient */
+    --header-gradient-end: #003366; /* End of header gradient */
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: var(--light-bg);
+    direction: rtl; /* Right-to-left for Arabic */
+    text-align: right; /* Align text to the right for Arabic */
+}
+
+/* Prevent body scroll when mobile menu is open */
+body.no-scroll {
+    overflow: hidden;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+h1, h2, h3 {
+    color: var(--primary-deep); /* Use deep navy for main headings */
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+p {
+    margin-bottom: 10px;
+}
+
+a {
+    color: var(--primary-accent);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: var(--accent-gold);
+}
+
+.btn {
+    display: inline-block;
+    background-color: var(--primary-accent); /* Bright medical blue for primary buttons */
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    text-align: center;
+    margin-top: 15px;
+    font-weight: bold;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+}
+
+.btn:hover {
+    background-color: #0056b3; /* Darker shade of primary-accent */
+    transform: translateY(-2px);
+}
+
+.btn-primary i {
+    margin-right: 8px; /* For right-to-left text direction */
+}
+
+/* Specific button for "Advertise" to differentiate */
+.btn-advertise {
+    background-color: var(--secondary-green); /* Medical green for advertise button */
+}
+
+.btn-advertise:hover {
+    background-color: #218838; /* Darker green on hover */
+}
+
+
+.section-description {
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 1.1em;
+    color: var(--text-color);
+}
+
+/* Header Section */
+.main-header {
+    background: linear-gradient(to right, var(--header-gradient-start), var(--header-gradient-end)); /* Gradient background */
+    color: white;
+    padding: 20px 0;
+    border-bottom-left-radius: 40px;
+    border-bottom-right-radius: 40px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.25); /* More prominent shadow */
+    position: relative;
+}
+
+.main-header .container {
+    display: flex;
+    justify-content: space-between; /* Logo right, nav left */
+    align-items: center;
+    width: 100%;
+}
+
+.header-right {
+    text-align: right;
+    flex-grow: 1; /* Allow to take available space */
+    display: flex;
+    flex-direction: column; /* Stack logo and slogan vertically */
+    align-items: flex-end; /* Align to the right side of its container */
+}
+
+/* Logo Image Styling */
+.site-logo {
+    display: block;
+    margin-bottom: 5px; /* Space between logo and slogan */
+}
+.site-logo img {
+    max-height: 70px; /* Adjusted logo size */
+    width: auto;
+    display: block; /* Remove extra space below image */
+    border-radius: 5px; /* Optional: slight rounding for the logo image */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    transition: transform 0.3s ease;
+}
+
+.site-logo img:hover {
+    transform: scale(1.05); /* Slight scale on hover */
+}
+
+.main-header .site-slogan {
+    font-size: 1.2em;
+    opacity: 0.9;
+    color: #e0e0e0; /* Lighter grey for slogan */
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+    margin-top: 0; /* Align with logo */
+}
+
+/* Hide site-title when image logo is present, for clean replacement */
+.main-header .site-title {
+    display: none; 
+}
+
+
+/* Desktop Navigation (Visible by default and fully displayed in one line) */
+.desktop-nav {
+    display: block; /* Ensure it's always block on desktop */
+    flex-basis: auto; /* Allow nav to take necessary width */
+    margin-right: 20px; /* Space from logo */
+}
+
+.desktop-nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: flex-start; /* Align links to the left */
+    align-items: center; /* Vertically align items */
+    padding-left: 0; /* Remove default padding */
+    flex-wrap: nowrap; /* Keep items in one line */
+    overflow-x: auto; /* Enable horizontal scroll if items overflow (unlikely for 7) */
+    scrollbar-width: none; /* Hide scrollbar for Firefox */
+    -ms-overflow-style: none;  /* Hide scrollbar for IE and Edge */
+}
+
+/* Hide scrollbar for Chrome, Safari, Opera */
+.desktop-nav ul::-webkit-scrollbar {
+    display: none;
+}
+
+.desktop-nav ul li {
+    position: relative;
+    margin: 0 10px; /* Slightly reduced margin for more links */
+    flex-shrink: 0; /* Prevent items from shrinking */
+}
+
+.desktop-nav ul li a {
+    color: #CCE5FF; /* Lighter blue for links in dark header for contrast */
+    font-weight: 600; /* Medium bold */
+    padding: 10px 15px;
+    border-radius: 8px; /* More rounded corners */
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    display: block;
+    font-size: 1em; /* Standard font size */
+    white-space: nowrap; /* Prevent text wrapping */
+    box-shadow: inset 0 0 0 rgba(0,0,0,0); /* Initial transparent shadow */
+}
+
+.desktop-nav ul li a:hover,
+.desktop-nav ul li a.current-page { /* Style for active/current page */
+    background-color: rgba(255, 255, 255, 0.3); /* More prominent hover effect */
+    color: #FFFFFF; /* Pure white on hover */
+    transform: translateY(-3px); /* Stronger lift on hover */
+    box-shadow: inset 0 0 5px rgba(255,255,255,0.5), 0 5px 10px rgba(0,0,0,0.3); /* Subtle inner and outer shadow */
+}
+.desktop-nav ul li a.current-page {
+    background-color: var(--primary-accent); /* Blue highlight for current page */
+    color: white;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+}
+
+
+/* Remove icons from desktop navigation for cleaner look */
+.desktop-nav ul li a i {
+    display: none; 
+}
+
+
+/* Mobile Navigation (Hamburger Menu) */
+.menu-toggle {
+    display: none; /* Hidden by default, shown on mobile */
+    background: none;
+    border: none;
+    color: white;
+    font-size: 2.2em; /* Larger icon */
+    cursor: pointer;
+    z-index: 1002; /* Above mobile nav */
+    padding: 10px;
+    transition: transform 0.3s ease;
+}
+
+.menu-toggle:hover {
+    transform: scale(1.1);
+}
+
+.mobile-nav {
+    position: fixed; /* Fixed to viewport */
+    top: 0;
+    right: -280px; /* Hidden off-screen to the right */
+    width: 280px; /* Width of the side menu */
+    height: 100%;
+    background-color: var(--white-bg);
+    box-shadow: -4px 0 15px var(--shadow-medium); /* Shadow to the left */
+    transition: right 0.3s ease-in-out; /* Transition from right */
+    z-index: 1001; /* Above main content */
+    padding-top: 60px; /* Space from top for close button */
+    overflow-y: auto; /* Allow scrolling if content is long */
+    border-right: 5px solid var(--primary-accent); /* Accent border on the side menu edge */
+}
+
+.mobile-nav.active {
+    right: 0; /* Slide in from the right */
+}
+
+.mobile-nav .close-menu {
+    position: absolute;
+    top: 15px;
+    left: 15px; /* Position to the left for right-opening menu */
+    background: none;
+    border: none;
+    font-size: 2em;
+    color: var(--primary-deep);
+    cursor: pointer;
+    padding: 10px;
+    transition: transform 0.3s ease;
+}
+
+.mobile-nav .close-menu:hover {
+    transform: rotate(-90deg); /* Rotate other way for 'X' from right */
+}
+
+.mobile-nav-links {
+    list-style: none;
+    padding: 20px;
+}
+
+.mobile-nav-links li {
+    margin-bottom: 10px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.mobile-nav-links li:last-child {
+    border-bottom: none;
+}
+
+.mobile-nav-links a {
+    display: block;
+    padding: 12px 15px;
+    color: var(--text-color);
+    font-weight: bold;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    border-radius: 5px;
+}
+
+.mobile-nav-links a:hover {
+    background-color: var(--light-bg);
+    color: var(--primary-accent);
+}
+
+.mobile-nav-links a i {
+    margin-left: 10px; /* Icons visible on mobile menu */
+}
+
+/* Overlay for mobile menu */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    display: none;
+    transition: opacity 0.3s ease;
+}
+
+.overlay.active {
+    display: block;
+    opacity: 1;
+}
+/* Initially hidden overlay */
+.overlay:not(.active) {
+    opacity: 0;
+    pointer-events: none; /* Disable clicks when not active */
+}
+
+
+/* Adverts Section */
+.adverts-section {
+    padding: 30px 0;
+    background-color: var(--light-bg);
+    text-align: center;
+    margin-top: 0; /* No margin-top, it's just below header */
+}
+
+.advert-banner {
+    background: linear-gradient(to right, var(--accent-gold), #FFD700); /* Gold gradient for banner */
+    color: white;
+    padding: 20px 30px;
+    border-radius: 10px;
+    font-size: 1.2em;
+    font-weight: bold;
+    box-shadow: 0 4px 10px var(--shadow-medium);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: 30px;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+    animation: pulse 2s infinite ease-in-out; /* Subtle pulse animation */
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.01); }
+    100% { transform: scale(1); }
+}
+
+.advert-banner a {
+    color: white;
+    text-decoration: underline;
+    margin-right: 10px;
+    font-weight: bolder;
+}
+
+.advert-banner a:hover {
+    color: #FFF;
+}
+
+.advert-note {
+    background-color: var(--white-bg);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.1); /* Stronger shadow */
+    margin-top: 20px;
+    color: var(--text-color);
+    border-right: 5px solid var(--secondary-green); /* Green border accent */
+    border-left: none; /* Remove left border */
+}
+
+.advert-note h3 {
+    color: var(--primary-deep); /* Deep navy heading for prominence */
+    font-size: 1.8em;
+    margin-bottom: 15px;
+}
+
+.advert-note p {
+    font-size: 1.1em;
+    margin-bottom: 20px;
+    color: #555;
+}
+
+.advert-note .btn {
+    background-color: var(--secondary-green); /* Green button for "Advertise with us" */
+}
+
+.advert-note .btn:hover {
+    background-color: #218838;
+}
+
+
+/* Main Content Sections */
+.main-content section {
+    padding: 60px 0;
+    background-color: var(--white-bg);
+    margin-bottom: 30px;
+    box-shadow: 0 2px 10px var(--shadow-light);
+    border-radius: 10px;
+}
+
+.main-content section:last-child {
+    margin-bottom: 0;
+}
+
+/* Categories Section (Homepage) */
+.categories-section h2 {
+    margin-bottom: 20px;
+}
+
+.categories-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.category-card {
+    background-color: var(--light-bg);
+    border-radius: 10px;
+    padding: 30px;
+    text-align: center;
+    box-shadow: 0 4px 15px var(--shadow-light);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 4px solid var(--primary-accent); /* Blue accent border */
+}
+
+.category-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 25px var(--shadow-medium);
+    border-bottom-color: var(--secondary-green); /* Green on hover */
+}
+
+.category-icon {
+    font-size: 3.5em;
+    color: var(--primary-accent); /* Bright medical blue icons */
+    margin-bottom: 20px;
+}
+
+.category-card h3 {
+    color: var(--primary-deep); /* Deep navy heading for categories */
+    font-size: 1.8em;
+    margin-bottom: 15px;
+}
+
+.category-card p {
+    font-size: 1.05em;
+    color: #555;
+    flex-grow: 1;
+}
+
+/* Promotional Section */
+.promo-section {
+    background: linear-gradient(to bottom right, var(--primary-deep), #004488); /* Gradient for promo section */
+    color: white;
+    text-align: center;
+    padding: 80px 0;
+    margin-top: 30px;
+    border-radius: 10px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.3); /* Stronger shadow */
+}
+
+.promo-section h2 {
+    color: white;
+    font-size: 2.8em; /* Slightly larger heading */
+    margin-bottom: 25px;
+    text-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+}
+
+.promo-section p {
+    font-size: 1.25em; /* Larger, more readable text */
+    max-width: 800px;
+    margin: 0 auto;
+    color: rgba(255, 255, 255, 0.95); /* Better readability */
+    line-height: 1.8;
+}
+
+/* Purchase Methods Section */
+.purchase-methods-section {
+    padding: 60px 0;
+    background-color: var(--white-bg);
+    margin-top: 30px;
+    box-shadow: 0 2px 10px var(--shadow-light);
+    border-radius: 10px;
+}
+
+.purchase-methods-section h2 {
+    margin-bottom: 20px;
+}
+
+.methods-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.method-card {
+    background-color: var(--light-bg);
+    border-radius: 10px;
+    padding: 30px;
+    text-align: center;
+    box-shadow: 0 4px 15px var(--shadow-light);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    border-top: 4px solid var(--primary-accent); /* Blue accent border */
+}
+
+.method-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 20px var(--shadow-medium);
+}
+
+.method-card i {
+    font-size: 3em;
+    color: var(--primary-accent);
+    margin-bottom: 15px;
+}
+
+.method-card h3 {
+    color: var(--primary-deep);
+    font-size: 1.6em;
+    margin-bottom: 10px;
+}
+
+.method-card p {
+    color: #555;
+}
+
+.method-card.special-offer {
+    border-top: 4px solid var(--accent-gold); /* Gold border for special offer */
+    background-color: #fffaf0; /* Light yellow background */
+}
+
+.method-card.special-offer h3 {
+    color: var(--accent-gold); /* Gold heading for special offer */
+}
+
+.discount-tag {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    background-color: var(--accent-gold);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 50%;
+    font-size: 0.9em;
+    transform: rotate(-15deg);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+/* Testimonials Section */
+.testimonials-section {
+    padding: 60px 0;
+    background-color: var(--light-bg);
+    border-radius: 10px;
+    margin-top: 30px;
+    box-shadow: 0 2px 10px var(--shadow-light);
+}
+
+.testimonials-section h2 {
+    margin-bottom: 40px;
+}
+
+.testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.testimonial-card {
+    background-color: var(--white-bg);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px var(--shadow-light);
+    position: relative;
+    text-align: center;
+    border-left: 4px solid var(--secondary-green); /* Green accent border */
+}
+
+.testimonial-card i.fa-quote-left {
+    font-size: 2.5em;
+    color: var(--primary-accent);
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    opacity: 0.1;
+}
+
+.testimonial-card p {
+    font-style: italic;
+    color: #555;
+    margin-bottom: 20px;
+    font-size: 1.1em;
+}
+
+.client-info {
+    font-weight: bold;
+    color: var(--primary-deep); /* Deep navy for client name */
+}
+
+/* Footer Section */
+.main-footer {
+    background: linear-gradient(to right, #002244, #003366); /* Same gradient as header for consistency */
+    color: white;
+    padding: 30px 0;
+    text-align: center;
+    margin-top: 30px;
+    border-top-left-radius: 40px;
+    border-top-right-radius: 40px;
+    box-shadow: 0 -6px 20px rgba(0,0,0,0.25);
+}
+
+.main-footer p {
+    margin-bottom: 15px;
+    font-size: 0.95em;
+    color: #e0e0e0;
+}
+
+.footer-links a {
+    color: white;
+    margin: 0 15px;
+    transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+    color: var(--accent-gold);
+}
+
+.social-links {
+    margin-top: 20px;
+}
+
+.social-links h4 {
+    color: white;
+    margin-bottom: 10px;
+    font-size: 1.1em;
+}
+
+.social-links a {
+    color: white;
+    font-size: 1.8em;
+    margin: 0 10px;
+    transition: color 0.3s ease, transform 0.2s ease;
+}
+
+.social-links a:hover {
+    color: var(--accent-gold);
+    transform: translateY(-3px);
+}
+
+/* --- Section Page Specific Styles --- */
+.section-page-content {
+    padding-top: 40px; /* Adjust top padding for content below header */
+}
+
+.section-title-heading {
+    color: var(--primary-deep);
+    font-size: 2.5em;
+    margin-bottom: 10px;
+    text-align: center; /* Ensure title is centered */
+}
+
+.section-page-description {
+    color: #555;
+    font-size: 1.1em;
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.content-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    margin-top: 30px;
+}
+
+.content-card {
+    background-color: var(--white-bg);
+    border-radius: 10px;
+    padding: 25px;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-top: 5px solid var(--primary-accent); /* Accent border for content cards */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.content-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+    border-top-color: var(--secondary-green); /* Change color on hover */
+}
+
+.card-icon {
+    font-size: 3em;
+    color: var(--primary-accent);
+    margin-bottom: 15px;
+}
+
+.content-card h3 {
+    color: var(--primary-deep);
+    font-size: 1.5em;
+    margin-bottom: 10px;
+    flex-grow: 1; /* Allow title to take space */
+}
+
+.content-card p {
+    color: #666;
+    font-size: 0.95em;
+    margin-bottom: 15px;
+}
+
+/* Pagination Styles */
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+    gap: 10px;
+}
+
+.page-link {
+    background-color: var(--white-bg);
+    color: var(--primary-deep);
+    padding: 10px 15px;
+    border-radius: 5px;
+    border: 1px solid var(--border-color);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.page-link:hover {
+    background-color: var(--primary-accent);
+    color: white;
+    border-color: var(--primary-accent);
+}
+
+.page-link.active {
+    background-color: var(--primary-accent);
+    color: white;
+    border-color: var(--primary-accent);
+    font-weight: bold;
+}
+
+.page-link.disabled {
+    opacity: 0.6;
+    pointer-events: none;
+    cursor: not-allowed;
+}
+
+.page-link i {
+    margin: 0 5px;
+}
+
+/* --- Single Content Page Specific Styles --- */
+.single-content-page {
+    padding-top: 40px;
+}
+
+.back-link {
+    display: inline-flex;
+    align-items: center;
+    margin-bottom: 30px;
+    color: var(--primary-deep);
+    font-weight: bold;
+    font-size: 1.1em;
+}
+
+.back-link i {
+    margin-left: 8px; /* Arrow icon to the left for RTL */
+    transition: margin-left 0.3s ease;
+}
+
+.back-link:hover i {
+    margin-left: 12px; /* Move arrow slightly on hover */
+}
+
+.content-header {
+    text-align: center;
+    margin-bottom: 40px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.content-header h1 {
+    font-size: 2.8em;
+    color: var(--primary-deep);
+    margin-bottom: 15px;
+}
+
+.content-meta {
+    font-size: 0.95em;
+    color: #777;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.content-meta span i {
+    margin-left: 5px;
+    color: var(--primary-accent);
+}
+
+.content-body {
+    background-color: var(--white-bg);
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    line-height: 1.8;
+    font-size: 1.1em;
+    color: var(--text-color);
+}
+
+.content-body p {
+    margin-bottom: 20px;
+    text-align: justify; /* Justify text for better readability */
+}
+
+.content-body h3, .content-body h4 {
+    text-align: right; /* Align subheadings to the right */
+    color: var(--secondary-green); /* Green for subheadings */
+    margin-top: 30px;
+    margin-bottom: 15px;
+}
+
+.content-body ul {
+    list-style-position: inside; /* Bullets inside content flow */
+    margin-bottom: 20px;
+    padding-right: 20px; /* Indent list for clarity */
+}
+
+.content-body ul li {
+    margin-bottom: 8px;
+}
+
+.action-section {
+    background-color: var(--light-bg);
+    padding: 25px;
+    border-radius: 8px;
+    margin-top: 40px;
+    text-align: center;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+.action-section p {
+    font-size: 1.1em;
+    color: var(--primary-deep);
+    margin-bottom: 20px;
+}
+
+.related-content {
+    margin-top: 60px;
+    padding-top: 30px;
+    border-top: 1px dashed var(--border-color);
+}
+
+.related-content h3 {
+    color: var(--primary-deep);
+    margin-bottom: 30px;
+}
+
+.related-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.related-card {
+    background-color: var(--light-bg);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+    text-align: center;
+    border-left: 4px solid var(--secondary-green);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.related-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+}
+
+.related-card .card-icon {
+    font-size: 2.5em;
+    color: var(--primary-accent);
+    margin-bottom: 10px;
+}
+
+.related-card h4 {
+    color: var(--primary-deep);
+    font-size: 1.2em;
+    margin-bottom: 10px;
+}
+
+.related-card p {
+    font-size: 0.9em;
+    color: #666;
+    margin-bottom: 15px;
+}
+
+.related-card .btn-small {
+    padding: 8px 15px;
+    font-size: 0.9em;
+}
+
+
+/* Responsive Design */
+@media (max-width: 992px) { 
+    .desktop-nav ul {
+        justify-content: center; 
+        padding-left: 0;
+    }
+    .desktop-nav ul li {
+        margin: 0 8px; 
+    }
+}
+
+@media (max-width: 768px) {
+    .main-header .container {
+        flex-direction: row-reverse; 
+        justify-content: space-between;
+    }
+
+    .header-right {
+        justify-content: flex-end; 
+        flex-direction: column; 
+        align-items: flex-end; 
+    }
+
+    .site-logo {
+        margin-left: 0; 
+        margin-bottom: 5px; 
+    }
+
+    .site-logo img {
+        max-height: 60px; 
+    }
+
+    .main-header .site-slogan {
+        font-size: 1em;
+        display: block; 
+        text-align: right;
+    }
+
+    .desktop-nav {
+        display: none;
+    }
+
+    .menu-toggle {
+        display: block;
+        margin-right: 0;
+        margin-left: 15px;
+    }
+
+    .mobile-nav {
+        right: -280px; 
+        text-align: right; 
+    }
+
+    .mobile-nav.active {
+        right: 0; 
+    }
+    
+    .mobile-nav-links {
+        padding-right: 20px;
+    }
+
+    .mobile-nav-links a {
+        padding: 15px 10px;
+    }
+
+    .mobile-nav .close-menu {
+        left: 15px; 
+        right: auto; 
+    }
+
+    .categories-grid,
+    .methods-grid,
+    .testimonials-grid,
+    .content-grid, /* Apply to new content grid as well */
+    .related-grid { /* Apply to related grid */
+        grid-template-columns: 1fr;
+    }
+
+    .promo-section h2 {
+        font-size: 2em;
+    }
+
+    .advert-banner {
+        font-size: 1em;
+        flex-direction: column;
+        padding: 15px;
+    }
+    .advert-banner a {
+        margin-top: 10px;
+        margin-right: 0;
+    }
+
+    .advert-note h3 {
+        font-size: 1.5em;
+    }
+
+    .single-content-page .content-body {
+        padding: 20px;
+    }
+
+    .content-header h1 {
+        font-size: 2em;
+    }
+
+    .content-meta {
+        flex-direction: column;
+        align-items: center;
+        gap: 5px;
+    }
+}
+
+@media (max-width: 480px) {
+    .site-logo img {
+        max-height: 50px; 
+    }
+    .main-header .site-slogan {
+        font-size: 0.9em;
+    }
+    .promo-section h2 {
+        font-size: 1.8em;
+    }
+    .promo-section p {
+        font-size: 1em;
+    }
+
+    .method-card i,
+    .category-icon,
+    .card-icon { /* Apply to new card icons */
+        font-size: 2.5em;
+    }
+}
