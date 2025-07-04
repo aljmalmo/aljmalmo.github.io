@@ -3,435 +3,244 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>مكتبة التمريض الشاملة - دليلك الكامل للنجاح</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
-    <style>
-        /* Basic CSS for the entire site - يمكن تعديل هذا الكود لجعله أكثر جاذبية */
-        body {
-            font-family: 'Cairo', sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f7f6;
-            color: #333;
-            text-align: right;
-            line-height: 1.6;
-        }
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-
-        /* Header Section */
-        .header {
-            background-color: #e0f2f7; /* لون سماوي فاتح */
-            padding: 40px 20px;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-            border-bottom-left-radius: 50px;
-            border-bottom-right-radius: 50px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-        }
-        .header .logo {
-            font-size: 3.5em;
-            font-weight: bold;
-            color: #2196f3; /* أزرق */
-            margin-bottom: 5px;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
-        }
-        .header .subtitle {
-            font-size: 1.4em;
-            color: #555;
-            margin-bottom: 25px;
-        }
-        .header img.hero-image {
-            max-width: 80%;
-            height: auto;
-            margin-top: 30px;
-            border-radius: 20px;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-            border: 5px solid #fff; /* إطار أبيض للصورة */
-        }
-        .hero-text {
-            font-size: 2.8em;
-            color: #007bb6;
-            margin: 50px 0 30px;
-            text-align: center;
-            font-weight: 700;
-            text-shadow: 1px 1px 3px rgba(0,0,0,0.05);
-        }
-
-        /* Selling Section (Fixed on all pages) */
-        .selling-section {
-            background-color: #fff;
-            padding: 35px;
-            margin: 40px 0;
-            border-radius: 20px;
-            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
-            text-align: center;
-            border-top: 6px solid #ff4081; /* وردي غامق */
-        }
-        .selling-section h2 {
-            color: #ff4081;
-            margin-bottom: 25px;
-            font-size: 2.2em;
-            font-weight: 700;
-        }
-        .selling-section p {
-            font-size: 1.15em;
-            line-height: 1.8;
-            margin-bottom: 35px;
-            color: #444;
-        }
-        .payment-options {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 25px;
-            margin-top: 25px;
-        }
-        .payment-options button {
-            background-color: #2196f3; /* أزرق */
-            color: white;
-            padding: 16px 32px;
-            border: none;
-            border-radius: 10px;
-            font-size: 1.2em;
-            cursor: pointer;
-            transition: background-color 0.3s ease, transform 0.2s ease;
-            box-shadow: 0 5px 10px rgba(0,0,0,0.1);
-            font-weight: 600;
-        }
-        .payment-options button:hover {
-            background-color: #1976d2;
-            transform: translateY(-3px);
-        }
-        .payment-options .vodafone-cash-btn {
-            background-color: #ff4081; /* وردي */
-        }
-        .payment-options .vodafone-cash-btn:hover {
-            background-color: #e0005a;
-        }
-        .discount-text {
-            color: #e0005a;
-            font-weight: bold;
-            margin-top: 20px;
-            font-size: 1.3em;
-            text-shadow: 1px 1px 1px rgba(0,0,0,0.05);
-        }
-        #vodafoneCashDetails {
-            display:none; 
-            margin-top: 25px; 
-            background-color: #fff3e0; 
-            padding: 20px; 
-            border-radius: 15px; 
-            border: 1px solid #ffcc80;
-            color: #6a4000;
-            text-align: right;
-        }
-        #vodafoneCashDetails p {
-            margin: 10px 0;
-            font-size: 1em;
-        }
-        #vodafoneCashDetails a {
-            color: #d85c00;
-            text-decoration: none;
-            font-weight: bold;
-        }
-        #vodafoneCashDetails a:hover {
-            text-decoration: underline;
-        }
-
-        /* Sections Grid */
-        .sections-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-            margin-top: 60px;
-        }
-   .section-card {
-            background-color: #fff;
-            padding: 35px;
-            border-radius: 20px;
-            box-shadow: 0 6px 12px rgba(0,0,0,0.1);
-            text-align: center;
-            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
-            cursor: pointer;
-            border: 3px solid transparent;
-        }
-        .section-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 12px 24px rgba(0,0,0,0.2);
-            border-color: #2196f3;
-        }
-        .section-card .icon {
-            font-size: 4em; /* يمكن استبدالها بصور أيقونات SVG */
-            color: #2196f3;
-            margin-bottom: 20px;
-            line-height: 1; /* يضبط محاذاة الأيقونة */
-        }
-        .section-card h3 {
-            margin: 0;
-            color: #333;
-            font-size: 1.8em;
-            font-weight: 700;
-        }
-
-
-          /* Books Grid */
-        .books-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-top: 50px;
-        }
-        .book-card {
-            background-color: #fff;
-            padding: 30px;
-            border-radius: 20px;
-            box-shadow: 0 6px 12px rgba(0,0,0,0.1);
-            text-align: center;
-            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
-            border: 3px solid transparent;
-        }
-        .book-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
-            border-color: #ff4081;
-        }
-        .book-card .book-icon {
-            font-size: 4em; /* يمكن استبدالها بصور بانرات صغيرة */
-            color: #007bb6;
-            margin-bottom: 20px;
-            line-height: 1;
-        }
-        .book-card h3 {
-            margin: 0 0 12px 0;
-            color: #333;
-            font-size: 1.7em;
-            font-weight: 700;
-        }
-        .book-card p {
-            color: #666;
-            font-size: 1.05em;
-            margin-bottom: 25px;
-        }
-        .book-card .download-btn {
-            background-color: #4CAF50; /* أخضر */
-            color: white;
-            padding: 14px 28px;
-            border: none;
-            border-radius: 10px;
-            font-size: 1.1em;
-            cursor: pointer;
-            transition: background-color 0.3s ease, transform 0.2s ease;
-            text-decoration: none;
-            display: inline-block;
-            font-weight: 600;
-        }
-        .book-card .download-btn:hover {
-            background-color: #45a049;
-            transform: translateY(-2px);
-        }
-        .book-card .download-btn.disabled {
-            background-color: #ccc;
-            cursor: not-allowed;
-            opacity: 0.7;
-        }
-        .book-card .download-btn.disabled:hover {
-            transform: none; /* No transform on hover for disabled buttons */
-        }
-        .book-card .note-text {
-            color: #e0005a;
-            font-size: 0.95em;
-            margin-top: 15px;
-            font-weight: 500;
-        }
-        .book-card .note-text.free {
-            color: #4CAF50;
-        }
-
-        
-        
-
-
-        
-        /* Footer */
-        .footer {
-            text-align: center;
-            padding: 35px;
-            margin-top: 60px;
-            background-color: #eee;
-            color: #666;
-            border-top-left-radius: 50px;
-            border-top-right-radius: 50px;
-            box-shadow: 0 -4px 10px rgba(0,0,0,0.05);
-            font-size: 0.95em;
-        }
-
-        /* Responsive adjustments */
-        @media (max-width: 768px) {
-            .header img.hero-image {
-                max-width: 100%;
-            }
-            .hero-text {
-                font-size: 2.2em;
-            }
-            .sections-grid {
-                grid-template-columns: 1fr;
-            }
-            .payment-options {
-                flex-direction: column;
-            }
-            .selling-section {
-                padding: 25px;
-            }
-            .selling-section h2 {
-                font-size: 1.8em;
-            }
-            .selling-section p {
-                font-size: 1em;
-            }
-            .payment-options button {
-                padding: 14px 25px;
-                font-size: 1.1em;
-            }
-            .discount-text {
-                font-size: 1.1em;
-            }
-            .section-card {
-                padding: 30px;
-            }
-            .section-card h3 {
-                font-size: 1.6em;
-            }
-        }
-    </style>
+    <title>Dr. Mohamed Al-Gamal - وجهتك الشاملة للمعرفة والمنتجات الطبية</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-    <div class="container">
-        <header class="header">
-            <div class="logo">60+ PDF Library</div>
-            <div class="subtitle">مكتبة التمريض الشاملة</div>
-            <img src="Gemini_Generated_Image_qmdkw8qmdkw8qmdk.jpg" alt="مكتبة التمريض" class="hero-image">
-        </header>
 
-        <h1 class="hero-text">مكتبة التمريض الشاملة: دليلك الكامل للنجاح في مجالك!</h1>
-
-        <section class="selling-section">
-            <h2>ارتقِ بمسيرتك المهنية الآن!</h2>
-            <p>
-                مكتبة التمريض الشاملة بين يديك: أكثر من 60 ملف PDF احترافي تغطي كل ما تحتاجه لتكون ممرضًا استثنائيًا. 
-                لا تفوت الفرصة لامتلاك هذا الكنز المعرفي الذي سيمنحك الثقة والمهارة في كل خطوة.
-                <br>
-                هل أنت مستعد لتكون في مقدمة الصفوف؟ هذه المكتبة ليست مجرد كتب، بل هي رفيقك للنجاح العملي والأكاديمي. 
-                احصل على أسرار التميز، وكن مجهزًا بكل ما يلزمك لتواجه التحديات بثقة!
-            </p>
-            <div class="payment-options">
-                <button onclick="window.open('https://drmostore.gumroad.com/l/nursing-bundle', '_blank')">
-                    ادفع بالفيزا أو الماستر كارد ($3)
-                </button>
-                <button class="vodafone-cash-btn" onclick="showVodafoneCashInfo()">
-                    ادفع بفودافون كاش أو انستاباي (خصم خاص)
-                </button>
+    <header class="main-header">
+        <div class="container">
+            <div class="header-right">
+                <a href="index.html" class="site-logo">
+                    <img src="YOUR_LOGO_IMAGE_URL_HERE.png" alt="Dr. Mohamed Al-Gamal Logo">
+                </a>
+                <p class="site-slogan">وجهتك الشاملة للمعرفة والمنتجات الطبية</p>
             </div>
-            <p class="discount-text">
-                خصم خاص عند الدفع بفودافون كاش أو انستاباي: ادفع 100 جنيه فقط لفترة محدودة!
-            </p>
-            <div id="vodafoneCashDetails">
-                <p><strong>للدفع عبر انستاباي:</strong> <a href="https://ipn.eg/S/aljmalm/instapay/1yvOJU" target="_blank">اضغط هنا للدفع عبر انستاباي</a></p>
-                <p><strong>للدفع عبر فودافون كاش:</strong> قم بتحويل 100 جنيه مصري إلى رقم <strong>01028439778</strong>. بعد التحويل، يرجى التواصل معنا لإتمام عملية الشراء.</p>
-                <p><strong>ملاحظة:</strong> هذا العرض ساري لفترة محدودة.</p>
+            
+            <nav class="main-nav desktop-nav">
+                <ul class="nav-links">
+                    <li><a href="index.html#purchase-methods" class="nav-link">طرق الشراء</a></li>
+                    <li><a href="human-medicine.html" class="nav-link">الطب البشري</a></li>
+                    <li><a href="pharmacy.html" class="nav-link">الصيدلة</a></li>
+                    <li><a href="nursing-library" class="nav-link">التمريض</a></li>
+                    <li><a href="medical-labs.html" class="nav-link">التحاليل الطبية</a></li>
+                    <li><a href="dentistry.html" class="nav-link">الأسنان</a></li>
+                    <li><a href="other-medical.html" class="nav-link">تخصصات أخرى</a></li>
+                </ul>
+            </nav>
+            
+            <button class="menu-toggle" aria-label="Toggle Navigation">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <nav class="mobile-nav">
+        <button class="close-menu"><i class="fas fa-times"></i></button>
+        <ul class="mobile-nav-links">
+            <li><a href="index.html#purchase-methods"><i class="fas fa-shopping-cart"></i> طرق الشراء</a></li>
+            <li><a href="human-medicine.html">الطب البشري</a></li> 
+            <li><a href="pharmacy.html">الصيدلة</a></li> 
+            <li><a href="nursing-library">التمريض</a></li> 
+            <li><a href="medical-labs.html">التحاليل الطبية</a></li> 
+            <li><a href="dentistry.html">الأسنان</a></li> 
+            <li><a href="other-medical.html">تخصصات طبية أخرى</a></li> 
+        </ul>
+    </nav>
+    <div class="overlay"></div> <section class="adverts-section">
+        <div class="container">
+            <div class="advert-banner">
+                <p>✨ **عروض حصرية لفترة محدودة:** خصم 25% على جميع الدورات والكورسات! <a href="#">تسوق الآن!</a> ✨</p>
+            </div>
+            <div class="advert-note">
+                <h3>هل ترغب في الوصول لجمهورنا المتخصص؟</h3>
+                <p>نحن نقدم فرصًا إعلانية فريدة للشركات، المؤسسات التعليمية، والخبراء في المجال الطبي. عزز علامتك التجارية وانشر رسالتك عبر منصتنا الرائدة.</p>
+                <a href="#" class="btn btn-advertise">اعلن معنا الآن! <i class="fas fa-bullhorn"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <main class="main-content">
+        <section class="categories-section" id="categories-section">
+            <div class="container">
+                <h2>أقسامنا الطبية المتخصصة</h2>
+                <p class="section-description">نقدم لك محتوى ومنتجات مختارة بعناية لتلبية احتياجاتك في مختلف فروع الطب:</p>
+
+                <div class="categories-grid">
+                    <div class="category-card" id="human-medicine">
+                        <div class="category-icon"><i class="fas fa-user-md"></i></div>
+                        <h3>الطب البشري</h3>
+                        <p>تصفح أحدث الكتب والمراجع، سجل في الدورات التدريبية المتقدمة، واحصل على أفضل المنتجات لدعم مسيرتك في الطب البشري.</p>
+                        <a href="human-medicine.html" class="btn btn-primary">استكشف القسم <i class="fas fa-arrow-left"></i></a> 
+                    </div>
+
+                    <div class="category-card" id="pharmacy">
+                        <div class="category-icon"><i class="fas fa-pills"></i></div>
+                        <h3>الصيدلة</h3>
+                        <p>كل ما يحتاجه الصيدلي والطالب من مراجع علمية، دورات عملية، وأدوات أساسية لتعزيز المعرفة والممارسة الصيدلانية.</p>
+                        <a href="pharmacy.html" class="btn btn-primary">استكشف القسم <i class="fas fa-arrow-left"></i></a> 
+                    </div>
+
+                    <div class="category-card" id="nursing">
+                        <div class="category-icon"><i class="fas fa-user-nurse"></i></div>
+                        <h3>التمريض</h3>
+                        <p>موارد شاملة لتطوير مهنة التمريض، تشمل كتبًا إرشادية، دورات تدريبية متخصصة، وأدوات عملية لرفع كفاءة الممرضين والممرضات.</p>
+                        <a href="nursing-library" class="btn btn-primary">استكشف القسم <i class="fas fa-arrow-left"></i></a> 
+                    </div>
+
+                    <div class="category-card" id="medical-labs">
+                        <div class="category-icon"><i class="fas fa-flask"></i></div>
+                        <h3>التحاليل الطبية</h3>
+                        <p>تعمق في عالم التحاليل الطبية مع تشكيلتنا من الكتب المتخصصة والدورات التدريبية التي تغطي أحدث التقنيات والأساليب المخبرية الدقيقة.</p>
+                        <a href="medical-labs.html" class="btn btn-primary">استكشف القسم <i class="fas fa-arrow-left"></i></a> 
+                    </div>
+
+                    <div class="category-card" id="dentistry">
+                        <div class="category-icon"><i class="fas fa-tooth"></i></div>
+                        <h3>الأسنان</h3>
+                        <p>سواء كنت طالبًا أو طبيب أسنان، ستجد لدينا كل ما تحتاجه من كتب وموارد لتعزيز ممارستك وفهمك لطب الأسنان الحديث بأحدث التقنيات.</p>
+                        <a href="dentistry.html" class="btn btn-primary">استكشف القسم <i class="fas fa-arrow-left"></i></a> 
+                    </div>
+
+                    <div class="category-card" id="other-medical">
+                        <div class="category-icon"><i class="fas fa-plus-circle"></i></div>
+                        <h3>تخصصات طبية أخرى</h3>
+                        <p>يضم هذا القسم موارد ومنتجات تغطي تخصصات طبية متنوعة ومجالات داعمة، لتوفير معرفة شاملة ومتكاملة لكل العاملين في القطاع الصحي.</p>
+                        <a href="other-medical.html" class="btn btn-primary">استكشف القسم <i class="fas fa-arrow-left"></i></a> 
+                    </div>
+                </div>
             </div>
         </section>
 
-            <h2 class="hero-text">الأقسام الرئيسية للمكتبة</h2>
-        <section class="sections-grid">
-            <div class="section-card" onclick="location.href='basics.html'">
-                <div class="icon">📚</div>
-                <h3>أساسيات التمريض</h3>
-            </div>
-            <div class="section-card" onclick="location.href='skills.html'">
-                <div class="icon">💉</div>
-                <h3>مهارات التمريض</h3>
-            </div>
-            <div class="section-card" onclick="location.href='first-aid.html'">
-                <div class="icon">🚨</div>
-                <h3>الإسعافات الأولية</h3>
-            </div>
-            <div class="section-card" onclick="location.href='specialties.html'">
-                <div class="icon">🏥</div>
-                <h3>تمريض التخصصات</h3>
-            </div>
-            <div class="section-card" onclick="location.href='pharmacology.html'">
-                <div class="icon">💊</div>
-                <h3>علم الدواء للتمريض</h3>
-            </div>
-            <div class="section-card" onclick="location.href='surgical-tools.html'">
-                <div class="icon">✂️</div>
-                <h3>الأدوات الجراحية</h3>
-            </div>
-            <div class="section-card" onclick="location.href='labs-xrays.html'">
-                <div class="icon">🔬</div>
-                <h3>التحاليل والأشعة</h3>
-            </div>
-            <div class="section-card" onclick="location.href='tests.html'">
-                <div class="icon">📝</div>
-                <h3>نماذج واختبارات تدريبية</h3>
+        <section class="promo-section">
+            <div class="container">
+                <div class="promo-content">
+                    <h2>لماذا تختار Dr. Mohamed Al-Gamal؟</h2>
+                    <p>في **Dr. Mohamed Al-Gamal**، نؤمن بأن المعرفة المتجددة هي مفتاح التطور والتميز في المجال الطبي. لذلك، نسعى جاهدين لتوفير منصة فريدة تجمع بين أحدث المنتجات الطبية عالية الجودة، وأهم الكتب والمراجع العلمية الموثوقة، وأكثر الدورات التدريبية احترافية لتطوير مهاراتك. هدفنا هو دعم رحلتك التعليمية والمهنية، وتزويدك بكل ما تحتاجه لتكون دائمًا في طليعة التطورات الطبية.</p>
+                    <p>معنا، **أنت لست مجرد متسوق، بل شريك في النجاح والتقدم العلمي.**</p>
+                </div>
             </div>
         </section>
 
-            <h2 class="hero-text"> عينة مجانية </h2>
-
-            <section class="books-grid">
-            <div class="book-card">
-                <div class="book-icon">🚨</div>
-                <h3>اسعافات التمريض بالعربي</h3>
-                <p>167 صفحة</p>
-                <a href="your-actual-link-to-arabic-nursing-first-aid.pdf" target="_blank" class="download-btn">فتح وتحميل</a>
-                <p class="note-text free">متاح كعينة مجانية!</p>
+        <section class="purchase-methods-section" id="purchase-methods">
+            <div class="container">
+                <h2>طرق الشراء والدفع السهلة</h2>
+                <p class="section-description">نوفر لك خيارات دفع مرنة وآمنة لضمان تجربة تسوق مريحة وموثوقة:</p>
+                <div class="methods-grid">
+                    <div class="method-card">
+                        <i class="fas fa-credit-card"></i>
+                        <h3>الدفع ببطاقات الائتمان/الخصم</h3>
+                        <p>استخدم بطاقتك الائتمانية أو بطاقة الخصم لإتمام عملية الشراء بأمان وسهولة تامة.</p>
+                    </div>
+                    <div class="method-card">
+                        <i class="fas fa-hand-holding-usd"></i>
+                        <h3>الدفع عند الاستلام</h3>
+                        <p> (إذا كان متاحاً في منطقتك) ادفع نقداً عند استلام طلبك مباشرةً، لراحة بالك.</p>
+                    </div>
+                    <div class="method-card special-offer">
+                        <i class="fas fa-mobile-alt"></i>
+                        <h3>توفير خاص: الدفع عبر Instapay</h3>
+                        <p>**وفر 10% فورًا!** عند اختيار الدفع من خلال تطبيق Instapay. اغتنم الفرصة للحصول على أفضل الموارد بأقل تكلفة!</p>
+                        <i class="fas fa-tags discount-tag"></i>
+                    </div>
+                </div>
             </div>
+        </section>
 
-            <div class="book-card">
-                <div class="book-icon">🎓</div>
-                <h3>كتاب اسعافات التمريض كلية التمريض</h3>
-                <p>71 صفحة</p>
-                <a href="#" class="download-btn disabled" onclick="return false;">فتح وتحميل</a>
-                <p class="note-text">غير متاح للتحميل قبل الشراء</p>
+        <section class="testimonials-section">
+            <div class="container">
+                <h2>ماذا يقول عملاؤنا عنّا؟</h2>
+                <div class="testimonials-grid">
+                    <div class="testimonial-card">
+                        <i class="fas fa-quote-left"></i>
+                        <p>"تجربة شراء ممتازة! وجدت كل الكتب اللي محتاجها والدورات كانت فعلاً قيمة ومفيدة جدًا. شكرًا لكم على المجهود."</p>
+                        <div class="client-info">
+                            <span class="client-name">أ.د. سارة أحمد</span>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <i class="fas fa-quote-left"></i>
+                        <p>"الموقع منظم وسهل التصفح، والمنتجات المعروضة ذات جودة عالية. استلمت طلبي بسرعة، وهكرر التجربة بالتأكيد."</p>
+                        <div class="client-info">
+                            <span class="client-name">م. صيدلي خالد منصور</span>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <i class="fas fa-quote-left"></i>
+                        <p>"الخصم على Instapay كان حافز قوي بالنسبة لي، وتفاجئت فعلاً بجودة المحتوى التعليمي. أنصح به بشدة لكل زملائي."</p>
+                        <div class="client-info">
+                            <span class="client-name">د. نورهان السيد</span>
+                        </div>
+                    </div>
+                </div>
             </div>
+        </section>
+    </main>
 
-            <div class="book-card">
-                <div class="book-icon">❤️</div>
-                <h3>كتاب الإنعاش القلبي الرئوي</h3>
-                <p>60 صفحة</p>
-                <a href="#" class="download-btn disabled" onclick="return false;">فتح وتحميل</a>
-                <p class="note-text">غير متاح للتحميل قبل الشراء</p>
+    <footer class="main-footer">
+        <div class="container">
+            <p>&copy; 2024 Dr. Mohamed Al-Gamal. جميع الحقوق محفوظة.</p>
+            <div class="footer-links">
+                <a href="#">سياسة الخصوصية</a>
+                <a href="#">شروط الاستخدام</a>
+                <a href="#">الأسئلة الشائعة</a>
             </div>
-        
-        
-        
-        
-    </div>
-
-    <footer class="footer">
-        <p>&copy; 2025 مكتبة التمريض جميع الحقوق محفوظة.</p>
+            <div class="social-links">
+                <h4>تواصل معنا وتابعنا على:</h4>
+                <a href="https://facebook.com/algmmal" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://instagram.com/algmmal" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="https://twitter.com/algmmal" target="_blank" aria-label="Twitter / X"><i class="fab fa-twitter"></i></a>
+                <a href="https://linkedin.com/in/algmmal" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                <a href="https://wa.me/201XXXXXXXXXX" target="_blank" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a> <a href="mailto:info@algmmal.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+            </div>
+        </div>
     </footer>
 
     <script>
-        // JavaScript to toggle Vodafone Cash/Instapay details visibility
-        function showVodafoneCashInfo() {
-            var details = document.getElementById('vodafoneCashDetails');
-            if (details.style.display === 'none') {
-                details.style.display = 'block';
-            } else {
-                details.style.display = 'none';
-            }
-        }
-        // Ensure initial state is hidden for the details
-        document.addEventListener('DOMContentLoaded', (event) => {
-            document.getElementById('vodafoneCashDetails').style.display = 'none';
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuToggle = document.querySelector('.menu-toggle');
+            const closeMenu = document.querySelector('.close-menu');
+            const mobileNav = document.querySelector('.mobile-nav');
+            const overlay = document.querySelector('.overlay');
+            const mobileNavLinks = document.querySelectorAll('.mobile-nav-links a');
+
+            menuToggle.addEventListener('click', function() {
+                mobileNav.classList.add('active');
+                overlay.classList.add('active');
+                document.body.classList.add('no-scroll'); // Prevent body scroll
+            });
+
+            closeMenu.addEventListener('click', function() {
+                mobileNav.classList.remove('active');
+                overlay.classList.remove('active');
+                document.body.classList.remove('no-scroll');
+            });
+
+            overlay.addEventListener('click', function() {
+                mobileNav.classList.remove('active');
+                overlay.classList.remove('active');
+                document.body.classList.remove('no-scroll');
+            });
+
+            // Close menu when a link in the mobile nav is clicked
+            mobileNavLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    // Check if the link leads to a section on the same page
+                    const href = link.getAttribute('href');
+                    if (href && href.startsWith('#')) {
+                        // Small delay to allow scroll to complete before closing menu for smoother UX
+                        setTimeout(() => {
+                            mobileNav.classList.remove('active');
+                            overlay.classList.remove('active');
+                            document.body.classList.remove('no-scroll');
+                        }, 300); // Adjust delay as needed
+                    }
+                    // If it's an external link, let the browser handle it without closing the menu immediately
+                });
+            });
         });
     </script>
+
 </body>
 </html>
