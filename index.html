@@ -9,7 +9,6 @@
     <meta name="author" content="Algmmal">
     <link href="https://fonts.googleapis.com/css2?family=Changa:wght@400;700&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        /* (احتفظ بنفس كود الـ CSS السابق هنا بدون تغيير) */
         :root {
             --primary-dark: #2c3e50; /* أزرق داكن جدًا للقاعدة */
             --primary-light: #34495e; /* أزرق داكن أفتح قليلاً */
@@ -38,26 +37,29 @@
         }
 
         .container {
-            max-width: 1000px; /* توسيع العرض قليلاً */
+            max-width: 1200px; /* توسيع العرض لاستيعاب السايدبار */
             margin: 50px auto;
             padding: 40px;
             background-color: var(--card-bg);
-            border-radius: 15px; /* حواف أكثر استدارة */
-            box-shadow: 0 15px 40px var(--shadow-soft); /* ظل أعمق وأنعم */
+            border-radius: 15px;
+            box-shadow: 0 15px 40px var(--shadow-soft);
+            display: flex; /* استخدام فليكس بوكس لتقسيم المحتوى */
+            gap: 30px; /* مسافة بين المحتوى الرئيسي والسايدبار */
         }
 
         header {
             text-align: center;
             margin-bottom: 50px;
             padding-bottom: 30px;
-            border-bottom: 5px solid var(--accent-green); /* خط فاصل أكثر سمكًا */
+            border-bottom: 5px solid var(--accent-green);
             position: relative;
+            grid-column: 1 / -1; /* لجعل الهيدر يمتد على كامل العرض في الجريد */
         }
 
-        header::after { /* إضافة عنصر جمالي تحت الخط الفاصل */
+        header::after {
             content: '';
             position: absolute;
-            bottom: -8px; /* أسفل الخط الفاصل بقليل */
+            bottom: -8px;
             right: 50%;
             transform: translateX(50%) rotate(45deg);
             width: 20px;
@@ -68,9 +70,9 @@
         }
 
         header h1 {
-            font-family: 'Amiri', serif; /* خط مميز للعنوان الرئيسي */
+            font-family: 'Amiri', serif;
             color: var(--primary-dark);
-            font-size: 3.8em; /* حجم أكبر للعنوان */
+            font-size: 3.8em;
             margin-bottom: 10px;
             line-height: 1.1;
             text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
@@ -81,16 +83,76 @@
         }
 
         header p {
-            font-size: 1.3em; /* حجم أكبر للوصف */
+            font-size: 1.3em;
             color: var(--text-color-light);
             max-width: 750px;
             margin: 15px auto 0;
             font-weight: 400;
         }
 
-        .repos-section {
-            padding: 30px 0;
+        .main-content {
+            flex: 3; /* يجعل المحتوى الرئيسي يأخذ 3 أضعاف المساحة من السايدبار */
+            min-width: 0; /* يسمح له بالانكماش في المساحات الضيقة */
         }
+
+        .sidebar {
+            flex: 1; /* السايدبار يأخذ جزء واحد من المساحة */
+            min-width: 250px; /* الحد الأدنى لعرض السايدبار */
+            background-color: var(--bg-medium);
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 5px 15px var(--shadow-soft);
+            align-self: flex-start; /* يلتصق بالأعلى */
+            position: sticky; /* يجعله ثابتًا عند التمرير */
+            top: 30px; /* المسافة من الأعلى */
+        }
+
+        .sidebar h3 {
+            font-family: 'Amiri', serif;
+            color: var(--primary-dark);
+            font-size: 1.8em;
+            margin-top: 0;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid var(--accent-green);
+            text-align: center;
+        }
+
+        .topic-list {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .topic-list li {
+            margin-bottom: 10px;
+        }
+
+        .topic-list a {
+            display: block;
+            padding: 10px 15px;
+            background-color: var(--container-bg);
+            border-radius: 8px;
+            color: var(--text-color-dark);
+            font-weight: 700;
+            text-decoration: none;
+            transition: background-color 0.2s ease, transform 0.2s ease, color 0.2s ease;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+
+        .topic-list a:hover {
+            background-color: var(--accent-green);
+            color: #fff;
+            transform: translateX(-5px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Highlight active topic - will need JS to implement */
+        .topic-list a.active-topic {
+            background-color: var(--accent-gold);
+            color: #fff;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+        }
+
 
         .repos-section h2 {
             font-family: 'Amiri', serif;
@@ -108,16 +170,16 @@
             bottom: 0;
             left: 50%;
             transform: translateX(50%);
-            width: 120px; /* أطول قليلاً */
-            height: 5px; /* أسمك قليلاً */
+            width: 120px;
+            height: 5px;
             background-color: var(--accent-green);
             border-radius: 3px;
         }
 
         .repo-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); /* بطاقات أكبر قليلاً */
-            gap: 35px; /* مسافة أكبر بين البطاقات */
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 35px;
             margin-top: 40px;
         }
 
@@ -126,15 +188,15 @@
             border-radius: 12px;
             padding: 30px;
             box-shadow: 0 8px 25px var(--shadow-soft);
-            transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.3s ease; /* تحريك وظل أنعم */
+            transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.3s ease;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            border-right: 6px solid var(--accent-green); /* شريط جانبي أكثر وضوحًا */
+            border-right: 6px solid var(--accent-green);
         }
 
         .repo-card:hover {
-            transform: translateY(-10px); /* رفع أكبر عند التحويم */
+            transform: translateY(-10px);
             box-shadow: 0 15px 35px var(--shadow-hover);
         }
 
@@ -144,7 +206,7 @@
             margin-top: 0;
             margin-bottom: 15px;
             line-height: 1.3;
-            font-weight: 800; /* خط أثقل للعناوين */
+            font-weight: 800;
         }
 
         .repo-card p {
@@ -170,21 +232,21 @@
         }
         .repo-card .details span strong {
             color: var(--primary-dark);
-            margin-left: 8px; /* مسافة بين الكلمة والأيقونة */
+            margin-left: 8px;
         }
-        .repo-card .details span::before { /* أيقونات بسيطة */
-            content: '•'; /* نقطة */
+        .repo-card .details span::before {
+            content: '•';
             color: var(--accent-gold);
             font-size: 1.5em;
             line-height: 0;
             margin-right: 5px;
         }
-        .repo-card .details span:nth-child(2)::before { content: '⭐'; } /* نجمة للنجوم */
-        .repo-card .details span:nth-child(3)::before { content: '🗓️'; } /* تقويم لآخر تحديث */
+        .repo-card .details span:nth-child(2)::before { content: '⭐'; }
+        .repo-card .details span:nth-child(3)::before { content: '🗓️'; }
 
 
         .repo-link {
-            display: inline-flex; /* للحفاظ على الأيقونة والنص */
+            display: inline-flex;
             align-items: center;
             background-color: var(--accent-gold);
             color: #fff;
@@ -199,13 +261,13 @@
         }
 
         .repo-link::before {
-            content: '🔗'; /* أيقونة رابط */
+            content: '🔗';
             margin-left: 10px;
             font-size: 1.2em;
         }
 
         .repo-link:hover {
-            background-color: #e08b00; /* لون أغمق عند التحويم */
+            background-color: #e08b00;
             transform: translateY(-3px);
             box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
         }
@@ -215,11 +277,11 @@
             font-size: 1.4em;
             color: var(--text-color-light);
             padding: 60px 0;
-            animation: pulse 1.5s infinite alternate; /* تأثير نبض للتحميل */
+            animation: pulse 1.5s infinite alternate;
         }
         .error-message {
             color: #dc3545;
-            animation: none; /* إلغاء تأثير النبض للخطأ */
+            animation: none;
         }
 
         @keyframes pulse {
@@ -234,13 +296,19 @@
             border-top: 1px solid var(--border-subtle);
             color: var(--text-color-light);
             font-size: 0.9em;
+            grid-column: 1 / -1; /* لجعل الفوتر يمتد على كامل العرض في الجريد */
         }
 
         /* Responsive Design */
-        @media (max-width: 768px) {
+        @media (max-width: 992px) { /* تعديل نقطة التوقف للتقسيم */
             .container {
-                margin: 20px auto;
-                padding: 20px;
+                flex-direction: column; /* جعل الأقسام عمودية على الشاشات الصغيرة */
+                gap: 40px; /* زيادة المسافة بين الأقسام */
+            }
+            .sidebar {
+                position: static; /* إلغاء التثبيت */
+                min-width: unset;
+                order: -1; /* جعل السايدبار يظهر قبل المحتوى الرئيسي على الموبايل */
             }
             header h1 {
                 font-size: 2.8em;
@@ -252,31 +320,62 @@
                 font-size: 2em;
             }
             .repo-grid {
-                grid-template-columns: 1fr;
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* تصغير حجم البطاقات قليلاً */
             }
             .repo-card {
                 padding: 25px;
             }
             .repo-link {
                 width: 100%;
-                justify-content: center; /* توسيط النص والأيقونة داخل الزر */
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .container {
+                margin: 20px auto;
+                padding: 15px;
+            }
+            header h1 {
+                font-size: 2.2em;
+            }
+            header p {
+                font-size: 0.95em;
+            }
+            .repos-section h2 {
+                font-size: 1.8em;
+            }
+            .sidebar {
+                padding: 15px;
+            }
+            .sidebar h3 {
+                font-size: 1.5em;
             }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <header>
-            <h1>مرحباً بك في <span>Algmmal</span></h1>
-            <p>هنا تجد معرضي المتنوع من المشاريع والحلول البرمجية المبتكرة. استكشف إنجازاتي في تطوير تطبيقات الويب، الأكواد، والمقالات التقنية.</p>
-        </header>
+        <div class="main-content">
+            <header>
+                <h1>مرحباً بك في <span>Algmmal</span></h1>
+                <p>هنا تجد معرضي المتنوع من المشاريع والحلول البرمجية المبتكرة. استكشف إنجازاتي في تطوير تطبيقات الويب، الأكواد، والمقالات التقنية.</p>
+            </header>
 
-        <section class="repos-section">
-            <h2>اكتشف مشاريعي</h2>
-            <main id="repos-container">
-                <div class="loading">جارٍ تجهيز المعرض...</div>
-            </main>
-        </section>
+            <section class="repos-section">
+                <h2>اكتشف مشاريعي</h2>
+                <main id="repos-container">
+                    <div class="loading">جارٍ تجهيز المعرض...</div>
+                </main>
+            </section>
+        </div>
+
+        <aside class="sidebar">
+            <h3>المواضيع الرئيسية</h3>
+            <ul id="topics-list" class="topic-list">
+                <div class="loading">جارٍ تحميل المواضيع...</div>
+            </ul>
+        </aside>
 
         <footer>
             <p>&copy; 2025 Algmmal. جميع الحقوق محفوظة.</p>
@@ -289,10 +388,10 @@
             const githubUsername = 'aljmalmo'; // **تأكد إن ده اسم المستخدم بتاعك على GitHub**
             const customDomain = 'https://www.algmmal.com'; // **الدومين الخاص بيك**
             const reposContainer = document.getElementById('repos-container');
+            const topicsList = document.getElementById('topics-list');
 
             // بيانات المشاريع المخصصة (Titles و Descriptions)
             // ضيف هنا أي مشروع عايز عنوان و/أو وصف معين يظهر له في المعرض
-            // لو المشروع مش موجود هنا، هياخد الوصف بتاعه من GitHub كعنوان عرض افتراضي
             const customProjectData = [
                 {
                     repo_name: "respiratory-drugs-pdf-guide",
@@ -306,50 +405,63 @@
                 },
                 // أضف هنا أي مشاريع أخرى تريد تخصيص عنوانها ووصفها:
                 // {
-                //   repo_name: "اسم-الريبو-على-جيت-هب",
+                //   repo_name: "your-repo-name-here",
                 //   display_title: "العنوان اللي أنت عايز يظهر للمشروع ده",
                 //   description_override: "وصف مخصص يظهر في المعرض (اختياري)"
                 // },
             ];
 
-            try {
-                const response = await fetch(`https://api.github.com/users/${githubUsername}/repos?sort=pushed&direction=desc`);
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
+            let allRepos = []; // لتخزين كل الريبوهات التي تم جلبها
+            let allTopics = new Set(); // لاستخراج المواضيع الفريدة
+
+            // دالة لجلب وعرض الريبوهات
+            async function fetchAndDisplayRepos(filterTopic = null) {
+                reposContainer.innerHTML = '<div class="loading">جارٍ تجهيز المشاريع...</div>'; // رسالة تحميل للمشاريع
+
+                if (allRepos.length === 0) { // جلب الريبوهات مرة واحدة فقط
+                    try {
+                        const response = await fetch(`https://api.github.com/users/${githubUsername}/repos?per_page=100&sort=pushed&direction=desc`); // per_page=100 لجلب عدد أكبر
+                        if (!response.ok) {
+                            throw new Error(`HTTP error! status: ${response.status}`);
+                        }
+                        allRepos = await response.json();
+                    } catch (error) {
+                        console.error('Error fetching repositories:', error);
+                        reposContainer.innerHTML = '<p class="error-message">عذرًا، حدث خطأ أثناء تحميل المشاريع. يرجى المحاولة مرة أخرى لاحقًا.</p>';
+                        topicsList.innerHTML = '<li class="error-message">حدث خطأ في تحميل المواضيع.</li>';
+                        return;
+                    }
                 }
-                const repos = await response.json();
+                
                 reposContainer.innerHTML = ''; // مسح رسالة التحميل
 
-                // Filter out the main GitHub Pages repo itself and forks
-                const filteredRepos = repos.filter(repo => {
-                    return repo.name !== `${githubUsername}.github.io` && !repo.fork;
+                const filteredDisplayRepos = allRepos.filter(repo => {
+                    const isMainRepo = repo.name === `${githubUsername}.github.io`;
+                    const isFork = repo.fork;
+                    const matchesTopic = filterTopic ? (repo.topics && repo.topics.includes(filterTopic)) : true;
+                    return !isMainRepo && !isFork && matchesTopic;
                 });
 
-                if (filteredRepos.length === 0) {
-                    reposContainer.innerHTML = '<p class="error-message">عذرًا، لا توجد مشاريع لعرضها حاليًا في هذا المعرض.</p>';
+                if (filteredDisplayRepos.length === 0) {
+                    reposContainer.innerHTML = `<p class="error-message">لا توجد مشاريع متاحة لعرضها حاليًا ${filterTopic ? 'في هذا الموضوع' : ''}.</p>`;
                     return;
                 }
 
                 const repoGrid = document.createElement('div');
                 repoGrid.className = 'repo-grid';
 
-                filteredRepos.forEach(repo => {
+                filteredDisplayRepos.forEach(repo => {
                     const customData = customProjectData.find(data => data.repo_name === repo.name);
 
                     const repoCard = document.createElement('div');
                     repoCard.className = 'repo-card';
 
                     const repoName = document.createElement('h3');
-                    // **التعديل هنا:** استخدم العنوان المخصص لو موجود، وإلا استخدم وصف الريبو من GitHub كعنوان افتراضي
-                    repoName.textContent = customData ? customData.display_title : (repo.description || repo.name); 
-                    // لو الوصف فاضي برده، نرجع لاسم الريبو كحل أخير
+                    repoName.textContent = customData ? customData.display_title : (repo.description || repo.name);
 
                     const repoDescription = document.createElement('p');
-                    // استخدم الوصف المخصص لو موجود، وإلا استخدم الوصف من GitHub
-                    // هنا لو الوصف بتاع GitHub هو اللي استخدمناه كعنوان، ممكن تخليه فاضي أو تحط وصف عام
                     repoDescription.textContent = customData && customData.description_override ? customData.description_override : (repo.description && repo.description !== repoName.textContent ? repo.description : 'لم يتم توفير وصف مفصل لهذا المشروع.');
-                    // منطق جديد: لو الوصف من GitHub هو نفسه اللي استخدمناه كعنوان، حط وصف افتراضي
-
+                    
                     const detailsDiv = document.createElement('div');
                     detailsDiv.className = 'details';
 
@@ -370,13 +482,12 @@
                     const repoLink = document.createElement('a');
                     repoLink.className = 'repo-link';
                     
-                    // منطق الربط: لو GitHub Page، اربط بالدومين الفرعي، وإلا اربط بصفحة الريبو الأصلية على GitHub
                     if (repo.has_pages) {
                         repoLink.href = `${customDomain}/${repo.name}/`; 
                     } else {
                         repoLink.href = repo.html_url;
                     }
-                    repoLink.target = '_blank'; // يفتح في تبويبة جديدة
+                    repoLink.target = '_blank';
                     repoLink.textContent = 'مشاهدة المشروع';
 
                     repoCard.appendChild(repoName);
@@ -387,10 +498,67 @@
                     repoGrid.appendChild(repoCard);
                 });
                 reposContainer.appendChild(repoGrid);
-            } catch (error) {
-                console.error('Error fetching projects:', error);
-                reposContainer.innerHTML = '<p class="error-message">عذرًا، حدث خطأ أثناء تحميل المشاريع. يرجى المحاولة مرة أخرى لاحقًا.</p>';
             }
+
+            // دالة لجلب وعرض المواضيع
+            async function fetchAndDisplayTopics() {
+                topicsList.innerHTML = '<div class="loading">جارٍ تحميل المواضيع...</div>'; // رسالة تحميل للمواضيع
+                if (allRepos.length === 0) { // لو الريبوهات لسه مجابتش بياناتها، استنى تجيبها
+                    await fetchAndDisplayRepos(); // ده هيجلب allRepos وهيملا allTopics
+                }
+
+                topicsList.innerHTML = ''; // مسح رسالة التحميل
+                allTopics.clear(); // مسح أي مواضيع سابقة قبل إعادة التعبئة
+
+                // جمع كل المواضيع من كل الريبوهات
+                allRepos.forEach(repo => {
+                    if (repo.topics && Array.isArray(repo.topics)) {
+                        repo.topics.forEach(topic => allTopics.add(topic));
+                    }
+                });
+
+                if (allTopics.size === 0) {
+                    topicsList.innerHTML = '<li>لا توجد مواضيع متاحة.</li>';
+                    return;
+                }
+
+                // إضافة زر "كل المشاريع"
+                const allProjectsLi = document.createElement('li');
+                const allProjectsLink = document.createElement('a');
+                allProjectsLink.href = "#all";
+                allProjectsLink.textContent = "كل المشاريع";
+                allProjectsLink.classList.add('active-topic'); // افتراضيا، الكل هو النشط
+                allProjectsLink.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    document.querySelectorAll('.topic-list a').forEach(link => link.classList.remove('active-topic'));
+                    allProjectsLink.classList.add('active-topic');
+                    fetchAndDisplayRepos(null); // عرض كل المشاريع
+                });
+                allProjectsLi.appendChild(allProjectsLink);
+                topicsList.appendChild(allProjectsLi);
+
+
+                // إضافة المواضيع الفعلية
+                Array.from(allTopics).sort().forEach(topic => {
+                    const topicLi = document.createElement('li');
+                    const topicLink = document.createElement('a');
+                    topicLink.href = `#${topic}`;
+                    topicLink.textContent = topic.replace(/-/g, ' ').toUpperCase(); // استبدال الشرطات بمسافات وتحويل لأحرف كبيرة
+                    topicLink.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        // إزالة الكلاس active من كل الروابط وإضافته للرابط الحالي
+                        document.querySelectorAll('.topic-list a').forEach(link => link.classList.remove('active-topic'));
+                        e.target.classList.add('active-topic');
+                        fetchAndDisplayRepos(topic); // تصفية المشاريع حسب الموضوع
+                    });
+                    topicLi.appendChild(topicLink);
+                    topicsList.appendChild(topicLi);
+                });
+            }
+            
+            // تنفيذ الدالتين عند تحميل الصفحة
+            fetchAndDisplayRepos(); // لعرض المشاريع المبدئية
+            fetchAndDisplayTopics(); // لعرض قائمة المواضيع
         });
     </script>
 </body>
