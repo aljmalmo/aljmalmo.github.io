@@ -3,122 +3,198 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aljmalmo - مستودعاتي على GitHub</title>
-    <meta name="description" content="استكشف جميع مشاريعي ومستودعاتي البرمجية على GitHub.">
+    <title>Algmmal - مشاريع ومستودعاتي على GitHub</title>
+    <meta name="description" content="استكشف جميع مشاريعي ومستودعاتي البرمجية على GitHub. تجد هنا روابط مباشرة لتطبيقات الويب، المقالات، والأكواد البرمجية الخاصة بي.">
+    <meta name="keywords" content="Algmmal, مشاريع GitHub, مستودعات برمجية, تطبيقات ويب, كود, مقالات, مشاريع برمجة, معرض أعمال, portfolio">
+    <meta name="author" content="Algmmal">
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --primary-color: #34495e; /* رمادي أزرق داكن */
+            --secondary-color: #2ecc71; /* أخضر زمردي */
+            --accent-color: #f1c40f; /* أصفر مشرق */
+            --text-color: #4a4a4a;
+            --light-bg: #ecf0f1; /* رمادي فاتح للخلفية */
+            --card-bg: #ffffff;
+            --border-color: #bdc3c7;
+            --shadow-color: rgba(0, 0, 0, 0.08);
+        }
+
         body {
             font-family: 'Cairo', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f4f7f6;
-            color: #333;
+            background-color: var(--light-bg);
+            color: var(--text-color);
+            line-height: 1.7;
             direction: rtl;
             text-align: right;
-            line-height: 1.6;
         }
+
         .container {
-            max-width: 900px;
+            max-width: 960px;
             margin: 40px auto;
             padding: 30px;
-            background-color: #fff;
+            background-color: var(--card-bg);
             border-radius: 12px;
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 10px 30px var(--shadow-color);
         }
+
         header {
             text-align: center;
             margin-bottom: 40px;
-            padding-bottom: 20px;
-            border-bottom: 3px solid #007bff;
+            padding-bottom: 25px;
+            border-bottom: 4px solid var(--secondary-color);
         }
+
         header h1 {
-            color: #007bff;
-            font-size: 2.8em;
+            color: var(--primary-color);
+            font-size: 3em;
             margin-bottom: 10px;
         }
+
+        header h1 span {
+            color: var(--secondary-color);
+        }
+
         header p {
             font-size: 1.2em;
-            color: #555;
+            color: #7f8c8d;
+            max-width: 700px;
+            margin: 0 auto;
         }
+
+        .repos-section h2 {
+            color: var(--primary-color);
+            font-size: 2.2em;
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            position: relative;
+        }
+
+        .repos-section h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(50%);
+            width: 100px;
+            height: 4px;
+            background-color: var(--accent-color);
+            border-radius: 2px;
+        }
+
         .repo-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 25px;
+            margin-top: 30px;
         }
+
         .repo-card {
-            background-color: #f9f9f9;
-            border: 1px solid #e0e0e0;
+            background-color: var(--light-bg);
             border-radius: 10px;
-            padding: 20px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
             transition: transform 0.2s ease, box-shadow 0.2s ease;
             display: flex;
             flex-direction: column;
-            justify-content: space-between; /* لتحقيق تباعد متساوٍ */
+            justify-content: space-between;
+            border-right: 5px solid var(--secondary-color); /* شريط جانبي مميز */
         }
+
         .repo-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+            transform: translateY(-7px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
         }
+
         .repo-card h3 {
-            color: #28a745;
-            font-size: 1.5em;
+            color: var(--primary-color);
+            font-size: 1.6em;
             margin-top: 0;
-            margin-bottom: 10px;
+            margin-bottom: 15px;
+            line-height: 1.3;
         }
+
         .repo-card p {
-            color: #666;
-            font-size: 0.95em;
-            flex-grow: 1; /* للسماح للوصف بأخذ المساحة المتاحة */
+            color: var(--text-color);
+            font-size: 1em;
+            flex-grow: 1;
+            margin-bottom: 20px;
         }
+
         .repo-card .details {
-            margin-top: 15px;
             font-size: 0.9em;
-            color: #777;
-            border-top: 1px dashed #eee;
-            padding-top: 10px;
+            color: #666;
+            margin-top: auto; /* يدفع التفاصيل لأسفل البطاقة */
+            padding-top: 15px;
+            border-top: 1px dashed var(--border-color);
         }
+
         .repo-card .details span {
             display: block;
             margin-bottom: 5px;
         }
-        .repo-card a {
+
+        .repo-card .details strong {
+            color: var(--primary-color);
+        }
+
+        .repo-link {
             display: inline-block;
-            background-color: #007bff;
+            background-color: var(--secondary-color);
             color: #fff;
-            padding: 10px 15px;
-            border-radius: 5px;
+            padding: 12px 20px;
+            border-radius: 8px;
             text-decoration: none;
-            margin-top: 15px;
-            transition: background-color 0.3s ease;
+            margin-top: 20px;
+            font-weight: bold;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
         }
-        .repo-card a:hover {
-            background-color: #0056b3;
+
+        .repo-link:hover {
+            background-color: #27ae60;
+            transform: translateY(-2px);
         }
-        .loading {
+
+        .loading, .error-message {
             text-align: center;
-            font-size: 1.5em;
+            font-size: 1.3em;
             color: #888;
             padding: 50px 0;
         }
+        .error-message {
+            color: #e74c3c;
+        }
+
         footer {
             text-align: center;
-            margin-top: 50px;
-            padding-top: 25px;
-            border-top: 1px solid #ddd;
-            color: #777;
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 1px solid var(--border-color);
+            color: #7f8c8d;
             font-size: 0.9em;
         }
+
+        /* Responsive Design */
         @media (max-width: 768px) {
             .container {
                 margin: 20px auto;
                 padding: 15px;
             }
             header h1 {
-                font-size: 2em;
+                font-size: 2.2em;
+            }
+            .repos-section h2 {
+                font-size: 1.8em;
             }
             .repo-grid {
                 grid-template-columns: 1fr;
+            }
+            .repo-card {
+                padding: 20px;
             }
         }
     </style>
@@ -126,26 +202,31 @@
 <body>
     <div class="container">
         <header>
-            <h1>أهلاً بك في صفحة <span style="color: #28a745;">Aljmalmo</span> على GitHub!</h1>
-            <p>هنا ستجد جميع مستودعاتي ومشاريعي البرمجية التي أعمل عليها. يتم تحديث القائمة تلقائيًا.</p>
+            <h1>مرحباً بك في <span>Algmmal.com</span></h1>
+            <p>هنا تجد جميع مشاريعي ومستودعاتي البرمجية على GitHub. أعمل على تطوير حلول برمجية وتطبيقات ويب متنوعة، وهذا المعرض هو دليلك لاستكشافها.</p>
         </header>
 
-        <main id="repos-container">
-            <div class="loading">جارٍ تحميل المستودعات...</div>
-        </main>
+        <section class="repos-section">
+            <h2>مشاريعي ومستودعاتي</h2>
+            <main id="repos-container">
+                <div class="loading">جارٍ تحميل المشاريع...</div>
+            </main>
+        </section>
 
         <footer>
-            <p>&copy; 2025 Aljmalmo. جميع الحقوق محفوظة.</p>
+            <p>&copy; 2025 Algmmal. جميع الحقوق محفوظة.</p>
             <p>مدعوم بواسطة GitHub Pages و GitHub API.</p>
         </footer>
     </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const username = 'aljmalmo'; // تأكد إن ده اسم المستخدم بتاعك على GitHub
+            const githubUsername = 'aljmalmo'; // **تأكد إن ده اسم المستخدم بتاعك على GitHub**
+            const customDomain = 'https://www.algmmal.com'; // **الدومين الخاص بيك**
+
             const reposContainer = document.getElementById('repos-container');
 
-            fetch(`https://api.github.com/users/${username}/repos?sort=updated&direction=desc`)
+            fetch(`https://api.github.com/users/${githubUsername}/repos?sort=pushed&direction=desc`) // sort by last pushed/updated
                 .then(response => {
                     if (!response.ok) {
                         throw new Error(`HTTP error! status: ${response.status}`);
@@ -154,20 +235,19 @@
                 })
                 .then(repos => {
                     reposContainer.innerHTML = ''; // مسح رسالة التحميل
-                    if (repos.length === 0) {
-                        reposContainer.innerHTML = '<p style="text-align: center; color: #888;">لا توجد مستودعات متاحة لعرضها حاليًا.</p>';
+
+                    // Filter out the main GitHub Pages repo itself if it's not a project to be listed
+                    const filteredRepos = repos.filter(repo => repo.name !== `${githubUsername}.github.io`);
+
+                    if (filteredRepos.length === 0) {
+                        reposContainer.innerHTML = '<p class="error-message">لا توجد مشاريع متاحة لعرضها حاليًا.</p>';
                         return;
                     }
 
                     const repoGrid = document.createElement('div');
                     repoGrid.className = 'repo-grid';
 
-                    repos.forEach(repo => {
-                        // استبعاد المستودع الرئيسي نفسه لو مش عايز يظهر في القائمة
-                        if (repo.name === `${username}.github.io`) {
-                            return;
-                        }
-
+                    filteredRepos.forEach(repo => {
                         const repoCard = document.createElement('div');
                         repoCard.className = 'repo-card';
 
@@ -175,28 +255,38 @@
                         repoName.textContent = repo.name;
 
                         const repoDescription = document.createElement('p');
-                        repoDescription.textContent = repo.description || 'لا يوجد وصف لهذا المستودع.';
+                        repoDescription.textContent = repo.description || 'لا يوجد وصف لهذا المشروع.';
 
                         const detailsDiv = document.createElement('div');
                         detailsDiv.className = 'details';
 
                         const languageSpan = document.createElement('span');
-                        languageSpan.textContent = `اللغة: ${repo.language || 'غير محدد'}`;
+                        languageSpan.innerHTML = `<strong>اللغة:</strong> ${repo.language || 'غير محدد'}`;
 
                         const starsSpan = document.createElement('span');
-                        starsSpan.textContent = `النجوم: ${repo.stargazers_count}`;
+                        starsSpan.innerHTML = `<strong>النجوم:</strong> ${repo.stargazers_count}`;
 
                         const lastUpdatedSpan = document.createElement('span');
-                        lastUpdatedSpan.textContent = `آخر تحديث: ${new Date(repo.updated_at).toLocaleDateString('ar-EG')}`;
+                        const updatedDate = new Date(repo.pushed_at).toLocaleDateString('ar-EG', { year: 'numeric', month: 'long', day: 'numeric' });
+                        lastUpdatedSpan.innerHTML = `<strong>آخر تحديث:</strong> ${updatedDate}`;
 
                         detailsDiv.appendChild(languageSpan);
                         detailsDiv.appendChild(starsSpan);
                         detailsDiv.appendChild(lastUpdatedSpan);
 
                         const repoLink = document.createElement('a');
-                        repoLink.href = repo.html_url;
+                        repoLink.className = 'repo-link';
+                        
+                        // logic to link to GitHub Pages sub-domain or original repo
+                        if (repo.has_pages) {
+                            // If it's a GitHub Page, link to its direct URL under your custom domain
+                            repoLink.href = `${customDomain}/${repo.name}/`; 
+                        } else {
+                            // Otherwise, link to the actual GitHub repository page
+                            repoLink.href = repo.html_url;
+                        }
                         repoLink.target = '_blank'; // يفتح في تبويبة جديدة
-                        repoLink.textContent = 'شاهد المستودع';
+                        repoLink.textContent = 'مشاهدة المشروع';
 
                         repoCard.appendChild(repoName);
                         repoCard.appendChild(repoDescription);
@@ -209,7 +299,7 @@
                 })
                 .catch(error => {
                     console.error('Error fetching repositories:', error);
-                    reposContainer.innerHTML = '<p style="text-align: center; color: #dc3545;">عذرًا، حدث خطأ أثناء تحميل المستودعات. يرجى المحاولة مرة أخرى لاحقًا.</p>';
+                    reposContainer.innerHTML = '<p class="error-message">عذرًا، حدث خطأ أثناء تحميل المشاريع. يرجى التأكد من اتصالك بالإنترنت أو المحاولة لاحقًا.</p>';
                 });
         });
     </script>
