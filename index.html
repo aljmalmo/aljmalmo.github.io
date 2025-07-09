@@ -8,26 +8,28 @@
     <meta name="keywords" content="Algmmal, مقالات برمجية, تطوير ويب, تقنية, مدونة شخصية, مشاريع برمجية, معرض أعمال, بورتفوليو">
     <meta name="author" content="Algmmal">
     <link href="https://fonts.googleapis.com/css2?family=Changa:wght@400;700;800&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
     <style>
         :root {
-            --primary-dark: #2c3e50; /* أزرق داكن جدًا للقاعدة */
-            --primary-light: #34495e; /* أزرق داكن أفتح قليلاً */
-            --accent-gold: #f39c12; /* برتقالي ذهبي مميز */
-            --accent-green: #2ecc71; /* أخضر زاهي للعناصر النشطة */
+            --primary-dark: #2c3e50;
+            --primary-light: #34495e;
+            --accent-gold: #f39c12;
+            --accent-green: #2ecc71;
             --text-color-dark: #3a3a3a;
             --text-color-light: #6c757d;
-            --bg-light: #f8f9fa; /* خلفية فاتحة جدًا */
-            --bg-medium: #eceff1; /* خلفية أفتح للبطاقات */
+            --bg-light: #f8f9fa;
+            --bg-medium: #eceff1;
             --card-bg: #ffffff;
-            --border-subtle: #e0e0e0;
             --shadow-soft: rgba(0, 0, 0, 0.07);
             --shadow-hover: rgba(0, 0, 0, 0.15);
+            --header-height: 80px; /* ارتفاع الهيدر الثابت */
         }
 
         body {
             font-family: 'Changa', sans-serif;
             margin: 0;
-            padding: 0;
+            padding-top: var(--header-height); /* مسافة من أعلى الصفحة عشان الهيدر الثابت */
             background-color: var(--bg-light);
             color: var(--text-color-dark);
             line-height: 1.8;
@@ -37,138 +39,161 @@
             -moz-osx-font-smoothing: grayscale;
         }
 
-        .outer-container { /* حاوية خارجية جديدة للتحكم في عرض الفوتر */
-            max-width: 1200px;
-            margin: 50px auto;
-            padding: 0 20px; /* بادينج أفقي */
+        /* الثابت اللي في كل الصفحات */
+        .global-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: var(--header-height);
+            background-color: var(--primary-dark);
+            color: white;
+            display: flex;
+            align-items: center;
+            padding: 0 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            z-index: 1000; /* عشان يظهر فوق كل حاجة */
+            justify-content: space-between; /* اللوجو والمينيو على الطرفين */
         }
 
-        .main-wrapper { /* الحاوية الرئيسية للمحتوى والسايدبار */
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .header-logo {
+            height: 50px; /* حجم اللوجو */
+            width: auto;
+            border-radius: 50%; /* لوجو دائري */
+            object-fit: cover;
+        }
+
+        .header-text h1 {
+            margin: 0;
+            font-family: 'Amiri', serif;
+            font-size: 1.8em;
+            color: white;
+        }
+
+        .header-text p {
+            margin: 0;
+            font-size: 0.9em;
+            color: rgba(255, 255, 255, 0.8);
+            font-weight: 300;
+        }
+
+        .header-nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex; /* لعرض التاجات جنب بعض */
+            gap: 20px;
+        }
+
+        .header-nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1em;
+            padding: 5px 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .header-nav ul li a:hover {
+            background-color: var(--accent-green);
+            color: var(--primary-dark);
+        }
+        
+        /* Hamburger menu for mobile */
+        .hamburger-menu {
+            display: none; /* مخفي افتراضيا على الكمبيوتر */
+            font-size: 1.8em;
+            cursor: pointer;
+            color: white;
+        }
+
+        .mobile-nav-overlay {
+            display: none; /* مخفي افتراضيا */
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 1001;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .mobile-nav-content {
+            background-color: var(--primary-dark);
+            width: 80%;
+            max-width: 300px;
+            border-radius: 10px;
+            padding: 30px 20px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            position: relative;
+            animation: slideInLeft 0.3s ease-out; /* انيميشن دخول */
+        }
+        @keyframes slideInLeft {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0%); opacity: 1; }
+        }
+
+        .mobile-nav-content .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 2em;
+            color: white;
+            cursor: pointer;
+        }
+
+        .mobile-nav-content ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .mobile-nav-content ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.3em;
+            padding: 10px 15px;
+            border-radius: 8px;
+            display: block;
+            background-color: var(--primary-light);
+            transition: background-color 0.2s ease;
+        }
+        .mobile-nav-content ul li a:hover {
+            background-color: var(--accent-green);
+        }
+        /* نهاية الهيدر الثابت */
+
+
+        .outer-container {
+            max-width: 1200px;
+            margin: 50px auto; /* مسافة من أعلى بعد الهيدر الثابت */
+            padding: 0 20px;
+        }
+
+        .main-wrapper {
             background-color: var(--card-bg);
             border-radius: 15px;
             box-shadow: 0 15px 40px var(--shadow-soft);
-            display: flex; /* استخدام فليكس بوكس لتقسيم المحتوى */
-            gap: 30px; /* مسافة بين المحتوى الرئيسي والسايدبار */
-            padding: 30px; /* بادينج داخلي للحاوية */
+            padding: 30px;
         }
 
-        header {
-            text-align: center;
-            margin-bottom: 50px;
-            padding-bottom: 30px;
-            border-bottom: 5px solid var(--accent-green);
-            position: relative;
-            grid-column: 1 / -1; /* لجعل الهيدر يمتد على كامل العرض في الجريد */
-            width: 100%; /* تأكد انه بياخد عرض المين كونتنت */
-        }
-
-        header::after {
-            content: '';
-            position: absolute;
-            bottom: -8px;
-            right: 50%;
-            transform: translateX(50%) rotate(45deg);
-            width: 20px;
-            height: 20px;
-            background-color: var(--accent-gold);
-            border-radius: 3px;
-            box-shadow: 0 2px 5px var(--shadow-soft);
-        }
-
-        header h1 {
-            font-family: 'Amiri', serif;
-            color: var(--primary-dark);
-            font-size: 3.8em;
-            margin-bottom: 10px;
-            line-height: 1.1;
-            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
-        }
-
-        header h1 span {
-            color: var(--accent-gold);
-        }
-
-        header p {
-            font-size: 1.3em;
-            color: var(--text-color-light);
-            max-width: 750px;
-            margin: 15px auto 0;
-            font-weight: 400;
-        }
-
-        .main-content {
-            flex: 3; /* يجعل المحتوى الرئيسي يأخذ 3 أضعاف المساحة من السايدبار */
-            min-width: 0; /* يسمح له بالانكماش في المساحات الضيقة */
-            display: flex; /* لتحويله إلى فليكس كولوم */
-            flex-direction: column;
-            align-items: flex-start; /* يبدأ المحتوى من اليمين */
-        }
-
-        .sidebar {
-            flex: 1; /* السايدبار يأخذ جزء واحد من المساحة */
-            min-width: 250px; /* الحد الأدنى لعرض السايدبار */
-            background-color: var(--bg-medium);
-            border-radius: 10px;
-            padding: 20px;
-            box-shadow: 0 5px 15px var(--shadow-soft);
-            align-self: flex-start; /* يلتصق بالأعلى */
-            position: sticky; /* يجعله ثابتًا عند التمرير */
-            top: 30px; /* المسافة من الأعلى */
-            height: fit-content; /* يجعله يأخذ فقط ارتفاع المحتوى */
-        }
-
-        .sidebar h3 {
-            font-family: 'Amiri', serif;
-            color: var(--primary-dark);
-            font-size: 1.8em;
-            margin-top: 0;
-            margin-bottom: 20px;
-            padding-bottom: 10px;
-            border-bottom: 3px solid var(--accent-green);
-            text-align: center;
-        }
-
-        .topic-list {
-            list-style-type: none;
-            padding: 0;
-        }
-
-        .topic-list li {
-            margin-bottom: 10px;
-        }
-
-        .topic-list a {
-            display: block;
-            padding: 10px 15px;
-            background-color: var(--container-bg);
-            border-radius: 8px;
-            color: var(--text-color-dark);
-            font-weight: 700;
-            text-decoration: none;
-            transition: background-color 0.2s ease, transform 0.2s ease, color 0.2s ease;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
-        }
-
-        .topic-list a:hover {
-            background-color: var(--accent-green);
-            color: #fff;
-            transform: translateX(-5px);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-        
-        .topic-list a.active-topic {
-            background-color: var(--accent-gold);
-            color: #fff;
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
-        }
-
-
-        .articles-section { /* تغيير الاسم من repos-section */
+        .articles-section {
             padding: 30px 0;
-            width: 100%; /* مهم ليتمدد داخل الفليكس بوكس */
         }
 
-        .articles-section h2 { /* تغيير الاسم من repos-section */
+        .articles-section h2 {
             font-family: 'Amiri', serif;
             color: var(--primary-dark);
             font-size: 2.5em;
@@ -178,7 +203,7 @@
             padding-bottom: 15px;
         }
 
-        .articles-section h2::after { /* تغيير الاسم من repos-section */
+        .articles-section h2::after {
             content: '';
             position: absolute;
             bottom: 0;
@@ -190,14 +215,14 @@
             border-radius: 3px;
         }
 
-        .article-grid { /* تغيير الاسم من repo-grid */
+        .article-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); /* عمودين (صفين) */
-            gap: 40px; /* مسافة أكبر بين البطاقات */
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); /* 3 أعمدة (مقالات) */
+            gap: 40px;
             margin-top: 40px;
         }
 
-        .article-card { /* تغيير الاسم من repo-card */
+        .article-card {
             background-color: var(--bg-medium);
             border-radius: 12px;
             padding: 30px;
@@ -207,30 +232,45 @@
             flex-direction: column;
             justify-content: space-between;
             border-right: 6px solid var(--accent-green);
+            position: relative; /* لتحديد مكان الأيقونة */
         }
 
-        .article-card:hover { /* تغيير الاسم من repo-card */
+        .article-card:hover {
             transform: translateY(-10px);
             box-shadow: 0 15px 35px var(--shadow-hover);
         }
 
-        .article-card h3 { /* تغيير الاسم من repo-card */
+        .article-card .tag-icon { /* أيقونة التاج */
+            position: absolute;
+            top: 20px;
+            left: 20px; /* مكان الأيقونة في اليسار */
+            font-size: 2.5em;
+            color: var(--accent-gold);
+            opacity: 0.8;
+            transition: transform 0.2s ease;
+        }
+        .article-card:hover .tag-icon {
+            transform: rotate(10deg) scale(1.1);
+        }
+
+        .article-card h3 {
             color: var(--primary-dark);
             font-size: 1.8em;
             margin-top: 0;
             margin-bottom: 15px;
             line-height: 1.3;
             font-weight: 800;
+            padding-right: 50px; /* مسافة عشان الأيقونة متدخلش في العنوان */
         }
 
-        .article-card p { /* تغيير الاسم من repo-card */
+        .article-card p {
             color: var(--text-color-dark);
             font-size: 1.05em;
             flex-grow: 1;
             margin-bottom: 25px;
         }
 
-        .read-more-btn { /* تغيير الاسم من repo-link */
+        .read-more-btn {
             display: inline-flex;
             align-items: center;
             background-color: var(--accent-gold);
@@ -246,7 +286,7 @@
         }
 
         .read-more-btn::before {
-            content: '📚'; /* أيقونة كتاب */
+            content: '📚';
             margin-left: 10px;
             font-size: 1.2em;
         }
@@ -281,35 +321,46 @@
             border-top: 1px solid var(--border-subtle);
             color: var(--text-color-light);
             font-size: 0.9em;
-            /* Footer now covers full width outside main-wrapper */
         }
 
         /* Responsive Design */
-        @media (max-width: 992px) { /* نقطة التوقف للتابلت والموبايل */
+        @media (max-width: 992px) { /* للتابلت والكمبيوتر الصغير */
+            .global-header {
+                flex-direction: row-reverse; /* اللوجو على اليمين والهامبرجر على الشمال */
+                justify-content: space-between;
+                padding: 0 15px;
+            }
+            .header-nav {
+                display: none; /* إخفاء قائمة التاجات الأصلية */
+            }
+            .hamburger-menu {
+                display: block; /* إظهار أيقونة الهامبرجر */
+            }
+            .header-left {
+                gap: 10px;
+            }
+            .header-text h1 {
+                font-size: 1.5em;
+            }
+            .header-text p {
+                font-size: 0.8em;
+            }
+
             .main-wrapper {
                 flex-direction: column; /* جعل الأقسام عمودية */
-                padding: 20px; /* تقليل البادينج الداخلي */
+                padding: 20px;
             }
             .sidebar {
                 position: static; /* إلغاء التثبيت */
                 min-width: unset;
-                order: -1; /* جعل السايدبار يظهر قبل المحتوى الرئيسي على الموبايل */
-                margin-bottom: 30px; /* مسافة تحت السايدبار */
-            }
-            header {
-                margin-bottom: 30px; /* تقليل المسافة بعد الهيدر */
-            }
-            header h1 {
-                font-size: 2.8em;
-            }
-            header p {
-                font-size: 1.1em;
+                order: -1; /* جعل السايدبار يظهر قبل المقالات على الموبايل */
+                margin-bottom: 30px;
             }
             .articles-section h2 {
                 font-size: 2em;
             }
             .article-grid {
-                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* تصغير حجم البطاقات قليلاً */
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* ممكن عمودين أو 3 حسب الشاشة */
                 gap: 30px;
             }
             .article-card {
@@ -321,7 +372,7 @@
             }
         }
 
-        @media (max-width: 576px) { /* نقطة توقف للموبايلات الصغيرة */
+        @media (max-width: 576px) { /* للموبايلات الصغيرة */
             .outer-container {
                 margin: 20px auto;
                 padding: 0 10px;
@@ -330,13 +381,13 @@
                 padding: 15px;
             }
             header h1 {
-                font-size: 2.2em;
+                font-size: 1.8em;
             }
             header p {
-                font-size: 0.95em;
+                font-size: 0.8em;
             }
             .articles-section h2 {
-                font-size: 1.8em;
+                font-size: 1.6em;
             }
             .sidebar {
                 padding: 15px;
@@ -348,18 +399,49 @@
                 grid-template-columns: 1fr; /* عمود واحد فقط على أصغر الشاشات */
                 gap: 20px;
             }
+            .article-card .tag-icon {
+                font-size: 2em; /* تصغير أيقونة التاج قليلاً */
+                top: 15px;
+                left: 15px;
+            }
+            .article-card h3 {
+                padding-right: 40px; /* تعديل المسافة بعد تصغير الأيقونة */
+            }
         }
     </style>
 </head>
 <body>
+    <div class="global-header">
+        <div class="header-left">
+            <a href="https://www.algmmal.com/" style="display: flex; align-items: center; text-decoration: none; color: white;">
+                <img src="https://i.imgur.com/your-logo-here.png" alt="Algmmal Logo" class="header-logo"> <div class="header-text">
+                    <h1>Algmmal</h1>
+                    <p>مقالات وحلول برمجية</p>
+                </div>
+            </a>
+        </div>
+        <nav class="header-nav" id="desktop-nav">
+            <ul id="desktop-topics-list">
+                </ul>
+        </nav>
+        <div class="hamburger-menu" id="hamburger-icon">
+            <i class="fas fa-bars"></i>
+        </div>
+    </div>
+
+    <div class="mobile-nav-overlay" id="mobile-nav-overlay">
+        <div class="mobile-nav-content">
+            <div class="close-btn" id="close-mobile-nav">
+                <i class="fas fa-times"></i>
+            </div>
+            <h3>تصفح المواضيع</h3>
+            <ul id="mobile-topics-list">
+                </ul>
+        </div>
+    </div>
     <div class="outer-container">
         <div class="main-wrapper">
             <div class="main-content">
-                <header>
-                    <h1>مرحباً بك في <span>مدونة Algmmal</span></h1>
-                    <p>هنا تجد معرضي المتنوع من المقالات التقنية والحلول البرمجية المبتكرة. استكشف أحدث إنجازاتي في تطوير الويب والمزيد.</p>
-                </header>
-
                 <section class="articles-section">
                     <h2>أحدث مقالاتي ومشاريعي</h2>
                     <main id="articles-container">
@@ -367,13 +449,6 @@
                     </main>
                 </section>
             </div>
-
-            <aside class="sidebar">
-                <h3>تصفح المواضيع</h3>
-                <ul id="topics-list" class="topic-list">
-                    <div class="loading">جارٍ تحميل المواضيع...</div>
-                </ul>
-            </aside>
         </div>
         
         <footer>
@@ -387,10 +462,23 @@
             const githubUsername = 'aljmalmo'; // **تأكد إن ده اسم المستخدم بتاعك على GitHub**
             const customDomain = 'https://www.algmmal.com'; // **الدومين الخاص بيك**
             const articlesContainer = document.getElementById('articles-container');
-            const topicsList = document.getElementById('topics-list');
+            const desktopTopicsList = document.getElementById('desktop-topics-list');
+            const mobileTopicsList = document.getElementById('mobile-topics-list');
+            const hamburgerIcon = document.getElementById('hamburger-icon');
+            const mobileNavOverlay = document.getElementById('mobile-nav-overlay');
+            const closeMobileNavBtn = document.getElementById('close-mobile-nav');
+
+            // قائمة الرموز التعبيرية (Emojis) لتدويرها على المقالات
+            // حوالي 50 رمز جذاب
+            const emojiIcons = [
+                '✨', '💡', '🚀', '🌟', '💻', '🧪', '🌱', '📈', '🧠', '🛠️',
+                '🌐', '💡', '🔗', '📚', '🎯', '⚙️', '📊', '🧑‍💻', '🖋️', '🔍',
+                '🧩', '📈', '🚀', '⭐', '💎', '🎨', '🧩', '🧪', '✨', '🌍',
+                '🌱', '💡', '💻', '🌟', '🧠', '📚', '📈', '⚙️', '🚀', '🛠️',
+                '🌐', '🔗', '🎯', '🧑‍💻', '📊', '🖋️', '🔍', '⭐', '💎', '🎨'
+            ];
 
             // بيانات المشاريع/المقالات المخصصة (العناوين والأوصاف)
-            // ضيف هنا أي مشروع/مقال عايز عنوان و/أو وصف معين يظهر له في المعرض
             const customProjectData = [
                 {
                     repo_name: "respiratory-drugs-pdf-guide",
@@ -402,12 +490,12 @@
                     display_title: "أدوية الضغط: الاسم العلمي والتجاري PDF ودليل شامل",
                     description_override: "مرجع كامل لأدوية علاج ارتفاع ضغط الدم، يشمل التصنيفات، الأسماء العلمية والتجارية، ومعلومات هامة للمرضى والأطباء."
                 },
-                // أضف هنا أي مقالات/مشاريع أخرى تريد تخصيص عنوانها ووصفها:
-                // {
-                //   repo_name: "your-article-repo-name",
-                //   display_title: "عنوان المقال الجذاب هنا",
-                //   description_override: "وصف موجز للمقال أو المشروع هنا."
-                // },
+                {
+                    repo_name: "intramuscular-injection-pdf",
+                    display_title: "الحقن العضلي PDF - دليل شامل للطرق والأماكن",
+                    description_override: "دليل عملي لفهم أساسيات الحقن العضلي وتطبيقها بأمان واحترافية. مصدر موثوق للمبتدئين والمتخصصين في المجال الطبي."
+                }
+                // أضف هنا أي مقالات/مشاريع أخرى تريد تخصيص عنوانها ووصفها
             ];
 
             let allRepos = []; // لتخزين كل الريبوهات التي تم جلبها
@@ -427,7 +515,6 @@
                     } catch (error) {
                         console.error('Error fetching repositories:', error);
                         articlesContainer.innerHTML = '<p class="error-message">عذرًا، حدث خطأ أثناء تحميل المقالات. يرجى المحاولة مرة أخرى لاحقًا.</p>';
-                        topicsList.innerHTML = '<li class="error-message">حدث خطأ في تحميل المواضيع.</li>';
                         return;
                     }
                 }
@@ -449,49 +536,55 @@
                 const articleGrid = document.createElement('div');
                 articleGrid.className = 'article-grid';
 
+                let articleCounter = 0; // عداد المقالات لتحديد الرمز
                 filteredDisplayRepos.forEach(repo => {
                     const customData = customProjectData.find(data => data.repo_name === repo.name);
 
                     const articleCard = document.createElement('div');
                     articleCard.className = 'article-card';
 
+                    // أيقونة التاج
+                    const tagIcon = document.createElement('span');
+                    tagIcon.className = 'tag-icon';
+                    tagIcon.textContent = emojiIcons[articleCounter % emojiIcons.length]; // تدوير الرموز
+                    articleCounter++;
+                    articleCard.appendChild(tagIcon);
+
                     const articleTitle = document.createElement('h3');
-                    // استخدم العنوان المخصص لو موجود، وإلا استخدم وصف الريبو من GitHub كعنوان افتراضي
                     articleTitle.textContent = customData ? customData.display_title : (repo.description || repo.name); 
                     
                     const articleDescription = document.createElement('p');
-                    // استخدم الوصف المخصص لو موجود، وإلا استخدم الوصف من GitHub (بشرط ألا يكون هو نفس العنوان)
                     articleDescription.textContent = customData && customData.description_override ? customData.description_override : (repo.description && repo.description !== articleTitle.textContent ? repo.description : 'لم يتم توفير وصف موجز لهذا المقال.');
                     
                     const readMoreBtn = document.createElement('a');
                     readMoreBtn.className = 'read-more-btn';
                     
-                    // منطق الربط: لو GitHub Page، اربط بالدومين الفرعي، وإلا اربط بصفحة الريبو الأصلية على GitHub
                     if (repo.has_pages) {
                         readMoreBtn.href = `${customDomain}/${repo.name}/`; 
                     } else {
                         readMoreBtn.href = repo.html_url;
                     }
-                    readMoreBtn.target = '_blank'; // يفتح في تبويبة جديدة
+                    readMoreBtn.target = '_blank';
                     readMoreBtn.textContent = 'قراءة المزيد';
 
                     articleCard.appendChild(articleTitle);
                     articleCard.appendChild(articleDescription);
-                    articleCard.appendChild(readMoreBtn); // زر "قراءة المزيد" فقط
+                    articleCard.appendChild(readMoreBtn);
 
                     articleGrid.appendChild(articleCard);
                 });
                 articlesContainer.appendChild(articleGrid);
             }
 
-            // دالة لجلب وعرض المواضيع في السايدبار
+            // دالة لجلب وعرض المواضيع في الهيدر والنافذة الجانبية
             async function fetchAndDisplayTopics() {
-                topicsList.innerHTML = '<div class="loading">جارٍ تحميل المواضيع...</div>'; 
+                desktopTopicsList.innerHTML = ''; // مسح التحميل
+                mobileTopicsList.innerHTML = '';
+
                 if (allRepos.length === 0) { 
-                    await fetchAndDisplayArticles(); 
+                    await fetchAndDisplayArticles(); // هتجلب allRepos وهتملا allTopics
                 }
 
-                topicsList.innerHTML = ''; 
                 allTopics.clear(); 
 
                 allRepos.forEach(repo => {
@@ -501,43 +594,72 @@
                 });
 
                 if (allTopics.size === 0) {
-                    topicsList.innerHTML = '<li>لا توجد مواضيع متاحة.</li>';
+                    desktopTopicsList.innerHTML = '<li>لا توجد مواضيع.</li>';
+                    mobileTopicsList.innerHTML = '<li>لا توجد مواضيع.</li>';
                     return;
                 }
 
-                // إضافة زر "كل المقالات"
-                const allArticlesLi = document.createElement('li');
-                const allArticlesLink = document.createElement('a');
-                allArticlesLink.href = "#all";
-                allArticlesLink.textContent = "كل المقالات";
-                allArticlesLink.classList.add('active-topic'); 
-                allArticlesLink.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    document.querySelectorAll('.topic-list a').forEach(link => link.classList.remove('active-topic'));
-                    allArticlesLink.classList.add('active-topic');
-                    fetchAndDisplayArticles(null); 
-                });
-                allArticlesLi.appendChild(allArticlesLink);
-                topicsList.appendChild(allArticlesLi);
+                // إضافة زر "كل المقالات" للاثنين
+                const createAllArticlesLink = () => {
+                    const li = document.createElement('li');
+                    const link = document.createElement('a');
+                    link.href = "#all";
+                    link.textContent = "كل المقالات";
+                    link.classList.add('active-topic'); 
+                    link.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        document.querySelectorAll('.topic-list a, .header-nav a').forEach(item => item.classList.remove('active-topic'));
+                        link.classList.add('active-topic');
+                        fetchAndDisplayArticles(null); 
+                        mobileNavOverlay.style.display = 'none'; // إخفاء القائمة بعد الاختيار
+                    });
+                    li.appendChild(link);
+                    return li;
+                };
+
+                desktopTopicsList.appendChild(createAllArticlesLink());
+                mobileTopicsList.appendChild(createAllArticlesLink());
+
 
                 // إضافة المواضيع الفعلية
                 Array.from(allTopics).sort().forEach(topic => {
-                    const topicLi = document.createElement('li');
-                    const topicLink = document.createElement('a');
-                    topicLink.href = `#${topic}`;
-                    // تنسيق عرض التوبيك: استبدال الشرطات بمسافات وتغيير أول حرف من كل كلمة لكبير
-                    topicLink.textContent = topic.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' '); 
-                    topicLink.addEventListener('click', (e) => {
-                        e.preventDefault();
-                        document.querySelectorAll('.topic-list a').forEach(link => link.classList.remove('active-topic'));
-                        e.target.classList.add('active-topic');
-                        fetchAndDisplayArticles(topic); 
-                    });
-                    topicLi.appendChild(topicLink);
-                    topicsList.appendChild(topicLi);
+                    const createTopicLink = (isMobile = false) => {
+                        const li = document.createElement('li');
+                        const link = document.createElement('a');
+                        link.href = `#${topic}`;
+                        // تنسيق عرض التوبيك: استبدال الشرطات بمسافات وتغيير أول حرف من كل كلمة لكبير
+                        link.textContent = topic.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' '); 
+                        link.addEventListener('click', (e) => {
+                            e.preventDefault();
+                            document.querySelectorAll('.topic-list a, .header-nav a').forEach(item => item.classList.remove('active-topic'));
+                            e.target.classList.add('active-topic');
+                            fetchAndDisplayArticles(topic); 
+                            if (isMobile) {
+                                mobileNavOverlay.style.display = 'none'; // إخفاء القائمة بعد الاختيار
+                            }
+                        });
+                        li.appendChild(link);
+                        return li;
+                    };
+                    desktopTopicsList.appendChild(createTopicLink());
+                    mobileTopicsList.appendChild(createTopicLink(true)); // للنسخة الموبايل
                 });
             }
             
+            // تفعيل قائمة الهامبرجر
+            hamburgerIcon.addEventListener('click', () => {
+                mobileNavOverlay.style.display = 'flex';
+            });
+            closeMobileNavBtn.addEventListener('click', () => {
+                mobileNavOverlay.style.display = 'none';
+            });
+            mobileNavOverlay.addEventListener('click', (e) => {
+                if (e.target === mobileNavOverlay) { // لو داس على الخلفية السودا
+                    mobileNavOverlay.style.display = 'none';
+                }
+            });
+
+
             // تنفيذ الدالتين عند تحميل الصفحة
             fetchAndDisplayArticles(); 
             fetchAndDisplayTopics();
