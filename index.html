@@ -7,63 +7,64 @@
     <meta name="description" content="استكشف مقالات ومشاريع Algmmal المتنوعة. حلول برمجية مبتكرة، تطبيقات ويب، ومقالات تقنية في مجالات متعددة.">
     <meta name="keywords" content="Algmmal, مقالات برمجية, تطوير ويب, تقنية, مدونة شخصية, مشاريع برمجية, معرض أعمال, بورتفوليو">
     <meta name="author" content="Algmmal">
-    <link href="https://fonts.googleapis.com/css2?family=Changa:wght@400;700;800&family=El+Messiri:wght@400;700&family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Changa:wght@400;700;800&family=El+Messiri:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
     <style>
         :root {
-            --dark-space: #1A1A2E; /* أزرق داكن جدًا للفضاء */
-            --light-galaxy: #2E3A59; /* أزرق بنفسجي للفضاء الفاتح */
-            --star-glow: #E0E0FF; /* وهج النجوم */
-            --text-primary: #F0F8FF; /* نص أبيض مزرق */
-            --text-secondary: #BBCCEE; /* نص أزرق فاتح ثانوي */
-            --highlight-purple: #8B5FBF; /* بنفسجي مركز */
-            --highlight-teal: #4CC9F0; /* أزرق فيروزي ساطع */
-            --card-bg-blur: rgba(25, 25, 45, 0.7); /* خلفية كارت شفافة ومبلورة */
-            --border-glow: rgba(139, 95, 191, 0.4);
-            --button-gradient-start: #8B5FBF;
-            --button-gradient-end: #4C2B81;
-            --button-hover-start: #9B6EDF;
-            --button-hover-end: #5A3592;
-            --shadow-deep: rgba(0, 0, 0, 0.5);
-            --shadow-subtle: rgba(0, 0, 0, 0.2);
-            --header-height: 80px; /* ارتفاع الهيدر الثابت */
+            /* ألوان مشرقة وجذابة */
+            --primary-light: #5B8C85; /* أخضر مزرق فاتح (قاعدة رئيسية) */
+            --primary-dark: #2D545E;  /* أزرق مخضر داكن (للعناوين) */
+            --accent-gold: #FFD700;   /* ذهبي لامع للمسة سحرية */
+            --accent-pink: #FF69B4;   /* وردي فاقع للوهج والتميز */
+            --text-primary: #F0F8FF;  /* نص فاتح جداً */
+            --text-secondary: #DAE8F0; /* نص ثانوي أزرق فاتح */
+            --bg-light: #F0F5F5;      /* خلفية فاتحة جداً للأجزاء الداخلية */
+            --card-bg-blur: rgba(45, 84, 94, 0.7); /* خلفية كارت أغمق ومبلورة */
+            --border-glow: rgba(255, 215, 0, 0.4); /* وهج ذهبي للحدود */
+            --button-gradient-start: #FF69B4; /* بداية تدرج الزر (وردي) */
+            --button-gradient-end: #CC0066;   /* نهاية تدرج الزر (أحمر بنفسجي) */
+            --button-hover-start: #FF9BD1;
+            --button-hover-end: #DD3388;
+            --shadow-deep: rgba(0, 0, 0, 0.6); /* ظل عميق */
+            --shadow-subtle: rgba(0, 0, 0, 0.3); /* ظل خفيف */
+            --header-height: 80px;
         }
 
         body {
             font-family: 'Tajawal', sans-serif;
             margin: 0;
-            padding-top: var(--header-height); /* مسافة من أعلى الصفحة عشان الهيدر الثابت */
-            background-color: var(--dark-space);
+            padding-top: var(--header-height);
+            background: linear-gradient(135deg, #7A9F9E 0%, #4D7F7D 100%); /* تدرج خلفية أساسي مشرق */
             color: var(--text-primary);
             line-height: 1.8;
             direction: rtl;
             text-align: right;
             overflow-x: hidden;
             position: relative;
-            perspective: 1000px; /* لإنشاء تأثيرات 3D عميقة */
+            perspective: 1000px;
         }
 
-        /* خلفية الفضاء السحرية المعقدة */
+        /* خلفية الفضاء السحرية المعقدة (ألوان مشرقة) */
         body::before {
             content: '';
             position: fixed;
-            top: -50%; /* تكبير للحركة */
+            top: -50%;
             left: -50%;
             width: 200%;
             height: 200%;
             background: 
-                radial-gradient(circle at 70% 30%, var(--light-galaxy) 0%, transparent 60%),
-                radial-gradient(circle at 30% 70%, var(--highlight-purple) 0%, transparent 60%),
-                radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.05) 0%, transparent 30%); /* نقاط لامعة */
-            background-size: 80% 80%, 70% 70%, 10% 10%; /* أحجام مختلفة للخلفيات */
+                radial-gradient(circle at 70% 30%, rgba(122, 159, 158, 0.3) 0%, transparent 60%), /* وهج أخضر مزرق */
+                radial-gradient(circle at 30% 70%, rgba(255, 215, 0, 0.3) 0%, transparent 60%), /* وهج ذهبي */
+                radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 30%); /* نقاط لامعة */
+            background-size: 80% 80%, 70% 70%, 10% 10%;
             background-repeat: no-repeat;
-            animation: cosmicBackground 60s infinite linear alternate; /* حركة بطيئة ومستمرة */
-            z-index: -2; /* أعمق طبقة */
-            filter: blur(5px); /* تأثير ضبابي */
-            opacity: 0.7;
+            animation: cosmicBackground 60s infinite linear alternate;
+            z-index: -2;
+            filter: blur(5px);
+            opacity: 0.8;
         }
-        body::after { /* طبقة إضافية للنجوم المتلألئة */
+        body::after { /* طبقة إضافية للنجوم المتلألئة (مشرقة) */
             content: '';
             position: fixed;
             top: 0;
@@ -72,12 +73,12 @@
             height: 100%;
             background: transparent;
             background-image: 
-                radial-gradient(circle at 20% 80%, rgba(255, 255, 255, 0.1) 1px, transparent 1px),
-                radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
-            background-size: 5px 5px; /* حجم صغير جدا للنجوم */
-            animation: twinkleStars 120s infinite linear; /* حركة أبطأ للنجوم */
-            z-index: -1; /* طبقة فوق الخلفية الضبابية */
-            opacity: 0.5;
+                radial-gradient(circle at 20% 80%, rgba(255, 255, 255, 0.2) 1px, transparent 1px),
+                radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.2) 1px, transparent 1px);
+            background-size: 5px 5px;
+            animation: twinkleStars 120s infinite linear;
+            z-index: -1;
+            opacity: 0.6;
         }
 
         @keyframes cosmicBackground {
@@ -89,7 +90,6 @@
             100% { background-position: 100% 100%; }
         }
 
-
         /* الثابت اللي في كل الصفحات */
         .global-header {
             position: fixed;
@@ -97,14 +97,14 @@
             left: 0;
             width: 100%;
             height: var(--header-height);
-            background-color: var(--primary-dark);
+            background: linear-gradient(to right, var(--primary-dark), #3A666A); /* تدرج للهيدر */
             color: white;
             display: flex;
             align-items: center;
             padding: 0 20px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-            z-index: 1000; /* عشان يظهر فوق كل حاجة */
-            justify-content: space-between; /* اللوجو والمينيو على الطرفين */
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+            z-index: 1000;
+            justify-content: space-between;
         }
 
         .header-left {
@@ -113,34 +113,52 @@
             gap: 15px;
         }
 
-        .header-logo {
-            height: 50px; /* حجم اللوجو */
-            width: auto;
-            border-radius: 50%; /* لوجو دائري */
-            object-fit: cover;
-            box-shadow: 0 0 10px rgba(255,255,255,0.3); /* وهج خفيف */
-        }
-
-        .header-text h1 {
-            margin: 0;
+        .header-logo-text { /* اللوجو النصي الجديد */
             font-family: 'El Messiri', serif;
-            font-size: 1.8em;
-            color: var(--star-glow); /* لون متوهج */
-            text-shadow: 0 0 8px rgba(255,255,255,0.5); /* وهج خفيف */
+            font-size: 2em;
+            color: var(--accent-gold); /* لون ذهبي لامع */
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            line-height: 1; /* لضبط المسافات */
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.7); /* وهج ذهبي */
+            transition: text-shadow 0.3s ease;
+        }
+        .header-logo-text:hover {
+            text-shadow: 0 0 15px rgba(255, 215, 0, 1);
         }
 
-        .header-text p {
+        .header-logo-text span.icon {
+            font-size: 1.2em;
+            margin-left: 8px; /* مسافة بين الرمز والنص */
+            color: var(--accent-pink); /* رمز بلون مختلف ومبهج */
+            animation: pulse-logo 1.5s infinite alternate; /* نبض خفيف للرمز */
+        }
+        @keyframes pulse-logo {
+            from { transform: scale(1); opacity: 0.9; }
+            to { transform: scale(1.05); opacity: 1; }
+        }
+
+        .header-text-subtitle { /* وصف صغير تحت اللوجو */
             margin: 0;
             font-size: 0.9em;
-            color: var(--text-secondary); /* نص ثانوي فاتح */
+            color: var(--text-secondary);
             font-weight: 300;
+            margin-top: 5px; /* مسافة من اللوجو */
         }
+        /* تعديل هيكل اللوجو والوصف */
+        .header-left div {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
 
         .header-nav ul {
             list-style: none;
             margin: 0;
             padding: 0;
-            display: flex; /* لعرض التاجات جنب بعض */
+            display: flex;
             gap: 20px;
         }
 
@@ -151,26 +169,26 @@
             font-size: 1.1em;
             padding: 5px 10px;
             border-radius: 5px;
-            transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+            transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
         }
 
         .header-nav ul li a:hover {
-            background-color: var(--highlight-teal); /* لون فيروزي ساطع */
+            background-color: var(--accent-pink); /* لون وردي لامع */
             color: var(--primary-dark);
             transform: translateY(-2px);
-            box-shadow: 0 0 10px var(--highlight-teal); /* وهج للتاج */
+            box-shadow: 0 0 12px var(--accent-pink);
         }
         
         .header-nav ul li a.active-topic {
-            background-color: var(--highlight-purple); /* لون بنفسجي للموضوع النشط */
-            color: var(--star-glow);
-            box-shadow: 0 0 15px var(--highlight-purple);
+            background-color: var(--accent-gold); /* لون ذهبي للموضوع النشط */
+            color: var(--primary-dark);
+            box-shadow: 0 0 15px var(--accent-gold);
             transform: translateY(-2px);
         }
 
         /* Hamburger menu for mobile */
         .hamburger-menu {
-            display: none; /* مخفي افتراضيا على الكمبيوتر */
+            display: none;
             font-size: 1.8em;
             cursor: pointer;
             color: var(--star-glow);
@@ -181,32 +199,32 @@
         }
 
         .mobile-nav-overlay {
-            display: none; /* مخفي افتراضيا */
+            display: none;
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.85); /* خلفية سودا أغمق */
+            background-color: rgba(0, 0, 0, 0.85);
             z-index: 1001;
-            justify-content: flex-end; /* لفتح القائمة من اليمين */
+            justify-content: flex-end;
             align-items: flex-start;
             padding-top: var(--header-height);
         }
 
         .mobile-nav-content {
-            background-color: var(--primary-dark);
+            background: linear-gradient(to bottom, var(--primary-dark), var(--primary-light)); /* تدرج للقائمة الجانبية */
             width: 80%;
-            max-width: 350px; /* عرض أكبر للقائمة */
+            max-width: 350px;
             height: 100%;
             border-top-right-radius: 0;
             border-bottom-right-radius: 0;
-            border-top-left-radius: 15px; /* استدارة للزاوية العلوية اليسرى */
-            border-bottom-left-radius: 15px; /* استدارة للزاوية السفلية اليسرى */
+            border-top-left-radius: 15px;
+            border-bottom-left-radius: 15px;
             padding: 30px 20px;
-            box-shadow: -10px 0 30px rgba(0, 0, 0, 0.7); /* ظل للجانب */
+            box-shadow: -10px 0 30px rgba(0, 0, 0, 0.7);
             position: relative;
-            animation: slideInRight 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* انيميشن دخول من اليمين */
+            animation: slideInRight 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
         @keyframes slideInRight {
             from { transform: translateX(100%); opacity: 0; }
@@ -217,13 +235,13 @@
             position: absolute;
             top: 15px;
             right: 15px;
-            font-size: 2.2em; /* حجم أكبر لزر الإغلاق */
+            font-size: 2.2em;
             color: var(--star-glow);
             cursor: pointer;
             transition: transform 0.2s ease;
         }
         .mobile-nav-content .close-btn:hover {
-            transform: rotate(90deg); /* دوران عند التحويم */
+            transform: rotate(90deg);
         }
 
         .mobile-nav-content ul {
@@ -242,18 +260,18 @@
             padding: 12px 18px;
             border-radius: 8px;
             display: block;
-            background-color: var(--light-galaxy);
+            background-color: rgba(255,255,255,0.1); /* خلفية خفيفة */
             transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
             box-shadow: 0 2px 8px rgba(0,0,0,0.2);
         }
         .mobile-nav-content ul li a:hover {
-            background-color: var(--highlight-teal);
+            background-color: var(--accent-pink);
             transform: translateX(-5px);
             box-shadow: 0 4px 12px rgba(0,0,0,0.3);
         }
         .mobile-nav-content ul li a.active-topic {
-            background-color: var(--highlight-purple);
-            box-shadow: 0 0 15px var(--highlight-purple);
+            background-color: var(--accent-gold);
+            box-shadow: 0 0 15px var(--accent-gold);
             transform: translateX(-5px);
         }
         /* نهاية الهيدر الثابت */
@@ -261,22 +279,22 @@
 
         .outer-container {
             max-width: 1200px;
-            margin: 50px auto; /* مسافة من أعلى بعد الهيدر الثابت */
+            margin: 50px auto;
             padding: 0 20px;
             position: relative;
-            z-index: 1; /* لتظهر فوق الخلفيات المتحركة */
+            z-index: 1;
         }
 
         .main-content {
-            padding: 30px; /* بادينج داخلي للحاوية الرئيسية للمقالات */
-            background-color: var(--card-bg-blur); /* خلفية مبلورة وشفافة */
+            padding: 30px;
+            background-color: var(--card-bg-blur);
             border-radius: 15px;
             box-shadow: 0 15px 40px var(--shadow-deep);
-            backdrop-filter: blur(8px); /* تأثير الزجاج المبلور */
-            border: 1px solid var(--border-glow); /* حدود خفيفة متوهجة */
+            backdrop-filter: blur(8px);
+            border: 1px solid var(--border-glow);
             transform-style: preserve-3d;
             transform-origin: center center;
-            animation: fadeInScale 1.5s ease-out; /* ظهور بطيء */
+            animation: fadeInScale 1.5s ease-out;
         }
 
         .articles-section {
@@ -285,13 +303,13 @@
 
         .articles-section h2 {
             font-family: 'El Messiri', serif;
-            color: var(--star-glow); /* لون متوهج */
-            font-size: 2.8em; /* حجم أكبر */
+            color: var(--star-glow);
+            font-size: 2.8em;
             text-align: center;
             margin-bottom: 40px;
             position: relative;
             padding-bottom: 15px;
-            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5); /* وهج خفيف */
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
         }
 
         .articles-section h2::after {
@@ -302,19 +320,19 @@
             transform: translateX(50%);
             width: 120px;
             height: 5px;
-            background: linear-gradient(to right, var(--highlight-purple), var(--highlight-teal)); /* تدرج لوني */
+            background: linear-gradient(to right, var(--accent-pink), var(--accent-gold)); /* تدرج لوني أكثر إشراقاً */
             border-radius: 3px;
         }
 
         .article-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* 3 أعمدة (مقالات) */
-            gap: 40px; /* مسافة أكبر بين المقالات */
+            gap: 40px;
             margin-top: 40px;
         }
 
         .article-card {
-            background-color: rgba(40, 40, 70, 0.6); /* خلفية داكنة شفافة للكارت */
+            background-color: rgba(45, 84, 94, 0.6); /* خلفية داكنة شفافة للكارت */
             border-radius: 15px;
             padding: 25px;
             box-shadow: 0 8px 30px var(--shadow-deep);
@@ -322,42 +340,43 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            border: 1px solid rgba(76, 201, 240, 0.3); /* حدود فيروزية خفيفة */
+            border: 1px solid var(--border-glow); /* حدود متوهجة */
             position: relative;
             transform-style: preserve-3d;
             transform-origin: center;
         }
 
         .article-card:hover {
-            transform: translateY(-15px) rotateY(5deg); /* رفع أكبر ودوران 3D على محور Y */
+            transform: translateY(-15px) rotateY(5deg);
             box-shadow: 0 15px 45px rgba(0, 0, 0, 0.7);
-            border-color: var(--star-glow); /* وهج للحدود عند التحويم */
+            border-color: var(--accent-pink); /* وهج للحدود عند التحويم */
         }
 
         .article-card .tag-icon { /* أيقونة التاج */
             font-size: 3.5em; /* حجم أكبر للرمز */
-            color: var(--accent-gold);
+            color: var(--accent-gold); /* ذهبي */
             opacity: 0.8;
-            margin-bottom: 15px; /* مسافة تحت الرمز */
-            text-align: center; /* توسيط الرمز */
+            margin-bottom: 15px;
+            text-align: center;
             transition: transform 0.3s ease, text-shadow 0.3s ease;
-            text-shadow: 0 0 10px rgba(243, 156, 18, 0.5); /* وهج للرمز */
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.7); /* وهج للرمز */
         }
         .article-card:hover .tag-icon {
-            transform: scale(1.1) rotate(5deg); /* تكبير ودوران عند التحويم */
-            text-shadow: 0 0 20px var(--accent-gold); /* وهج أقوى */
+            transform: scale(1.1) rotate(5deg);
+            text-shadow: 0 0 20px var(--accent-gold);
         }
 
         .article-card h3 {
             font-family: 'El Messiri', serif;
-            color: var(--star-glow); /* لون متوهج */
+            color: var(--star-glow);
             font-size: 1.6em; /* خط متوسط */
             margin-top: 0;
             margin-bottom: 20px;
             line-height: 1.4;
             font-weight: 700;
-            text-align: center; /* توسيط العنوان */
-            text-shadow: 0 0 8px rgba(255,255,255,0.3);
+            text-align: center;
+            text-shadow: 0 0 8px rgba(255,255,255,0.4);
+            flex-grow: 1; /* عشان العنوان ياخد المساحة المتاحة ويزق الزر لتحت */
         }
 
         .read-more-btn {
@@ -368,14 +387,14 @@
             padding: 12px 25px;
             border-radius: 8px;
             text-decoration: none;
-            margin-top: auto; /* يدفع الزر للأسفل */
+            margin-top: auto;
             font-weight: bold;
             font-size: 1.1em;
             transition: all 0.3s ease;
             box-shadow: 0 4px 15px var(--shadow-subtle);
             justify-content: center;
-            width: 100%; /* عشان ياخد عرض الكارد */
-            border: 1px solid var(--highlight-teal); /* حدود بسيطة */
+            width: 100%;
+            border: 1px solid var(--border-glow); /* حدود بسيطة متوهجة */
         }
 
         .read-more-btn::before {
@@ -389,15 +408,15 @@
             transform: translateY(-5px);
             box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
             text-decoration: none;
-            border-color: var(--star-glow);
+            border-color: var(--accent-pink);
         }
 
         .loading, .error-message {
             text-align: center;
-            font-size: 1.6em; /* حجم أكبر لرسالة التحميل */
+            font-size: 1.6em;
             color: var(--text-secondary);
-            padding: 80px 0; /* بادينج أكبر */
-            animation: pulse 1.8s infinite alternate; /* انيميشن أبطأ */
+            padding: 80px 0;
+            animation: pulse 1.8s infinite alternate;
         }
         .error-message {
             color: #e74c3c;
@@ -413,7 +432,7 @@
             text-align: center;
             margin-top: 70px;
             padding-top: 35px;
-            border-top: 1px solid var(--border-glow); /* خط متوهج */
+            border-top: 1px solid var(--border-glow);
             color: var(--text-secondary);
             font-size: 0.95em;
             text-shadow: 0 0 5px rgba(255, 255, 255, 0.1);
@@ -435,12 +454,16 @@
             .header-left {
                 gap: 10px;
             }
-            .header-text h1 {
+            .header-logo-text {
                 font-size: 1.5em;
             }
-            .header-text p {
+            .header-logo-text span.icon {
+                font-size: 1em;
+            }
+            .header-text-subtitle {
                 font-size: 0.8em;
             }
+
             .main-content {
                 padding: 20px;
             }
@@ -448,7 +471,7 @@
                 font-size: 2.2em;
             }
             .article-grid {
-                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* 2 أو 3 أعمدة حسب الشاشة */
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
                 gap: 30px;
             }
             .article-card {
@@ -456,10 +479,11 @@
             }
             .article-card .tag-icon {
                 font-size: 3em;
-                margin-bottom: 10px;
+                margin-bottom: 8px;
             }
             .article-card h3 {
                 font-size: 1.5em;
+                margin-bottom: 15px;
             }
             .read-more-btn {
                 font-size: 1em;
@@ -500,12 +524,10 @@
 <body>
     <div class="global-header">
         <div class="header-left">
-            <a href="https://www.algmmal.com/" style="display: flex; align-items: center; text-decoration: none; color: white;">
-                <img src="https://i.imgur.com/your-logo-here.png" alt="Algmmal Logo" class="header-logo"> <div class="header-text">
-                    <h1>Algmmal</h1>
-                    <p>مقالات وحلول برمجية</p>
-                </div>
+            <a href="https://www.algmmal.com/" class="header-logo-text">
+                <span class="icon">✨</span> Algmmal 
             </a>
+            <p class="header-text-subtitle">مدونة ومشاريع برمجية</p>
         </div>
         <nav class="header-nav" id="desktop-nav">
             <ul id="desktop-topics-list">
@@ -568,6 +590,34 @@
                 '🌐', '🔗', '🎯', '⚙️', '📊', '🧑‍💻', '🖋️', '🔍', '🧩', '⭐'
             ];
 
+            // خريطة ترجمة التاجات من الإنجليزية للعربية
+            // أضف هنا كل التاجات الإنجليزية اللي بتستخدمها على GitHub وترجمتها بالعربي
+            const topicTranslations = {
+                "web-development": "تطوير الويب",
+                "pharmacy-apps": "تطبيقات صيدلانية",
+                "medical-guides": "أدلة طبية",
+                "health-education": "توعية صحية",
+                "blogging": "مدونات",
+                "study-tips": "نصائح دراسية",
+                "programming": "برمجة",
+                "data-science": "علم البيانات",
+                "machine-learning": "تعلم الآلة",
+                "mobile-apps": "تطبيقات الهاتف",
+                "ui-ux": "تصميم واجهة المستخدم",
+                "database": "قواعد البيانات",
+                "backend": "البرمجة الخلفية",
+                "frontend": "البرمجة الأمامية",
+                "algorithms": "خوارزميات",
+                "problem-solving": "حل المشكلات",
+                "medicine": "الطب",
+                "pharmacology": "علم الأدوية",
+                "patient-care": "رعاية المرضى",
+                "reports": "تقارير",
+                "chronic-diseases": "أمراض مزمنة",
+                "kidney-diseases": "أمراض الكلى",
+                // أضف المزيد حسب الحاجة
+            };
+
             // بيانات المشاريع/المقالات المخصصة (العناوين والأوصاف)
             // ضيف هنا أي مشروع/مقال عايز عنوان و/أو وصف معين يظهر له في المعرض
             const customProjectData = [
@@ -590,18 +640,22 @@
                     repo_name: "smart-study-guide-pdf",
                     display_title: "المذاكرة الذكية: دليل التفوق والتعلم العميق",
                     description_override: "اكتشف أسرار المذاكرة بذكاء لا بجهد، مع نصائح عملية لتنظيم الوقت والتفوق في الامتحانات والارتقاء بمسيرتك التعليمية."
+                },
+                {
+                    repo_name: "medical-report-pdf-sample",
+                    display_title: "تقرير طبي PDF شامل: نموذج عملي",
+                    description_override: "اكتشف نموذج تقرير طبي PDF احترافي وشامل لحالات المتلازمة الكلوية والفشل الكلوي. تعلم صياغة التقارير وأهميتها القانونية والأخلاقية."
                 }
                 // أضف هنا أي مقالات/مشاريع أخرى تريد تخصيص عنوانها ووصفها
             ];
 
-            let allRepos = []; // لتخزين كل الريبوهات التي تم جلبها
-            let allTopics = new Set(); // لاستخراج المواضيع الفريدة
+            let allRepos = [];
+            let allTopics = new Set();
 
-            // دالة لجلب وعرض المقالات (الريبوهات)
             async function fetchAndDisplayArticles(filterTopic = null) {
                 articlesContainer.innerHTML = '<div class="loading">جارٍ تجهيز المقالات...</div>';
 
-                if (allRepos.length === 0) { // جلب الريبوهات مرة واحدة فقط
+                if (allRepos.length === 0) {
                     try {
                         const response = await fetch(`https://api.github.com/users/${githubUsername}/repos?per_page=100&sort=pushed&direction=desc`); 
                         if (!response.ok) {
@@ -649,10 +703,6 @@
                     const articleTitle = document.createElement('h3');
                     articleTitle.textContent = customData ? customData.display_title : (repo.description || repo.name); 
                     
-                    // شيلنا الوصف من هنا بناء على طلبك
-                    // const articleDescription = document.createElement('p');
-                    // articleDescription.textContent = customData && customData.description_override ? customData.description_override : (repo.description && repo.description !== articleTitle.textContent ? repo.description : 'لم يتم توفير وصف موجز لهذا المقال.');
-                    
                     const readMoreBtn = document.createElement('a');
                     readMoreBtn.className = 'read-more-btn';
                     
@@ -665,7 +715,6 @@
                     readMoreBtn.textContent = 'قراءة المزيد';
 
                     articleCard.appendChild(articleTitle);
-                    // articleCard.appendChild(articleDescription); // شيلنا الوصف من هنا
                     articleCard.appendChild(readMoreBtn);
 
                     articleGrid.appendChild(articleCard);
@@ -675,11 +724,11 @@
 
             // دالة لجلب وعرض المواضيع في الهيدر والنافذة الجانبية
             async function fetchAndDisplayTopics() {
-                desktopTopicsList.innerHTML = ''; // مسح التحميل
+                desktopTopicsList.innerHTML = '';
                 mobileTopicsList.innerHTML = '';
 
                 if (allRepos.length === 0) { 
-                    await fetchAndDisplayArticles(); // هتجلب allRepos وهتملا allTopics
+                    await fetchAndDisplayArticles(); 
                 }
 
                 allTopics.clear(); 
@@ -718,14 +767,15 @@
                 mobileTopicsList.appendChild(createAllArticlesLink());
 
 
-                // إضافة المواضيع الفعلية
+                // إضافة المواضيع الفعلية مع الترجمة
                 Array.from(allTopics).sort().forEach(topic => {
                     const createTopicLink = (isMobile = false) => {
                         const li = document.createElement('li');
                         const link = document.createElement('a');
                         link.href = `#${topic}`;
-                        // تنسيق عرض التوبيك: استبدال الشرطات بمسافات وتغيير أول حرف من كل كلمة لكبير
-                        link.textContent = topic.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' '); 
+                        // **هنا يتم تطبيق الترجمة:**
+                        link.textContent = topicTranslations[topic] || topic.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' '); 
+                        
                         link.addEventListener('click', (e) => {
                             e.preventDefault();
                             document.querySelectorAll('.topic-list a, .header-nav a, .mobile-nav-content a').forEach(item => item.classList.remove('active-topic'));
@@ -739,7 +789,7 @@
                         return li;
                     };
                     desktopTopicsList.appendChild(createTopicLink());
-                    mobileTopicsList.appendChild(createTopicLink(true)); // للنسخة الموبايل
+                    mobileTopicsList.appendChild(createTopicLink(true));
                 });
             }
             
