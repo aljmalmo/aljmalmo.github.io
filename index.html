@@ -3,244 +3,215 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dr. Mohamed Al-Gamal - وجهتك الشاملة للمعرفة والمنتجات الطبية</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>Aljmalmo - مستودعاتي على GitHub</title>
+    <meta name="description" content="استكشف جميع مشاريعي ومستودعاتي البرمجية على GitHub.">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Cairo', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f7f6;
+            color: #333;
+            direction: rtl;
+            text-align: right;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 30px;
+            background-color: #fff;
+            border-radius: 12px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+        }
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 3px solid #007bff;
+        }
+        header h1 {
+            color: #007bff;
+            font-size: 2.8em;
+            margin-bottom: 10px;
+        }
+        header p {
+            font-size: 1.2em;
+            color: #555;
+        }
+        .repo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+        .repo-card {
+            background-color: #f9f9f9;
+            border: 1px solid #e0e0e0;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between; /* لتحقيق تباعد متساوٍ */
+        }
+        .repo-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+        }
+        .repo-card h3 {
+            color: #28a745;
+            font-size: 1.5em;
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+        .repo-card p {
+            color: #666;
+            font-size: 0.95em;
+            flex-grow: 1; /* للسماح للوصف بأخذ المساحة المتاحة */
+        }
+        .repo-card .details {
+            margin-top: 15px;
+            font-size: 0.9em;
+            color: #777;
+            border-top: 1px dashed #eee;
+            padding-top: 10px;
+        }
+        .repo-card .details span {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .repo-card a {
+            display: inline-block;
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 15px;
+            border-radius: 5px;
+            text-decoration: none;
+            margin-top: 15px;
+            transition: background-color 0.3s ease;
+        }
+        .repo-card a:hover {
+            background-color: #0056b3;
+        }
+        .loading {
+            text-align: center;
+            font-size: 1.5em;
+            color: #888;
+            padding: 50px 0;
+        }
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            padding-top: 25px;
+            border-top: 1px solid #ddd;
+            color: #777;
+            font-size: 0.9em;
+        }
+        @media (max-width: 768px) {
+            .container {
+                margin: 20px auto;
+                padding: 15px;
+            }
+            header h1 {
+                font-size: 2em;
+            }
+            .repo-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 <body>
+    <div class="container">
+        <header>
+            <h1>أهلاً بك في صفحة <span style="color: #28a745;">Aljmalmo</span> على GitHub!</h1>
+            <p>هنا ستجد جميع مستودعاتي ومشاريعي البرمجية التي أعمل عليها. يتم تحديث القائمة تلقائيًا.</p>
+        </header>
 
-    <header class="main-header">
-        <div class="container">
-            <div class="header-right">
-                <a href="index.html" class="site-logo">
-                    <img src="YOUR_LOGO_IMAGE_URL_HERE.png" alt="Dr. Mohamed Al-Gamal Logo">
-                </a>
-                <p class="site-slogan">وجهتك الشاملة للمعرفة والمنتجات الطبية</p>
-            </div>
-            
-            <nav class="main-nav desktop-nav">
-                <ul class="nav-links">
-                    <li><a href="index.html#purchase-methods" class="nav-link">طرق الشراء</a></li>
-                    <li><a href="human-medicine.html" class="nav-link">الطب البشري</a></li>
-                    <li><a href="pharmacy.html" class="nav-link">الصيدلة</a></li>
-                    <li><a href="nursing-library" class="nav-link">التمريض</a></li>
-                    <li><a href="medical-labs.html" class="nav-link">التحاليل الطبية</a></li>
-                    <li><a href="dentistry.html" class="nav-link">الأسنان</a></li>
-                    <li><a href="other-medical.html" class="nav-link">تخصصات أخرى</a></li>
-                </ul>
-            </nav>
-            
-            <button class="menu-toggle" aria-label="Toggle Navigation">
-                <i class="fas fa-bars"></i>
-            </button>
-        </div>
-    </header>
+        <main id="repos-container">
+            <div class="loading">جارٍ تحميل المستودعات...</div>
+        </main>
 
-    <nav class="mobile-nav">
-        <button class="close-menu"><i class="fas fa-times"></i></button>
-        <ul class="mobile-nav-links">
-            <li><a href="index.html#purchase-methods"><i class="fas fa-shopping-cart"></i> طرق الشراء</a></li>
-            <li><a href="human-medicine.html">الطب البشري</a></li> 
-            <li><a href="pharmacy.html">الصيدلة</a></li> 
-            <li><a href="nursing-library">التمريض</a></li> 
-            <li><a href="medical-labs.html">التحاليل الطبية</a></li> 
-            <li><a href="dentistry.html">الأسنان</a></li> 
-            <li><a href="other-medical.html">تخصصات طبية أخرى</a></li> 
-        </ul>
-    </nav>
-    <div class="overlay"></div> <section class="adverts-section">
-        <div class="container">
-            <div class="advert-banner">
-                <p>✨ **عروض حصرية لفترة محدودة:** خصم 25% على جميع الدورات والكورسات! <a href="#">تسوق الآن!</a> ✨</p>
-            </div>
-            <div class="advert-note">
-                <h3>هل ترغب في الوصول لجمهورنا المتخصص؟</h3>
-                <p>نحن نقدم فرصًا إعلانية فريدة للشركات، المؤسسات التعليمية، والخبراء في المجال الطبي. عزز علامتك التجارية وانشر رسالتك عبر منصتنا الرائدة.</p>
-                <a href="#" class="btn btn-advertise">اعلن معنا الآن! <i class="fas fa-bullhorn"></i></a>
-            </div>
-        </div>
-    </section>
-
-    <main class="main-content">
-        <section class="categories-section" id="categories-section">
-            <div class="container">
-                <h2>أقسامنا الطبية المتخصصة</h2>
-                <p class="section-description">نقدم لك محتوى ومنتجات مختارة بعناية لتلبية احتياجاتك في مختلف فروع الطب:</p>
-
-                <div class="categories-grid">
-                    <div class="category-card" id="human-medicine">
-                        <div class="category-icon"><i class="fas fa-user-md"></i></div>
-                        <h3>الطب البشري</h3>
-                        <p>تصفح أحدث الكتب والمراجع، سجل في الدورات التدريبية المتقدمة، واحصل على أفضل المنتجات لدعم مسيرتك في الطب البشري.</p>
-                        <a href="human-medicine.html" class="btn btn-primary">استكشف القسم <i class="fas fa-arrow-left"></i></a> 
-                    </div>
-
-                    <div class="category-card" id="pharmacy">
-                        <div class="category-icon"><i class="fas fa-pills"></i></div>
-                        <h3>الصيدلة</h3>
-                        <p>كل ما يحتاجه الصيدلي والطالب من مراجع علمية، دورات عملية، وأدوات أساسية لتعزيز المعرفة والممارسة الصيدلانية.</p>
-                        <a href="pharmacy.html" class="btn btn-primary">استكشف القسم <i class="fas fa-arrow-left"></i></a> 
-                    </div>
-
-                    <div class="category-card" id="nursing">
-                        <div class="category-icon"><i class="fas fa-user-nurse"></i></div>
-                        <h3>التمريض</h3>
-                        <p>موارد شاملة لتطوير مهنة التمريض، تشمل كتبًا إرشادية، دورات تدريبية متخصصة، وأدوات عملية لرفع كفاءة الممرضين والممرضات.</p>
-                        <a href="nursing-library" class="btn btn-primary">استكشف القسم <i class="fas fa-arrow-left"></i></a> 
-                    </div>
-
-                    <div class="category-card" id="medical-labs">
-                        <div class="category-icon"><i class="fas fa-flask"></i></div>
-                        <h3>التحاليل الطبية</h3>
-                        <p>تعمق في عالم التحاليل الطبية مع تشكيلتنا من الكتب المتخصصة والدورات التدريبية التي تغطي أحدث التقنيات والأساليب المخبرية الدقيقة.</p>
-                        <a href="medical-labs.html" class="btn btn-primary">استكشف القسم <i class="fas fa-arrow-left"></i></a> 
-                    </div>
-
-                    <div class="category-card" id="dentistry">
-                        <div class="category-icon"><i class="fas fa-tooth"></i></div>
-                        <h3>الأسنان</h3>
-                        <p>سواء كنت طالبًا أو طبيب أسنان، ستجد لدينا كل ما تحتاجه من كتب وموارد لتعزيز ممارستك وفهمك لطب الأسنان الحديث بأحدث التقنيات.</p>
-                        <a href="dentistry.html" class="btn btn-primary">استكشف القسم <i class="fas fa-arrow-left"></i></a> 
-                    </div>
-
-                    <div class="category-card" id="other-medical">
-                        <div class="category-icon"><i class="fas fa-plus-circle"></i></div>
-                        <h3>تخصصات طبية أخرى</h3>
-                        <p>يضم هذا القسم موارد ومنتجات تغطي تخصصات طبية متنوعة ومجالات داعمة، لتوفير معرفة شاملة ومتكاملة لكل العاملين في القطاع الصحي.</p>
-                        <a href="other-medical.html" class="btn btn-primary">استكشف القسم <i class="fas fa-arrow-left"></i></a> 
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="promo-section">
-            <div class="container">
-                <div class="promo-content">
-                    <h2>لماذا تختار Dr. Mohamed Al-Gamal؟</h2>
-                    <p>في **Dr. Mohamed Al-Gamal**، نؤمن بأن المعرفة المتجددة هي مفتاح التطور والتميز في المجال الطبي. لذلك، نسعى جاهدين لتوفير منصة فريدة تجمع بين أحدث المنتجات الطبية عالية الجودة، وأهم الكتب والمراجع العلمية الموثوقة، وأكثر الدورات التدريبية احترافية لتطوير مهاراتك. هدفنا هو دعم رحلتك التعليمية والمهنية، وتزويدك بكل ما تحتاجه لتكون دائمًا في طليعة التطورات الطبية.</p>
-                    <p>معنا، **أنت لست مجرد متسوق، بل شريك في النجاح والتقدم العلمي.**</p>
-                </div>
-            </div>
-        </section>
-
-        <section class="purchase-methods-section" id="purchase-methods">
-            <div class="container">
-                <h2>طرق الشراء والدفع السهلة</h2>
-                <p class="section-description">نوفر لك خيارات دفع مرنة وآمنة لضمان تجربة تسوق مريحة وموثوقة:</p>
-                <div class="methods-grid">
-                    <div class="method-card">
-                        <i class="fas fa-credit-card"></i>
-                        <h3>الدفع ببطاقات الائتمان/الخصم</h3>
-                        <p>استخدم بطاقتك الائتمانية أو بطاقة الخصم لإتمام عملية الشراء بأمان وسهولة تامة.</p>
-                    </div>
-                    <div class="method-card">
-                        <i class="fas fa-hand-holding-usd"></i>
-                        <h3>الدفع عند الاستلام</h3>
-                        <p> (إذا كان متاحاً في منطقتك) ادفع نقداً عند استلام طلبك مباشرةً، لراحة بالك.</p>
-                    </div>
-                    <div class="method-card special-offer">
-                        <i class="fas fa-mobile-alt"></i>
-                        <h3>توفير خاص: الدفع عبر Instapay</h3>
-                        <p>**وفر 10% فورًا!** عند اختيار الدفع من خلال تطبيق Instapay. اغتنم الفرصة للحصول على أفضل الموارد بأقل تكلفة!</p>
-                        <i class="fas fa-tags discount-tag"></i>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="testimonials-section">
-            <div class="container">
-                <h2>ماذا يقول عملاؤنا عنّا؟</h2>
-                <div class="testimonials-grid">
-                    <div class="testimonial-card">
-                        <i class="fas fa-quote-left"></i>
-                        <p>"تجربة شراء ممتازة! وجدت كل الكتب اللي محتاجها والدورات كانت فعلاً قيمة ومفيدة جدًا. شكرًا لكم على المجهود."</p>
-                        <div class="client-info">
-                            <span class="client-name">أ.د. سارة أحمد</span>
-                        </div>
-                    </div>
-                    <div class="testimonial-card">
-                        <i class="fas fa-quote-left"></i>
-                        <p>"الموقع منظم وسهل التصفح، والمنتجات المعروضة ذات جودة عالية. استلمت طلبي بسرعة، وهكرر التجربة بالتأكيد."</p>
-                        <div class="client-info">
-                            <span class="client-name">م. صيدلي خالد منصور</span>
-                        </div>
-                    </div>
-                    <div class="testimonial-card">
-                        <i class="fas fa-quote-left"></i>
-                        <p>"الخصم على Instapay كان حافز قوي بالنسبة لي، وتفاجئت فعلاً بجودة المحتوى التعليمي. أنصح به بشدة لكل زملائي."</p>
-                        <div class="client-info">
-                            <span class="client-name">د. نورهان السيد</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <footer class="main-footer">
-        <div class="container">
-            <p>&copy; 2024 Dr. Mohamed Al-Gamal. جميع الحقوق محفوظة.</p>
-            <div class="footer-links">
-                <a href="#">سياسة الخصوصية</a>
-                <a href="#">شروط الاستخدام</a>
-                <a href="#">الأسئلة الشائعة</a>
-            </div>
-            <div class="social-links">
-                <h4>تواصل معنا وتابعنا على:</h4>
-                <a href="https://facebook.com/algmmal" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                <a href="https://instagram.com/algmmal" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                <a href="https://twitter.com/algmmal" target="_blank" aria-label="Twitter / X"><i class="fab fa-twitter"></i></a>
-                <a href="https://linkedin.com/in/algmmal" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                <a href="https://wa.me/201XXXXXXXXXX" target="_blank" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a> <a href="mailto:info@algmmal.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
-            </div>
-        </div>
-    </footer>
+        <footer>
+            <p>&copy; 2025 Aljmalmo. جميع الحقوق محفوظة.</p>
+            <p>مدعوم بواسطة GitHub Pages و GitHub API.</p>
+        </footer>
+    </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const menuToggle = document.querySelector('.menu-toggle');
-            const closeMenu = document.querySelector('.close-menu');
-            const mobileNav = document.querySelector('.mobile-nav');
-            const overlay = document.querySelector('.overlay');
-            const mobileNavLinks = document.querySelectorAll('.mobile-nav-links a');
+            const username = 'aljmalmo'; // تأكد إن ده اسم المستخدم بتاعك على GitHub
+            const reposContainer = document.getElementById('repos-container');
 
-            menuToggle.addEventListener('click', function() {
-                mobileNav.classList.add('active');
-                overlay.classList.add('active');
-                document.body.classList.add('no-scroll'); // Prevent body scroll
-            });
-
-            closeMenu.addEventListener('click', function() {
-                mobileNav.classList.remove('active');
-                overlay.classList.remove('active');
-                document.body.classList.remove('no-scroll');
-            });
-
-            overlay.addEventListener('click', function() {
-                mobileNav.classList.remove('active');
-                overlay.classList.remove('active');
-                document.body.classList.remove('no-scroll');
-            });
-
-            // Close menu when a link in the mobile nav is clicked
-            mobileNavLinks.forEach(link => {
-                link.addEventListener('click', function() {
-                    // Check if the link leads to a section on the same page
-                    const href = link.getAttribute('href');
-                    if (href && href.startsWith('#')) {
-                        // Small delay to allow scroll to complete before closing menu for smoother UX
-                        setTimeout(() => {
-                            mobileNav.classList.remove('active');
-                            overlay.classList.remove('active');
-                            document.body.classList.remove('no-scroll');
-                        }, 300); // Adjust delay as needed
+            fetch(`https://api.github.com/users/${username}/repos?sort=updated&direction=desc`)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
                     }
-                    // If it's an external link, let the browser handle it without closing the menu immediately
+                    return response.json();
+                })
+                .then(repos => {
+                    reposContainer.innerHTML = ''; // مسح رسالة التحميل
+                    if (repos.length === 0) {
+                        reposContainer.innerHTML = '<p style="text-align: center; color: #888;">لا توجد مستودعات متاحة لعرضها حاليًا.</p>';
+                        return;
+                    }
+
+                    const repoGrid = document.createElement('div');
+                    repoGrid.className = 'repo-grid';
+
+                    repos.forEach(repo => {
+                        // استبعاد المستودع الرئيسي نفسه لو مش عايز يظهر في القائمة
+                        if (repo.name === `${username}.github.io`) {
+                            return;
+                        }
+
+                        const repoCard = document.createElement('div');
+                        repoCard.className = 'repo-card';
+
+                        const repoName = document.createElement('h3');
+                        repoName.textContent = repo.name;
+
+                        const repoDescription = document.createElement('p');
+                        repoDescription.textContent = repo.description || 'لا يوجد وصف لهذا المستودع.';
+
+                        const detailsDiv = document.createElement('div');
+                        detailsDiv.className = 'details';
+
+                        const languageSpan = document.createElement('span');
+                        languageSpan.textContent = `اللغة: ${repo.language || 'غير محدد'}`;
+
+                        const starsSpan = document.createElement('span');
+                        starsSpan.textContent = `النجوم: ${repo.stargazers_count}`;
+
+                        const lastUpdatedSpan = document.createElement('span');
+                        lastUpdatedSpan.textContent = `آخر تحديث: ${new Date(repo.updated_at).toLocaleDateString('ar-EG')}`;
+
+                        detailsDiv.appendChild(languageSpan);
+                        detailsDiv.appendChild(starsSpan);
+                        detailsDiv.appendChild(lastUpdatedSpan);
+
+                        const repoLink = document.createElement('a');
+                        repoLink.href = repo.html_url;
+                        repoLink.target = '_blank'; // يفتح في تبويبة جديدة
+                        repoLink.textContent = 'شاهد المستودع';
+
+                        repoCard.appendChild(repoName);
+                        repoCard.appendChild(repoDescription);
+                        repoCard.appendChild(detailsDiv);
+                        repoCard.appendChild(repoLink);
+
+                        repoGrid.appendChild(repoCard);
+                    });
+                    reposContainer.appendChild(repoGrid);
+                })
+                .catch(error => {
+                    console.error('Error fetching repositories:', error);
+                    reposContainer.innerHTML = '<p style="text-align: center; color: #dc3545;">عذرًا، حدث خطأ أثناء تحميل المستودعات. يرجى المحاولة مرة أخرى لاحقًا.</p>';
                 });
-            });
         });
     </script>
-
 </body>
 </html>
