@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="[وصف المقال - يجب تعديله]">
+    <meta name="keywords" content="[الكلمات المفتاحية - يجب تعديلها]">
+    <meta name="author" content="محمد جمال">
+    <meta property="og:title" content="[عنوان المقال - يجب تعديله] - الجمال">
+    <meta property="og:description" content="[وصف المقال - يجب تعديله]">
+    <meta property="og:url" content="https://www.algmmal.com/[اسم-الملف].html">
+    <meta property="og:type" content="article">
+    <meta property="og:image" content="[رابط صورة المقال - اختياري]">
+    <meta property="article:author" content="محمد جمال">
+    <meta property="article:published_time" content="[تاريخ النشر - YYYY-MM-DD]">
+    <meta property="article:section" content="[فئة المقال]">
+    <meta property="article:tag" content="[العلامات مفصولة بفواصل]">
+    
+    <title>[عنوان المقال - يجب تعديله] - الجمال</title>
+    
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌟</text></svg>">
+    
+    <!-- Schema.org structured data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "headline": "[عنوان المقال - يجب تعديله]",
+        "description": "[وصف المقال - يجب تعديله]",
+        "author": {
+            "@type": "Person",
+            "name": "محمد جمال",
+            "url": "https://www.algmmal.com/about.html"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "الجمال",
+            "url": "https://www.algmmal.com"
+        },
+        "datePublished": "[تاريخ النشر - YYYY-MM-DD]",
+        "dateModified": "[تاريخ التعديل - YYYY-MM-DD]",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https://www.algmmal.com/[اسم-الملف].html"
+        },
+        "image": "[رابط صورة المقال - اختياري]",
+        "articleSection": "[فئة المقال]",
+        "keywords": "[الكلمات المفتاحية مفصولة بفواصل]"
+    }
+    </script>
+    
+    <style>
+        /* أنماط خاصة بصفحة المقال */
+        .article-header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            padding: 4rem 0 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .article-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><radialGradient id="grad1" cx="50%" cy="50%" r="50%"><stop offset="0%" style="stop-color:rgba(255,255,255,0.1);stop-opacity:1" /><stop offset="100%" style="stop-color:rgba(255,255,255,0);stop-opacity:1" /></radialGradient></defs><circle cx="200" cy="200" r="100" fill="url(%23grad1)"/><circle cx="800" cy="300" r="150" fill="url(%23grad1)"/><circle cx="500" cy="700" r="120" fill="url(%23grad1)"/></svg>');
+            pointer-events: none;
+        }
+        
+        .article-header-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .article-title {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+        }
+        
+        .article-meta {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            font-size: 1rem;
+            opacity: 0.9;
+            flex-wrap: wrap;
+        }
+        
+        .article-meta-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .article-category {
+            background: var(--accent-color);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: var(--radius-lg);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-size: 0.875rem;
+        }
+        
+        .article-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+            background: var(--bg-primary);
+            border-radius: var(--radius-xl);
+            box-shadow: var(--shadow-lg);
+            position: relative;
+            margin-top: -2rem;
+            z-index: 2;
+        }
+        
+        .article-content h2 {
+            color: var(--primary-color);
+            font-size: 2rem;
+            margin: 2rem 0 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid var(--primary-light);
+            position: relative;
+        }
+        
+        .article-content h2::before {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--accent-color);
+        }
+        
+        .article-content h3 {
+            color: var(--secondary-color);
+            font-size: 1.5rem;
+            margin: 1.5rem 0 1rem;
+        }
+        
+        .article-content p {
+            font-size: 1.125rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            color: var(--text-secondary);
+        }
+        
+        .article-content ul, .article-content ol {
+            margin: 1.5rem 0;
+            padding-right: 2rem;
+        }
+        
+        .article-content li {
+            font-size: 1.125rem;
+            line-height: 1.7;
+            margin-bottom: 0.5rem;
+            color: var(--text-secondary);
+        }
+        
+        .article-content blockquote {
+            background: var(--bg-secondary);
+            border-right: 4px solid var(--primary-color);
+            padding: 1.5rem 2rem;
+            margin: 2rem 0;
+            border-radius: var(--radius-lg);
+            font-style: italic;
+            font-size: 1.125rem;
+            color: var(--text-primary);
+            position: relative;
+        }
+        
+        .article-content blockquote::before {
+            content: '"';
+            font-size: 4rem;
+            color: var(--primary-light);
+            position: absolute;
+            top: -10px;
+            right: 20px;
+            font-family: serif;
+        }
+        
+        .article-content code {
+            background: var(--bg-tertiary);
+            color: var(--primary-color);
+            padding: 0.25rem 0.5rem;
+            border-radius: var(--radius-sm);
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+        }
+        
+        .article-content pre {
+            background: var(--bg-tertiary);
+            padding: 1.5rem;
+            border-radius: var(--radius-lg);
+            overflow-x: auto;
+            margin: 1.5rem 0;
+            border: 1px solid var(--border-color);
+        }
+        
+        .article-content pre code {
+            background: none;
+            padding: 0;
+            color: var(--text-primary);
+        }
+        
+        .article-image {
+            width: 100%;
+            height: auto;
+            border-radius: var(--radius-lg);
+            margin: 2rem 0;
+            box-shadow: var(--shadow-md);
+        }
+        
+        .article-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin: 3rem 0 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border-light);
+        }
+        
+        .article-tag {
+            background: var(--bg-secondary);
+            color: var(--text-secondary);
+            padding: 0.5rem 1rem;
+            border-radius: var(--radius-lg);
+            font-size: 0.875rem;
+            text-decoration: none;
+            transition: all var(--transition-fast);
+            border: 1px solid var(--border-light);
+        }
+        
+        .article-tag:hover {
+            background: var(--primary-color);
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        .article-navigation {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 3rem 0;
+            padding: 2rem;
+            background: var(--bg-secondary);
+            border-radius: var(--radius-lg);
+            gap: 2rem;
+        }
+        
+        .nav-article {
+            flex: 1;
+            text-align: center;
+            padding: 1rem;
+            background: var(--bg-primary);
+            border-radius: var(--radius-lg);
+            text-decoration: none;
+            color: var(--text-primary);
+            transition: all var(--transition-normal);
+            border: 1px solid var(--border-light);
+        }
+        
+        .nav-article:hover {
+            background: var(--primary-color);
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .nav-article-label {
+            font-size: 0.875rem;
+            color: var(--text-light);
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .nav-article:hover .nav-article-label {
+            color: rgba(255, 255, 255, 0.8);
+        }
+        
+        .nav-article-title {
+            font-weight: 600;
+            font-size: 1rem;
+        }
+        
+        .share-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 3rem 0;
+            padding: 2rem;
+            background: var(--bg-secondary);
+            border-radius: var(--radius-lg);
+        }
+        
+        .share-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            color: white;
+            text-decoration: none;
+            transition: all var(--transition-normal);
+            font-size: 1.25rem;
+        }
+        
+        .share-btn.facebook { background: #1877f2; }
+        .share-btn.twitter { background: #1da1f2; }
+        .share-btn.linkedin { background: #0077b5; }
+        .share-btn.whatsapp { background: #25d366; }
+        .share-btn.telegram { background: #0088cc; }
+        
+        .share-btn:hover {
+            transform: translateY(-3px) scale(1.1);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .reading-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 3px;
+            background: var(--accent-color);
+            z-index: 1000;
+            transition: width 0.1s ease;
+        }
+        
+        .back-to-blog {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            padding: 0.75rem 1.5rem;
+            background: var(--bg-secondary);
+            border-radius: var(--radius-lg);
+            transition: all var(--transition-normal);
+            border: 1px solid var(--border-light);
+        }
+        
+        .back-to-blog:hover {
+            background: var(--primary-color);
+            color: white;
+            transform: translateX(5px);
+        }
+        
+        @media (max-width: 768px) {
+            .article-title {
+                font-size: 2rem;
+            }
+            
+            .article-meta {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .article-content {
+                padding: 2rem 1.5rem;
+                margin-top: -1rem;
+            }
+            
+            .article-content h2 {
+                font-size: 1.5rem;
+            }
+            
+            .article-content p,
+            .article-content li {
+                font-size: 1rem;
+            }
+            
+            .article-navigation {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .share-buttons {
+                padding: 1.5rem;
+            }
+            
+            .share-btn {
+                width: 45px;
+                height: 45px;
+                font-size: 1.125rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- شريط التقدم في القراءة -->
+    <div class="reading-progress" id="readingProgress"></div>
+
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="container">
+            <div class="social-links">
+                <a href="#" aria-label="فيسبوك" title="فيسبوك"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" aria-label="تويتر" title="تويتر"><i class="fab fa-twitter"></i></a>
+                <a href="#" aria-label="لينكد إن" title="لينكد إن"><i class="fab fa-linkedin-in"></i></a>
+                <a href="https://github.com/aljmalmo" target="_blank" aria-label="جيت هب" title="جيت هب"><i class="fab fa-github"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Header -->
+    <header class="main-header">
+        <div class="container">
+            <div class="header-content">
+                <a href="index.html" class="logo">الجمال</a>
+                
+                <nav class="main-nav">
+                    <ul class="nav-list">
+                        <li class="nav-item"><a href="index.html">مشاريعي</a></li>
+                        <li class="nav-item"><a href="blog.html">المدونة</a></li>
+                        <li class="nav-item"><a href="about.html">من أنا</a></li>
+                        <li class="nav-item"><a href="privacy-policy.html">سياسة الخصوصية</a></li>
+                    </ul>
+                </nav>
+
+                <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="القائمة">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+            
+            <nav class="mobile-menu" id="mobileMenu">
+                <ul class="mobile-nav-list">
+                    <li><a href="index.html">مشاريعي</a></li>
+                    <li><a href="blog.html">المدونة</a></li>
+                    <li><a href="about.html">من أنا</a></li>
+                    <li><a href="privacy-policy.html">سياسة الخصوصية</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Article Header -->
+    <section class="article-header">
+        <div class="article-header-content">
+            <h1 class="article-title">[عنوان المقال - يجب تعديله]</h1>
+            <div class="article-meta">
+                <div class="article-meta-item">
+                    <i class="fas fa-user"></i>
+                    <span>محمد جمال</span>
+                </div>
+                <div class="article-meta-item">
+                    <i class="fas fa-calendar"></i>
+                    <span>[تاريخ النشر - يجب تعديله]</span>
+                </div>
+                <div class="article-meta-item">
+                    <i class="fas fa-clock"></i>
+                    <span>[وقت القراءة] دقائق قراءة</span>
+                </div>
+                <div class="article-category">[فئة المقال]</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <a href="blog.html" class="back-to-blog">
+                <i class="fas fa-arrow-right"></i>
+                العودة إلى المدونة
+            </a>
+
+            <!-- مكان الإعلان أعلى المقال -->
+            <!-- سيتم إدراج الإعلان هنا تلقائياً بواسطة نظام الإعلانات -->
+
+            <article class="article-content">
+                <!-- محتوى المقال يبدأ هنا -->
+                
+                <h2>مقدمة</h2>
+                <p>
+                    [اكتب مقدمة المقال هنا. يجب أن تكون جذابة ومثيرة للاهتمام وتعطي القارئ فكرة عما سيجده في المقال.]
+                </p>
+
+                <h2>القسم الأول</h2>
+                <p>
+                    [اكتب محتوى القسم الأول هنا. استخدم فقرات متعددة حسب الحاجة.]
+                </p>
+
+                <p>
+                    [فقرة أخرى في القسم الأول.]
+                </p>
+
+                <!-- مكان الإعلان وسط المقال -->
+                <!-- سيتم إدراج الإعلان هنا تلقائياً بواسطة نظام الإعلانات -->
+
+                <h3>عنوان فرعي</h3>
+                <p>
+                    [محتوى تحت العنوان الفرعي.]
+                </p>
+
+                <blockquote>
+                    [اقتباس مهم أو نقطة رئيسية تريد تسليط الضوء عليها.]
+                </blockquote>
+
+                <h2>القسم الثاني</h2>
+                <p>
+                    [محتوى القسم الثاني.]
+                </p>
+
+                <ul>
+                    <li>[نقطة أولى في القائمة]</li>
+                    <li>[نقطة ثانية في القائمة]</li>
+                    <li>[نقطة ثالثة في القائمة]</li>
+                </ul>
+
+                <h2>مثال على الكود</h2>
+                <p>
+                    يمكنك إضافة أمثلة على الكود باستخدام العلامة <code>&lt;code&gt;</code> للكود المضمن أو <code>&lt;pre&gt;</code> لكتل الكود:
+                </p>
+
+                <pre><code>function sayHello() {
+    console.log("مرحباً بالعالم!");
+}
+
+sayHello();</code></pre>
+
+                <h2>خاتمة</h2>
+                <p>
+                    [اكتب خاتمة المقال هنا. لخص النقاط الرئيسية وقدم دعوة للعمل أو للتفاعل.]
+                </p>
+
+                <!-- مكان الإعلان أسفل المقال -->
+                <!-- سيتم إدراج الإعلان هنا تلقائياً بواسطة نظام الإعلانات -->
+
+                <!-- العلامات -->
+                <div class="article-tags">
+                    <a href="#" class="article-tag">[علامة 1]</a>
+                    <a href="#" class="article-tag">[علامة 2]</a>
+                    <a href="#" class="article-tag">[علامة 3]</a>
+                    <a href="#" class="article-tag">[علامة 4]</a>
+                </div>
+
+                <!-- أزرار المشاركة -->
+                <div class="share-buttons">
+                    <a href="#" class="share-btn facebook" title="مشاركة على فيسبوك" onclick="shareOnFacebook()">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="#" class="share-btn twitter" title="مشاركة على تويتر" onclick="shareOnTwitter()">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="#" class="share-btn linkedin" title="مشاركة على لينكد إن" onclick="shareOnLinkedIn()">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a href="#" class="share-btn whatsapp" title="مشاركة على واتساب" onclick="shareOnWhatsApp()">
+                        <i class="fab fa-whatsapp"></i>
+                    </a>
+                    <a href="#" class="share-btn telegram" title="مشاركة على تيليجرام" onclick="shareOnTelegram()">
+                        <i class="fab fa-telegram"></i>
+                    </a>
+                </div>
+
+                <!-- التنقل بين المقالات -->
+                <div class="article-navigation">
+                    <a href="#" class="nav-article">
+                        <div class="nav-article-label">المقال السابق</div>
+                        <div class="nav-article-title">[عنوان المقال السابق]</div>
+                    </a>
+                    <a href="#" class="nav-article">
+                        <div class="nav-article-label">المقال التالي</div>
+                        <div class="nav-article-title">[عنوان المقال التالي]</div>
+                    </a>
+                </div>
+            </article>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-social">
+                    <a href="#" aria-label="فيسبوك"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="تويتر"><i class="fab fa-twitter"></i></a>
+                    <a href="#" aria-label="لينكد إن"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="https://github.com/aljmalmo" target="_blank" aria-label="جيت هب"><i class="fab fa-github"></i></a>
+                </div>
+                
+                <nav class="footer-nav">
+                    <a href="index.html">مشاريعي</a>
+                    <a href="blog.html">المدونة</a>
+                    <a href="about.html">من أنا</a>
+                    <a href="privacy-policy.html">سياسة الخصوصية</a>
+                </nav>
+                
+                <div class="footer-copyright">
+                    <p>&copy; 2024 جميع الحقوق محفوظة. <a href="https://algmmal.com" target="_blank">algmmal.com</a></p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // شريط تقدم القراءة
+        function updateReadingProgress() {
+            const article = document.querySelector('.article-content');
+            const progressBar = document.getElementById('readingProgress');
+            
+            if (article && progressBar) {
+                const articleTop = article.offsetTop;
+                const articleHeight = article.offsetHeight;
+                const windowHeight = window.innerHeight;
+                const scrollTop = window.pageYOffset;
+                
+                const articleStart = articleTop - windowHeight / 3;
+                const articleEnd = articleTop + articleHeight - windowHeight / 3;
+                
+                if (scrollTop < articleStart) {
+                    progressBar.style.width = '0%';
+                } else if (scrollTop > articleEnd) {
+                    progressBar.style.width = '100%';
+                } else {
+                    const progress = ((scrollTop - articleStart) / (articleEnd - articleStart)) * 100;
+                    progressBar.style.width = Math.min(Math.max(progress, 0), 100) + '%';
+                }
+            }
+        }
+
+        // دوال المشاركة
+        function shareOnFacebook() {
+            const url = encodeURIComponent(window.location.href);
+            const title = encodeURIComponent(document.title);
+            window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}`, '_blank', 'width=600,height=400');
+        }
+
+        function shareOnTwitter() {
+            const url = encodeURIComponent(window.location.href);
+            const title = encodeURIComponent(document.title);
+            window.open(`https://twitter.com/intent/tweet?url=${url}&text=${title}`, '_blank', 'width=600,height=400');
+        }
+
+        function shareOnLinkedIn() {
+            const url = encodeURIComponent(window.location.href);
+            const title = encodeURIComponent(document.title);
+            window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${url}`, '_blank', 'width=600,height=400');
+        }
+
+        function shareOnWhatsApp() {
+            const url = encodeURIComponent(window.location.href);
+            const title = encodeURIComponent(document.title);
+            window.open(`https://wa.me/?text=${title} ${url}`, '_blank');
+        }
+
+        function shareOnTelegram() {
+            const url = encodeURIComponent(window.location.href);
+            const title = encodeURIComponent(document.title);
+            window.open(`https://t.me/share/url?url=${url}&text=${title}`, '_blank');
+        }
+
+        // القائمة المحمولة
+        function initMobileMenu() {
+            const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+            const mobileMenu = document.getElementById('mobileMenu');
+
+            if (mobileMenuToggle && mobileMenu) {
+                mobileMenuToggle.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('active');
+                });
+
+                // إغلاق القائمة عند النقر خارجها
+                document.addEventListener('click', (e) => {
+                    if (!mobileMenuToggle.contains(e.target) && !mobileMenu.contains(e.target)) {
+                        mobileMenu.classList.remove('active');
+                    }
+                });
+            }
+        }
+
+        // تهيئة الصفحة
+        document.addEventListener('DOMContentLoaded', () => {
+            initMobileMenu();
+            
+            // تحديث شريط التقدم عند التمرير
+            window.addEventListener('scroll', updateReadingProgress);
+            
+            // تحديث شريط التقدم عند تحميل الصفحة
+            updateReadingProgress();
+        });
+    </script>
+
+    <!-- نظام الإعلانات -->
+    <script src="ads.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="سياسة الخصوصية لموقع الجمال - شفافية كاملة حول كيفية حماية بياناتك">
+    <meta name="keywords" content="سياسة الخصوصية، حماية البيانات، الجمال">
+    <meta name="author" content="محمد جمال">
+    <meta property="og:title" content="سياسة الخصوصية - الجمال">
+    <meta property="og:description" content="شفافية كاملة حول كيفية حماية بياناتك">
+    <meta property="og:url" content="https://www.algmmal.com/privacy-policy.html">
+    <meta property="og:type" content="website">
+    
+    <title>سياسة الخصوصية - الجمال</title>
+    
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌟</text></svg>">
+    
+    <style>
+        .dropdown-menu {
+            display: none;
+        }
+        .dropdown-menu.active {
+            display: block;
+        }
+        
+        .policy-section {
+            margin: 3rem 0;
+        }
+        
+        .policy-section h2 {
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--primary-color);
+            position: relative;
+        }
+        
+        .policy-section h2::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            right: 0;
+            width: 3rem;
+            height: 2px;
+            background: var(--accent-color);
+        }
+        
+        .policy-section h3 {
+            color: var(--text-primary);
+            margin: 2rem 0 1rem;
+            font-size: 1.25rem;
+        }
+        
+        .policy-section p {
+            font-size: 1.125rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            color: var(--text-secondary);
+        }
+        
+        .policy-section ul {
+            list-style: none;
+            padding: 0;
+            margin: 1.5rem 0;
+        }
+        
+        .policy-section li {
+            padding: 0.75rem 0;
+            color: var(--text-secondary);
+            position: relative;
+            padding-right: 2rem;
+            line-height: 1.6;
+        }
+        
+        .policy-section li::before {
+            content: '•';
+            position: absolute;
+            right: 0;
+            color: var(--primary-color);
+            font-weight: bold;
+            font-size: 1.25rem;
+        }
+        
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(99, 102, 241, 0.1));
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            border-radius: var(--radius-lg);
+            padding: 2rem;
+            margin: 2rem 0;
+            position: relative;
+        }
+        
+        .highlight-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--primary-color);
+            border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
+        }
+        
+        .highlight-box h3 {
+            color: var(--primary-color);
+            margin-top: 0;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .highlight-box i {
+            font-size: 1.5rem;
+        }
+        
+        .contact-info {
+            background: var(--bg-primary);
+            border-radius: var(--radius-xl);
+            padding: 2rem;
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--border-light);
+            text-align: center;
+            margin: 3rem 0;
+        }
+        
+        .contact-info h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+        
+        .contact-info p {
+            margin-bottom: 1.5rem;
+        }
+        
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .contact-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--primary-color);
+            padding: 0.75rem 1.5rem;
+            border: 2px solid var(--primary-color);
+            border-radius: var(--radius-lg);
+            text-decoration: none;
+            transition: all var(--transition-normal);
+            font-weight: 600;
+        }
+        
+        .contact-link:hover {
+            background: var(--primary-color);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .last-updated {
+            background: var(--bg-tertiary);
+            padding: 1rem 2rem;
+            border-radius: var(--radius-lg);
+            text-align: center;
+            margin: 2rem 0;
+            font-size: 0.875rem;
+            color: var(--text-light);
+        }
+        
+        .table-of-contents {
+            background: var(--bg-primary);
+            border-radius: var(--radius-lg);
+            padding: 2rem;
+            margin: 2rem 0;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border-light);
+        }
+        
+        .table-of-contents h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .table-of-contents ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .table-of-contents li {
+            padding: 0.5rem 0;
+            padding-right: 0;
+        }
+        
+        .table-of-contents li::before {
+            display: none;
+        }
+        
+        .table-of-contents a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color var(--transition-fast);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .table-of-contents a:hover {
+            color: var(--primary-color);
+        }
+        
+        .table-of-contents a::before {
+            content: '→';
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+        
+        @media (max-width: 768px) {
+            .contact-links {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .policy-section h2 {
+                font-size: 1.75rem;
+            }
+            
+            .highlight-box {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="container">
+            <div class="social-links">
+                <a href="#" aria-label="فيسبوك" title="فيسبوك"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" aria-label="تويتر" title="تويتر"><i class="fab fa-twitter"></i></a>
+                <a href="#" aria-label="لينكد إن" title="لينكد إن"><i class="fab fa-linkedin-in"></i></a>
+                <a href="https://github.com/aljmalmo" target="_blank" aria-label="جيت هب" title="جيت هب"><i class="fab fa-github"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Header -->
+    <header class="main-header">
+        <div class="container">
+            <div class="header-content">
+                <a href="index.html" class="logo">الجمال</a>
+                
+                <nav class="main-nav">
+                    <ul class="nav-list">
+                        <li class="nav-item"><a href="index.html">مشاريعي</a></li>
+                        <li class="nav-item"><a href="blog.html">المدونة</a></li>
+                        <li class="nav-item"><a href="about.html">من أنا</a></li>
+                        <li class="nav-item"><a href="privacy-policy.html">سياسة الخصوصية</a></li>
+                    </ul>
+                </nav>
+
+                <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="القائمة">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+            
+            <nav class="mobile-menu" id="mobileMenu">
+                <ul class="mobile-nav-list">
+                    <li><a href="index.html">مشاريعي</a></li>
+                    <li><a href="blog.html">المدونة</a></li>
+                    <li><a href="about.html">من أنا</a></li>
+                    <li><a href="privacy-policy.html">سياسة الخصوصية</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">سياسة الخصوصية</h1>
+                <p class="hero-subtitle">شفافية كاملة حول كيفية حماية بياناتك وخصوصيتك</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <div class="content-container animate-fadeInUp">
+                <!-- Last Updated -->
+                <div class="last-updated">
+                    <i class="fas fa-clock"></i>
+                    آخر تحديث: 2 أغسطس 2025
+                </div>
+
+                <!-- Introduction -->
+                <div class="policy-section">
+                    <p>مرحباً بك في صفحة سياسة الخصوصية لموقع الجمال. نحن نلتزم بحماية خصوصية زوارنا ونتخذ جميع الإجراءات اللازمة للحفاظ على أمان بياناتك. هذه السياسة توضح كيفية جمع واستخدام وحماية المعلومات التي قد نحصل عليها من خلال استخدامك لموقعنا.</p>
+                </div>
+
+                <!-- Table of Contents -->
+                <div class="table-of-contents animate-fadeInUp" style="animation-delay: 0.1s;">
+                    <h3><i class="fas fa-list"></i> محتويات السياسة</h3>
+                    <ul>
+                        <li><a href="#data-collection">جمع المعلومات</a></li>
+                        <li><a href="#data-usage">استخدام المعلومات</a></li>
+                        <li><a href="#cookies">ملفات تعريف الارتباط</a></li>
+                        <li><a href="#third-party">الروابط الخارجية</a></li>
+                        <li><a href="#data-protection">حماية البيانات</a></li>
+                        <li><a href="#user-rights">حقوق المستخدم</a></li>
+                        <li><a href="#contact">التواصل معنا</a></li>
+                    </ul>
+                </div>
+
+                <!-- Data Collection Section -->
+                <section class="policy-section animate-fadeInUp" style="animation-delay: 0.2s;" id="data-collection">
+                    <h2>جمع المعلومات</h2>
+                    
+                    <div class="highlight-box">
+                        <h3><i class="fas fa-info-circle"></i> المعلومات التي نجمعها</h3>
+                        <p>نحن نجمع أنواعاً محدودة من المعلومات لتحسين تجربتك على موقعنا:</p>
+                    </div>
+
+                    <h3>المعلومات التي نجمعها تلقائياً</h3>
+                    <ul>
+                        <li>عنوان IP الخاص بك (مجهول الهوية)</li>
+                        <li>نوع المتصفح ونظام التشغيل</li>
+                        <li>الصفحات التي تزورها على موقعنا</li>
+                        <li>وقت وتاريخ الزيارة</li>
+                        <li>الموقع الذي أحالك إلى موقعنا</li>
+                    </ul>
+
+                    <h3>المعلومات التي تقدمها طوعياً</h3>
+                    <ul>
+                        <li>عنوان البريد الإلكتروني (عند الاشتراك في النشرة البريدية)</li>
+                        <li>التعليقات أو الرسائل التي ترسلها إلينا</li>
+                        <li>أي معلومات أخرى تختار مشاركتها معنا</li>
+                    </ul>
+                </section>
+
+                <!-- Data Usage Section -->
+                <section class="policy-section animate-fadeInUp" style="animation-delay: 0.3s;" id="data-usage">
+                    <h2>استخدام المعلومات</h2>
+                    
+                    <p>نستخدم المعلومات التي نجمعها للأغراض التالية:</p>
+                    
+                    <ul>
+                        <li>تحسين محتوى وتصميم الموقع</li>
+                        <li>فهم كيفية استخدام الزوار لموقعنا</li>
+                        <li>إرسال النشرة البريدية (فقط للمشتركين)</li>
+                        <li>الرد على استفساراتك ورسائلك</li>
+                        <li>حماية الموقع من الاستخدام غير المشروع</li>
+                    </ul>
+
+                    <div class="highlight-box">
+                        <h3><i class="fas fa-shield-alt"></i> التزامنا</h3>
+                        <p>نحن لا نبيع أو نؤجر أو نشارك معلوماتك الشخصية مع أطراف ثالثة لأغراض تجارية.</p>
+                    </div>
+                </section>
+
+                <!-- Cookies Section -->
+                <section class="policy-section animate-fadeInUp" style="animation-delay: 0.4s;" id="cookies">
+                    <h2>ملفات تعريف الارتباط (Cookies)</h2>
+                    
+                    <p>موقعنا يستخدم ملفات تعريف الارتباط لتحسين تجربة التصفح الخاصة بك:</p>
+                    
+                    <h3>أنواع ملفات تعريف الارتباط المستخدمة</h3>
+                    <ul>
+                        <li><strong>ملفات تعريف الارتباط الأساسية:</strong> ضرورية لعمل الموقع بشكل صحيح</li>
+                        <li><strong>ملفات تعريف الارتباط التحليلية:</strong> تساعدنا في فهم كيفية استخدام الموقع</li>
+                        <li><strong>ملفات تعريف الارتباط الوظيفية:</strong> تحفظ تفضيلاتك وإعداداتك</li>
+                    </ul>
+
+                    <p>يمكنك دائماً تعطيل ملفات تعريف الارتباط من إعدادات متصفحك، ولكن قد يؤثر ذلك على بعض وظائف الموقع.</p>
+                </section>
+
+                <!-- Third Party Links Section -->
+                <section class="policy-section animate-fadeInUp" style="animation-delay: 0.5s;" id="third-party">
+                    <h2>الروابط الخارجية</h2>
+                    
+                    <p>قد يحتوي موقعنا على روابط لمواقع أخرى. نحن غير مسؤولين عن سياسات الخصوصية أو محتوى هذه المواقع الخارجية.</p>
+                    
+                    <div class="highlight-box">
+                        <h3><i class="fas fa-exclamation-triangle"></i> تنبيه مهم</h3>
+                        <p>ننصحك بمراجعة سياسات الخصوصية الخاصة بأي موقع خارجي قبل تقديم أي بيانات شخصية.</p>
+                    </div>
+
+                    <h3>الخدمات الخارجية المستخدمة</h3>
+                    <ul>
+                        <li><strong>GitHub:</strong> لاستضافة الموقع وعرض المشاريع</li>
+                        <li><strong>Google Fonts:</strong> لتحسين خطوط الموقع</li>
+                        <li><strong>Font Awesome:</strong> للأيقونات</li>
+                    </ul>
+                </section>
+
+                <!-- Data Protection Section -->
+                <section class="policy-section animate-fadeInUp" style="animation-delay: 0.6s;" id="data-protection">
+                    <h2>حماية البيانات</h2>
+                    
+                    <p>نتخذ إجراءات أمنية مناسبة لحماية معلوماتك من الوصول غير المصرح به أو التغيير أو الكشف أو التدمير:</p>
+                    
+                    <ul>
+                        <li>استخدام بروتوكول HTTPS لتشفير البيانات</li>
+                        <li>تحديث أنظمة الأمان بانتظام</li>
+                        <li>الحد من الوصول للبيانات للأشخاص المخولين فقط</li>
+                        <li>مراقبة الأنشطة المشبوهة</li>
+                    </ul>
+
+                    <div class="highlight-box">
+                        <h3><i class="fas fa-lock"></i> الأمان أولوية</h3>
+                        <p>رغم اتخاذنا لجميع الاحتياطات الممكنة، لا يمكن ضمان الأمان المطلق للبيانات المنقولة عبر الإنترنت.</p>
+                    </div>
+                </section>
+
+                <!-- User Rights Section -->
+                <section class="policy-section animate-fadeInUp" style="animation-delay: 0.7s;" id="user-rights">
+                    <h2>حقوق المستخدم</h2>
+                    
+                    <p>لديك الحقوق التالية فيما يتعلق ببياناتك الشخصية:</p>
+                    
+                    <ul>
+                        <li><strong>الحق في المعرفة:</strong> معرفة ما هي البيانات التي نجمعها عنك</li>
+                        <li><strong>الحق في الوصول:</strong> الحصول على نسخة من بياناتك الشخصية</li>
+                        <li><strong>الحق في التصحيح:</strong> تصحيح أي بيانات غير صحيحة</li>
+                        <li><strong>الحق في الحذف:</strong> طلب حذف بياناتك الشخصية</li>
+                        <li><strong>الحق في الاعتراض:</strong> الاعتراض على معالجة بياناتك</li>
+                    </ul>
+
+                    <p>لممارسة أي من هذه الحقوق، يرجى التواصل معنا باستخدام المعلومات الموضحة أدناه.</p>
+                </section>
+
+                <!-- Contact Section -->
+                <section class="policy-section animate-fadeInUp" style="animation-delay: 0.8s;" id="contact">
+                    <h2>التواصل معنا</h2>
+                    
+                    <div class="contact-info">
+                        <h3>هل لديك أسئلة حول سياسة الخصوصية؟</h3>
+                        <p>إذا كان لديك أي استفسارات أو مخاوف بخصوص هذه السياسة أو كيفية تعاملنا مع بياناتك، لا تتردد في التواصل معنا:</p>
+                        
+                        <div class="contact-links">
+                            <a href="mailto:your-email@example.com" class="contact-link">
+                                <i class="fas fa-envelope"></i>
+                                البريد الإلكتروني
+                            </a>
+                            <a href="https://github.com/aljmalmo" target="_blank" class="contact-link">
+                                <i class="fab fa-github"></i>
+                                GitHub
+                            </a>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Updates Section -->
+                <section class="policy-section animate-fadeInUp" style="animation-delay: 0.9s;">
+                    <h2>تحديثات السياسة</h2>
+                    
+                    <p>قد نقوم بتحديث هذه السياسة من وقت لآخر لتعكس التغييرات في ممارساتنا أو لأسباب قانونية أو تنظيمية. سنقوم بإشعارك بأي تغييرات جوهرية عن طريق:</p>
+                    
+                    <ul>
+                        <li>نشر السياسة المحدثة على هذه الصفحة</li>
+                        <li>تحديث تاريخ "آخر تحديث" في أعلى الصفحة</li>
+                        <li>إرسال إشعار عبر البريد الإلكتروني (للمشتركين في النشرة البريدية)</li>
+                    </ul>
+
+                    <div class="highlight-box">
+                        <h3><i class="fas fa-bell"></i> نصيحة</h3>
+                        <p>ننصحك بمراجعة هذه الصفحة بشكل دوري للاطلاع على أي تحديثات.</p>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-social">
+                    <a href="#" aria-label="فيسبوك"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="تويتر"><i class="fab fa-twitter"></i></a>
+                    <a href="#" aria-label="لينكد إن"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="https://github.com/aljmalmo" target="_blank" aria-label="جيت هب"><i class="fab fa-github"></i></a>
+                </div>
+                
+                <nav class="footer-nav">
+                    <a href="index.html">مشاريعي</a>
+                    <a href="blog.html">المدونة</a>
+                    <a href="about.html">من أنا</a>
+                    <a href="privacy-policy.html">سياسة الخصوصية</a>
+                </nav>
+                
+                <div class="footer-copyright">
+                    <p>&copy; 2024 جميع الحقوق محفوظة. <a href="https://algmmal.com" target="_blank">algmmal.com</a></p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile menu functionality
+            const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+            const mobileMenu = document.getElementById('mobileMenu');
+            
+            mobileMenuToggle.addEventListener('click', function() {
+                mobileMenu.classList.toggle('active');
+            });
+            
+            // Close mobile menu when clicking outside
+            document.addEventListener('click', function(e) {
+                if (!mobileMenuToggle.contains(e.target) && !mobileMenu.contains(e.target)) {
+                    mobileMenu.classList.remove('active');
+                }
+            });
+            
+            // Smooth scrolling for table of contents links
+            document.querySelectorAll('.table-of-contents a').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href').substring(1);
+                    const targetElement = document.getElementById(targetId);
+                    
+                    if (targetElement) {
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+            
+            // Animate elements on scroll
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+            
+            // Observe all animated elements
+            document.querySelectorAll('.animate-fadeInUp').forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(30px)';
+                el.style.transition = 'opacity 0.8s ease-out, transform 0.8s ease-out';
+                observer.observe(el);
+            });
+        });
+    </script>
+</body>
+</html>
+
