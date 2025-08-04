@@ -268,6 +268,8 @@ body {
   width: 100%;
   height: auto;
   display: block;
+  border-radius: 50%; /* هذا هو السر لتحويلها إلى دائرة */
+  object-fit: cover; /* لضمان أن الصورة تملأ الدائرة بشكل صحيح دون تشوه */
 }
 
 .hero__image-overlay {
