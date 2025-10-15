@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>موقعي الشخصي | مشاريع وأدوات</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root { --primary-color: #2c3e50; --secondary-color: #3498db; --background-color: #ecf0f1; --card-background: #ffffff; --text-color: #34495e; --shadow: 0 5px 15px rgba(0,0,0,0.08); }
+        body { font-family: 'Tajawal', sans-serif; background-color: var(--background-color); color: var(--text-color); margin: 0; line-height: 1.6; }
+        .container { max-width: 1100px; margin: 0 auto; padding: 20px; }
+        .hero { text-align: center; padding: 60px 20px; background-color: var(--card-background); border-bottom: 5px solid var(--secondary-color); margin-bottom: 40px; }
+        .hero h1 { color: var(--primary-color); font-size: 2.8em; margin: 0; }
+        .hero p { font-size: 1.2em; color: #7f8c8d; }
+        .projects-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 30px; }
+        .project-card { background-color: var(--card-background); border-radius: 10px; box-shadow: var(--shadow); transition: transform 0.3s ease, box-shadow 0.3s ease; display: flex; align-items: center; justify-content: center; min-height: 180px; }
+        .project-card:hover { transform: translateY(-10px); box-shadow: 0 12px 25px rgba(0,0,0,0.12); }
+        .card-content { padding: 25px; text-align: center; }
+        .card-content h2 { margin: 0 0 25px; color: var(--primary-color); }
+        .card-button { display: inline-block; background-color: var(--secondary-color); color: white; padding: 10px 25px; border-radius: 50px; text-decoration: none; font-weight: bold; transition: background-color 0.2s ease; }
+        .card-button:hover { background-color: #2980b9; }
+        footer { text-align: center; padding: 40px 20px; margin-top: 50px; color: #7f8c8d; }
+        @media (max-width: 600px) { .hero h1 { font-size: 2.2em; } .projects-grid { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="hero">
+            <h1>مشاريعي وأدواتي</h1>
+            <p>أهلاً بك في مساحتي الرقمية. هنا تجد مجموعة من الأدوات والمشاريع التي طورتها بشغف.</p>
+        </header>
+        <main>
+            <div id="projects-container" class="projects-grid">
+                
+                <div class="project-card">
+                    <div class="card-content">
+                        <h2>Drive Link Converter</h2>
+                        <a href="drive-link-converter.html" class="card-button" target="_blank">افتح الأداة</a>
+                    </div>
+                </div>
+
+                </div>
+        </main>
+    </div>
+    <footer>
+        <p>جميع الحقوق محفوظة &copy; <span id="year"></span></p>
+    </footer>
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>

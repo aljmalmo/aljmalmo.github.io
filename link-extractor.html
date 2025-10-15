@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="ar">
+<head>
+<meta charset="utf-8" />
+<title>Scrape Titles (Browser)</title>
+<style>
+ body{font-family:Arial, sans-serif;direction:rtl;padding:1rem}
+ input, button {padding: .5rem; font-size:1rem}
+ textarea{width:100%;height:200px;margin-top:1rem}
+</style>
+</head>
+<body>
+<h2>استخراج عناوين المقالات من صفحة</h2>
+<input id="url" placeholder="ضع رابط القسم هنا مثل https://www.doctorhypo.me/" style="width:80%">
+<button id="go">اجلب العناوين</button>
+<p>ملاحظة: إذا ظهرت مشكلة CORS استخدم CORS proxy أو نفّذ السكربت في بايثون.</p>
+<pre id="out"></pre>
+<script>
+document.getElementById('go').addEventListener('click', async ()=>{
+  const out = document.getElementById('out');
+  out.textContent = "جاري التحميل...";
+  let url = document.getElementById('url').value.trim();
+  if(!url){ out.textContent = "ادخل رابطاً"; return; }
+
+  try {
+    // لو واجهت CORS: جرّب وضع https://api.allorigins.win/raw?url= قبل الرابط
+    const useProxy = false; // غيّره true إذا احتجت
+    const fetchUrl = useProxy ? `https://api.allorigins.win/raw?url=${encodeURIComponent(url)}` : url;
+    const res = await fetch(fetchUrl);
+    if(!res.ok) throw new Error("HTTP " + res.status);
+    const html = await res.text();
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(html, "text/html");
+    const selectors = [
+      "article a",
+      "article h1 a","article h2 a","article h3 a",
+      ".post a", ".post-title a", ".entry-title a",
+      "h1.entry-title a","h2.entry-title a","h3.entry-title a",
+      "a[rel='bookmark']"
+    ];
+    const found = new Map();
+    selectors.forEach(sel=>{
+      doc.querySelectorAll(sel).forEach(a=>{
+        const href = a.getAttribute('href');
+        const text = a.textContent.trim();
+        if(href && text) found.set(text, new URL(href, url).href);
+      });
+    });
+
+    if(found.size === 0){
+      out.textContent = "لم يتم العثور على عناصر مباشرة — الصفحة قد تستخدم تحميل ديناميكي بالـJS.";
+      return;
+    }
+    let txt = `Found ${found.size} items:\n\n`;
+    for(const [title, href] of found.entries()){
+      txt += `${title}\n${href}\n\n`;
+    }
+    out.textContent = txt;
+  } catch (err) {
+    out.textContent = "خطأ: " + err.message;
+  }
+});
+</script>
+</body>
+</html>
