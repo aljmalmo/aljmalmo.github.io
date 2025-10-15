@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="ar">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>محول روابط Google Drive — تحويل عرض ↔ تحميل مباشر</title>
+  <style>
+    :root{font-family:system-ui,-apple-system,Segoe UI,Roboto,"Noto Sans Arabic",Arial;}
+    body{max-width:900px;margin:30px auto;padding:20px;line-height:1.6}
+    h1{font-size:1.4rem;margin-bottom:0.2rem}
+    p.lead{color:#333;margin-top:0}
+    label{display:block;margin:12px 0 6px}
+    textarea,input{width:100%;padding:10px;border:1px solid #ccc;border-radius:6px;font-size:14px}
+    .row{display:flex;gap:10px;flex-wrap:wrap}
+    button{padding:10px 14px;border:0;border-radius:8px;cursor:pointer}
+    .primary{background:#1f7aed;color:#fff}
+    .muted{background:#f3f4f6;border:1px solid #ddd}
+    .result{background:#fbfbfb;border:1px dashed #ddd;padding:10px;border-radius:6px;margin-top:10px}
+    .small{font-size:13px;color:#666}
+    .actions{margin-top:10px;display:flex;gap:8px}
+    .note{margin-top:12px;padding:10px;background:#fffbe6;border-left:4px solid #ffd54f;border-radius:6px}
+    .ok{color:green}
+    .err{color:#b00020}
+    footer{margin-top:18px;font-size:13px;color:#666}
+  </style>
+</head>
+<body dir="rtl">
+  <h1>محول روابط Google Drive</h1>
+  <p class="lead">أدخل رابط Google Drive (عرض أو تحميل مباشر) لتحويله إلى الصيغة المقابلة. يدعم روابط الملفات بصيغ متعددة (<code>/file/d/ID</code>, <code>open?id=ID</code>, <code>uc?export=download&id=ID</code>).</p>
+
+  <label for="inputLink">الرابط</label>
+  <textarea id="inputLink" rows="3" placeholder="ألصق رابط Google Drive هنا"></textarea>
+
+  <div class="actions">
+    <button id="toDirect" class="primary">حوّل إلى رابط تحميل مباشر</button>
+    <button id="toView" class="muted">حوّل إلى رابط عرض (view)</button>
+    <button id="clear" class="muted">مسح</button>
+  </div>
+
+  <div id="output" class="result" style="display:none">
+    <div><strong>النتيجة:</strong></div>
+    <input id="outLink" readonly />
+    <div style="margin-top:8px" class="row">
+      <button id="copyBtn" class="primary">نسخ</button>
+      <a id="openBtn" class="muted" target="_blank" rel="noopener" style="display:inline-block;padding:10px 12px;border-radius:8px;text-decoration:none;">فتح في تبويب جديد</a>
+    </div>
+    <div id="message" class="small" style="margin-top:8px"></div>
+  </div>
+
+  <div class="note">
+    <strong>ملاحظات مهمة:</strong>
+    <ul>
+      <li>الأداة تفعل تحويلات بسيطة للاستخدام العام. <span class="ok">تدعم ملفات Drive</span> بصيغ العنوان الشائعة. الربط بالمجلدات غير مدعوم لتحميل مباشر.</li>
+      <li>إذا كان الملف بحاجة إلى إذن خاص (غير عام)، سيظهر خطأ عند فتح رابط التحميل المباشر لأن الوصول محظور.</li>
+      <li>بعض الملفات الكبيرة قد تطلب تأكيد تنزيل من Google قبل التحميل.</li>
+    </ul>
+  </div>
+
+  <footer>مُنشأ بواسطة أداة صغيرة — انسخ الكود واحفظه كملف <code>drive-link-converter.html</code> ثم افتحه في المتصفح.</footer>
+
+<script>
+(function(){
+  const inEl = document.getElementById('inputLink');
+  const toDirect = document.getElementById('toDirect');
+  const toView = document.getElementById('toView');
+  const clearBtn = document.getElementById('clear');
+  const outWrap = document.getElementById('output');
+  const outLink = document.getElementById('outLink');
+  const copyBtn = document.getElementById('copyBtn');
+  const openBtn = document.getElementById('openBtn');
+  const message = document.getElementById('message');
+
+  function extractFileId(url){
+    if(!url) return null;
+    try{
+      // normalize
+      url = url.trim();
+      // patterns to match common Drive file IDs
+      const patterns = [
+        /\/file\/d\/([a-zA-Z0-9_-]{10,})/,
+        /id=([a-zA-Z0-9_-]{10,})/,
+        /\/d\/([a-zA-Z0-9_-]{10,})/,
+        /drive\.google\.com\/open\?id=([a-zA-Z0-9_-]{10,})/,
+        /drive\.google\.com\/uc\?id=([a-zA-Z0-9_-]{10,})/,
+        /drive\.google\.com\/drive\/folders\/([a-zA-Z0-9_-]{10,})/ // folder (note: not downloadable directly)
+      ];
+      for(const p of patterns){
+        const m = url.match(p);
+        if(m && m[1]) return m[1];
+      }
+      // as fallback, if the user pasted only the ID
+      if(/^[a-zA-Z0-9_-]{10,}$/.test(url)) return url;
+      return null;
+    }catch(e){return null}
+  }
+
+  function makeDirect(id){
+    // canonical direct-download link using uc?export=download&id=
+    return `https://drive.google.com/uc?export=download&id=${id}`;
+  }
+  function makeView(id){
+    return `https://drive.google.com/file/d/${id}/view?usp=sharing`;
+  }
+
+  function showResult(url, note=''){
+    outWrap.style.display = 'block';
+    outLink.value = url;
+    openBtn.href = url;
+    message.textContent = note;
+  }
+
+  toDirect.addEventListener('click', ()=>{
+    const id = extractFileId(inEl.value);
+    if(!id){ outWrap.style.display='block'; outLink.value=''; message.innerHTML = '<span class="err">تعذر العثور على معرف ملف صالح في الرابط.</span>'; return; }
+    // if input already direct, show and note
+    const direct = makeDirect(id);
+    showResult(direct,"تم إنشاء رابط تحميل مباشر. تأكد أن الملف متاح للعامة إذا أردت تحميله بدون تسجيل الدخول.");
+  });
+
+  toView.addEventListener('click', ()=>{
+    const id = extractFileId(inEl.value);
+    if(!id){ outWrap.style.display='block'; outLink.value=''; message.innerHTML = '<span class="err">تعذر العثور على معرف ملف صالح في الرابط.</span>'; return; }
+    const view = makeView(id);
+    showResult(view,'تم إنشاء رابط عرض (view).');
+  });
+
+  clearBtn.addEventListener('click', ()=>{
+    inEl.value=''; outWrap.style.display='none'; message.textContent='';
+  });
+
+  copyBtn.addEventListener('click', async ()=>{
+    try{
+      await navigator.clipboard.writeText(outLink.value);
+      message.textContent = 'تم النسخ إلى الحافظة.';
+    }catch(e){
+      message.innerHTML = '<span class="err">النسخ فشل. انسخ يدوياً من الحقل أعلاه.</span>';
+    }
+  });
+
+  // allow pressing Ctrl+Enter to convert to direct
+  inEl.addEventListener('keydown', (e)=>{
+    if((e.ctrlKey||e.metaKey) && e.key === 'Enter'){
+      toDirect.click();
+    }
+  });
+
+})();
+</script>
+</body>
+</html>
