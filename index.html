@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>مركز الأدوات | سهل عملك، ووفر وقتك</title>
+    <title>مختبر الأدوات | مشاريع إبداعية</title>
     
     <link rel="icon" href='data:image/svg+xml,<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="32" height="32" rx="8" fill="%23111827"/><path d="M16 7L23 16L16 25L9 16L16 7Z" stroke="%23818cf8" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>'>
     
@@ -43,9 +43,9 @@
             filter: blur(100px); opacity: 0.2; z-index: -1; animation: aurora-animation 30s infinite alternate;
         }
 
-        /* --- New Header Structure --- */
         .header-container {
-            position: sticky; top: 0; z-index: 100;
+            position: sticky; 
+            top: 0; z-index: 100;
             background: var(--card-bg-color); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
             box-shadow: 0 2px 10px rgba(0,0,0,0.05);
         }
@@ -55,30 +55,36 @@
             position: relative; text-align: center;
         }
         .logo { font-weight: 800; font-size: 1.7em; color: var(--heading-color); }
-        .theme-switcher { position: absolute; left: 20px; top: 50%; transform: translateY(-50%); }
-        .theme-switcher button { background: transparent; border: none; padding: 8px; cursor: pointer; }
-        .theme-switcher svg { width: 24px; height: 24px; stroke: var(--heading-color); transition: all 0.3s ease; }
-        .theme-switcher .moon-icon { display: none; }
+        
+        .header-controls {
+            position: absolute; left: 20px; top: 50%; transform: translateY(-50%);
+            display: flex; align-items: center; gap: 10px;
+        }
+        
+        .header-button { background: transparent; border: none; padding: 8px; cursor: pointer; }
+        .header-button svg { width: 24px; height: 24px; stroke: var(--heading-color); transition: all 0.3s ease; }
+        .moon-icon { display: none; }
         body.dark-mode .sun-icon { display: none; }
         body.dark-mode .moon-icon { display: block; }
         
-        /* --- Scrolling Horizontal Nav --- */
+        .search-icon-wrapper {
+            position: absolute; right: 20px; top: 50%; transform: translateY(-50%);
+        }
+        
         .scrolling-nav { padding: 10px 0; border-bottom: 1px solid var(--border-color); }
         .scrolling-nav ul {
-            display: flex; flex-wrap: nowrap;
-            gap: 15px; margin: 0; padding: 5px 25px; list-style: none;
+            display: flex; flex-wrap: nowrap; gap: 15px; margin: 0; padding: 5px 25px; list-style: none;
             overflow-x: auto; scroll-behavior: smooth;
-            -ms-overflow-style: none;  /* IE and Edge */
-            scrollbar-width: none;  /* Firefox */
+            -webkit-overflow-scrolling: touch; -ms-overflow-style: none; scrollbar-width: none;
         }
-        .scrolling-nav ul::-webkit-scrollbar { display: none; } /* Hide scrollbar for Chrome, Safari and Opera */
+        .scrolling-nav ul::-webkit-scrollbar { display: none; }
         .scrolling-nav a {
             display: block; text-decoration: none; color: var(--text-color);
             background: var(--bg-color); border: 1px solid var(--border-color);
             padding: 8px 20px; border-radius: 50px; font-weight: 700;
             white-space: nowrap; transition: all 0.3s ease;
         }
-        .scrolling-nav a:hover { color: var(--heading-color); background-color: var(--accent-color); border-color: var(--accent-color); }
+        .scrolling-nav a:hover { color: #FFF; background-color: var(--accent-color); border-color: var(--accent-color); transform: scale(1.05); }
 
         .container { max-width: 1200px; margin: 0 auto; padding: 25px; }
         .hero { text-align: center; padding: 60px 20px; }
@@ -86,11 +92,11 @@
         .hero h1 .gradient-text { background: var(--accent-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; text-fill-color: transparent; }
         .hero p { font-size: 1.3em; color: var(--text-color); max-width: 600px; margin: 0 auto 40px auto; }
         
-        /* Search Bar & Grid Styles remain the same... */
         .search-wrapper { position: relative; max-width: 500px; margin: 0 auto 50px auto; }
-        .search-wrapper svg { position: absolute; top: 50%; right: 20px; transform: translateY(-50%); width: 20px; height: 20px; stroke: var(--text-color); opacity: 0.5; }
-        #search-input { width: 100%; padding: 15px 25px 15px 50px; font-size: 1.1em; font-family: 'Tajawal', sans-serif; border-radius: 50px; border: 1px solid var(--border-color); background-color: var(--card-bg-color); color: var(--heading-color); transition: all 0.3s ease; }
+        .search-wrapper svg { position: absolute; top: 50%; left: 20px; transform: translateY(-50%); width: 20px; height: 20px; stroke: var(--text-color); opacity: 0.5; }
+        #search-input { width: 100%; padding: 15px 25px 15px 50px; font-size: 1.1em; font-family: 'Tajawal', sans-serif; text-align: right; border-radius: 50px; border: 1px solid var(--border-color); background-color: var(--card-bg-color); color: var(--heading-color); transition: all 0.3s ease; }
         #search-input:focus { outline: none; border-color: var(--accent-color); box-shadow: 0 0 0 4px var(--shadow-color); }
+
         .projects-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 30px; }
         #no-results { text-align: center; font-size: 1.2em; padding: 50px; display: none; color: var(--heading-color); }
         .project-card { background: var(--card-bg-color); border-radius: 16px; border: 1px solid var(--border-color); box-shadow: 0 4px 20px var(--shadow-color); text-decoration: none; color: var(--text-color); display: flex; flex-direction: column; transition: transform 0.3s ease, box-shadow 0.3s ease; opacity: 0; transform: translateY(20px); animation: card-fade-in 0.5s forwards; }
@@ -112,11 +118,16 @@
 
     <header class="header-container">
         <div class="main-header">
-            <div class="logo">مركز الأدوات</div>
-            <div class="theme-switcher">
-                <button id="theme-switcher" title="تبديل الوضع">
+            <div class="logo">مختبر الأدوات</div>
+            <div class="header-controls">
+                <button class="header-button" id="theme-switcher" title="تبديل الوضع">
                     <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
                     <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+                </button>
+            </div>
+            <div class="search-icon-wrapper">
+                 <button class="header-button" id="search-icon-button" title="بحث">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
                 </button>
             </div>
         </div>
@@ -130,15 +141,7 @@
                 <li><a href="unit-converter.html">محول الوحدات</a></li>
                 <li><a href="json-viewer.html">عارض JSON</a></li>
                 <li><a href="bmi-calculator.html">حاسبة BMI</a></li>
-                 <li><a href="text-converter.html">محول النصوص</a></li>
-                <li><a href="qr-code-generator.html">مولد QR</a></li>
-                <li><a href="password-generator.html">مولد كلمات المرور</a></li>
-                <li><a href="image-to-base64.html">تحويل الصور لـ Base64</a></li>
-                 <li><a href="text-converter.html">محول النصوص</a></li>
-                <li><a href="qr-code-generator.html">مولد QR</a></li>
-                <li><a href="password-generator.html">مولد كلمات المرور</a></li>
-                <li><a href="image-to-base64.html">تحويل الصور لـ Base64</a></li>
-                </ul>
+            </ul>
         </nav>
     </header>
 
@@ -148,34 +151,49 @@
             <p>مجموعة من المشاريع والأدوات المصممة بعناية فائقة لتبسيط مهامك الرقمية وزيادة إنتاجيتك.</p>
             <div class="search-wrapper">
                 <input type="search" id="search-input" placeholder="ابحث عن أداة..." autocomplete="off">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
             </div>
         </header>
 
         <main>
             <div id="projects-container" class="projects-grid">
-                <a href="#" class="project-card"><div class="card-content"><div class="card-header"><svg class="card-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 7 4 4 20 4 20 7"></polyline><line x1="9" y1="20" x2="15" y2="20"></line><line x1="12" y1="4" x2="12" y2="20"></line></svg><h2>محول النصوص</h2></div><p class="description">غيّر حالة الأحرف للنصوص الإنجليزية (كبيرة، صغيرة، جملة) بسهولة وسرعة.</p><div class="card-footer"><span>جرب الأداة &larr;</span></div></div></a>
-                <a href="#" class="project-card"><div class="card-content"><div class="card-header"><svg class="card-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.72"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.72-1.72"></path></svg><h2>محول روابط جوجل درايف</h2></div><p class="description">حوّل روابط جوجل درايف للمشاركة إلى روابط تحميل مباشر فورية.</p><div class="card-footer"><span>جرب الأداة &larr;</span></div></div></a>
-                <a href="#" class="project-card"><div class="card-content"><div class="card-header"><svg class="card-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg><h2>مولد كلمات المرور</h2></div><p class="description">أنشئ كلمات مرور قوية وآمنة بمواصفات تختارها بنفسك.</p><div class="card-footer"><span>جرب الأداة &larr;</span></div></div></a>
-                <a href="#" class="project-card"><div class="card-content"><div class="card-header"><svg class="card-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect><line x1="14" y1="14" x2="21" y2="14"></line><line x1="14" y1="17" x2="18" y2="17"></line><line x1="14" y1="21" x2="16" y2="21"></line></svg><h2>مولد أكواد QR</h2></div><p class="description">أنشئ أكواد QR لأي رابط أو نص لمشاركتها بسهولة عبر الهواتف.</p><div class="card-footer"><span>جرب الأداة &larr;</span></div></div></a>
-                <a href="#" class="project-card"><div class="card-content"><div class="card-header"><svg class="card-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"></path></svg><h2>محول ألوان RGB/HEX</h2></div><p class="description">حوّل بين صيغ الألوان المختلفة (RGB, HSL, HEX) بسهولة ودقة.</p><div class="card-footer"><span>جرب الأداة &larr;</span></div></div></a>
-                <a href="#" class="project-card"><div class="card-content"><div class="card-header"><svg class="card-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg><h2>محول الصور إلى Base64</h2></div><p class="description">حوّل الصور إلى نص بصيغة Base64 لتضمينها مباشرة في الأكواد.</p><div class="card-footer"><span>جرب الأداة &larr;</span></div></div></a>
-                <a href="#" class="project-card"><div class="card-content"><div class="card-header"><svg class="card-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg><h2>مؤقت العد التنازلي</h2></div><p class="description">اضبط مؤقتًا للعد التنازلي للمناسبات الهامة أو جلسات العمل.</p><div class="card-footer"><span>جرب الأداة &larr;</span></div></div></a>
-                <a href="#" class="project-card"><div class="card-content"><div class="card-header"><svg class="card-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg><h2>حاسبة مؤشر كتلة الجسم</h2></div><p class="description">احسب مؤشر كتلة الجسم (BMI) لمعرفة المزيد عن وزنك وصحتك.</p><div class="card-footer"><span>جرب الأداة &larr;</span></div></div></a>
-                <a href="#" class="project-card"><div class="card-content"><div class="card-header"><svg class="card-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="5" x2="5" y2="19"></line><circle cx="6.5" cy="6.5" r="2.5"></circle><circle cx="17.5" cy="17.5" r="2.5"></circle></svg><h2>حاسبة النسبة المئوية</h2></div><p class="description">أجرِ عمليات حساب النسبة المئوية المختلفة بسرعة وسهولة.</p><div class="card-footer"><span>جرب الأداة &larr;</span></div></div></a>
-                <a href="#" class="project-card"><div class="card-content"><div class="card-header"><svg class="card-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 3.13a4 4 0 0 1 0 7.75"></path><path d="M4 12c-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4z"></path><path d="M16 12c-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4z"></path></svg><h2>محول Markdown إلى HTML</h2></div><p class="description">اكتب بصيغة الماركدون واحصل على كود HTML النظيف المقابل لها فورًا.</p><div class="card-footer"><span>جرب الأداة &larr;</span></div></div></a>
-                <a href="#" class="project-card"><div class="card-content"><div class="card-header"><svg class="card-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 7 4 4 20 4 20 7"></polyline><line x1="9" y1="20" x2="15" y2="20"></line><line x1="12" y1="4" x2="12" y2="20"></line></svg><h2>أداة رقم 11</h2></div><p class="description">وصف قصير وجذاب للأداة رقم 11 يشرح وظيفتها الأساسية.</p><div class="card-footer"><span>جرب الأداة &larr;</span></div></div></a>
-                <a href="#" class="project-card"><div class="card-content"><div class="card-header"><svg class="card-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.72"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.72-1.72"></path></svg><h2>أداة رقم 12</h2></div><p class="description">وصف قصير وجذاب للأداة رقم 12 يشرح وظيفتها الأساسية.</p><div class="card-footer"><span>جرب الأداة &larr;</span></div></div></a>
-                <a href="#" class="project-card"><div class="card-content"><div class="card-header"><svg class="card-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg><h2>أداة رقم 13</h2></div><p class="description">وصف قصير وجذاب للأداة رقم 13 يشرح وظيفتها الأساسية.</p><div class="card-footer"><span>جرب الأداة &larr;</span></div></div></a>
-                <a href="#" class="project-card"><div class="card-content"><div class="card-header"><svg class="card-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect><line x1="14" y1="14" x2="21" y2="14"></line><line x1="14" y1="17" x2="18" y2="17"></line><line x1="14" y1="21" x2="16" y2="21"></line></svg><h2>أداة رقم 14</h2></div><p class="description">وصف قصير وجذاب للأداة رقم 14 يشرح وظيفتها الأساسية.</p><div class="card-footer"><span>جرب الأداة &larr;</span></div></div></a>
-                <a href="#" class="project-card"><div class="card-content"><div class="card-header"><svg class="card-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"></path></svg><h2>أداة رقم 15</h2></div><p class="description">وصف قصير وجذاب للأداة رقم 15 يشرح وظيفتها الأساسية.</p><div class="card-footer"><span>جرب الأداة &larr;</span></div></div></a>
-                <a href="#" class="project-card"><div class="card-content"><div class="card-header"><svg class="card-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg><h2>أداة رقم 16</h2></div><p class="description">وصف قصير وجذاب للأداة رقم 16 يشرح وظيفتها الأساسية.</p><div class="card-footer"><span>جرب الأداة &larr;</span></div></div></a>
-                <a href="#" class="project-card"><div class="card-content"><div class="card-header"><svg class="card-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg><h2>أداة رقم 17</h2></div><p class="description">وصف قصير وجذاب للأداة رقم 17 يشرح وظيفتها الأساسية.</p><div class="card-footer"><span>جرب الأداة &larr;</span></div></div></a>
-                <a href="#" class="project-card"><div class="card-content"><div class="card-header"><svg class="card-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg><h2>أداة رقم 18</h2></div><p class="description">وصف قصير وجذاب للأداة رقم 18 يشرح وظيفتها الأساسية.</p><div class="card-footer"><span>جرب الأداة &larr;</span></div></div></a>
-                <a href="#" class="project-card"><div class="card-content"><div class="card-header"><svg class="card-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="5" x2="5" y2="19"></line><circle cx="6.5" cy="6.5" r="2.5"></circle><circle cx="17.5" cy="17.5" r="2.5"></circle></svg><h2>أداة رقم 19</h2></div><p class="description">وصف قصير وجذاب للأداة رقم 19 يشرح وظيفتها الأساسية.</p><div class="card-footer"><span>جرب الأداة &larr;</span></div></div></a>
-                <a href="#" class="project-card"><div class="card-content"><div class="card-header"><svg class="card-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 3.13a4 4 0 0 1 0 7.75"></path><path d="M4 12c-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4z"></path><path d="M16 12c-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4z"></path></svg><h2>أداة رقم 20</h2></div><p class="description">وصف قصير وجذاب للأداة رقم 20 يشرح وظيفتها الأساسية.</p><div class="card-footer"><span>جرب الأداة &larr;</span></div></div></a>
-
-            </div>
+                
+                <a href="#" class="project-card">
+                    <div class="card-content">
+                        <div class="card-header"><svg class="card-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 7 4 4 20 4 20 7"></polyline><line x1="9" y1="20" x2="15" y2="20"></line><line x1="12" y1="4" x2="12" y2="20"></line></svg><h2>محول النصوص</h2></div>
+                        <p class="description">غيّر حالة الأحرف للنصوص الإنجليزية (كبيرة، صغيرة، جملة) بسهولة وسرعة.</p>
+                        <div class="card-footer"><span>جرب الأداة &larr;</span></div>
+                    </div>
+                </a>
+                <a href="#" class="project-card">
+                    <div class="card-content">
+                        <div class="card-header"><svg class="card-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.72"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.72-1.72"></path></svg><h2>محول روابط جوجل درايف</h2></div>
+                        <p class="description">حوّل روابط جوجل درايف للمشاركة إلى روابط تحميل مباشر فورية.</p>
+                        <div class="card-footer"><span>جرب الأداة &larr;</span></div>
+                    </div>
+                </a>
+                <a href="#" class="project-card">
+                    <div class="card-content">
+                        <div class="card-header"><svg class="card-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg><h2>مولد كلمات المرور</h2></div>
+                        <p class="description">أنشئ كلمات مرور قوية وآمنة بمواصفات تختارها بنفسك.</p>
+                        <div class="card-footer"><span>جرب الأداة &larr;</span></div>
+                    </div>
+                </a>
+                <a href="#" class="project-card">
+                    <div class="card-content">
+                        <div class="card-header"><svg class="card-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect><line x1="14" y1="14" x2="21" y2="14"></line><line x1="14" y1="17" x2="18" y2="17"></line><line x1="14" y1="21" x2="16" y2="21"></line></svg><h2>مولد أكواد QR</h2></div>
+                        <p class="description">أنشئ أكواد QR لأي رابط أو نص لمشاركتها بسهولة عبر الهواتف.</p>
+                        <div class="card-footer"><span>جرب الأداة &larr;</span></div>
+                    </div>
+                </a>
+                <a href="#" class="project-card">
+                    <div class="card-content">
+                        <div class="card-header"><svg class="card-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"></path></svg><h2>محول ألوان RGB/HEX</h2></div>
+                        <p class="description">حوّل بين صيغ الألوان المختلفة (RGB, HSL, HEX) بسهولة ودقة.</p>
+                        <div class="card-footer"><span>جرب الأداة &larr;</span></div>
+                    </div>
+                </a>
+                
+                </div>
             <div id="no-results" style="color: var(--heading-color);">
                 <h2>لا توجد نتائج!</h2>
                 <p>لم نتمكن من العثور على أي أداة تطابق بحثك. حاول استخدام كلمات مختلفة.</p>
@@ -194,31 +212,24 @@
             const searchInput = document.getElementById('search-input');
             const cards = document.querySelectorAll('.project-card');
             const noResultsMessage = document.getElementById('no-results');
+            const searchIconButton = document.getElementById('search-icon-button');
 
             const applyTheme = () => { const savedTheme = localStorage.getItem('theme'); if (savedTheme === 'light') { body.classList.remove('dark-mode'); } else { body.classList.add('dark-mode'); } };
             const toggleTheme = () => { body.classList.toggle('dark-mode'); const currentTheme = body.classList.contains('dark-mode') ? 'dark' : 'light'; localStorage.setItem('theme', currentTheme); };
             themeSwitcher.addEventListener('click', toggleTheme);
             applyTheme();
 
-            const handleSearch = () => {
-                const query = searchInput.value.toLowerCase().trim();
-                let visibleCards = 0;
-                cards.forEach(card => {
-                    const title = card.querySelector('h2').textContent.toLowerCase();
-                    const description = card.querySelector('p.description').textContent.toLowerCase();
-                    const isVisible = title.includes(query) || description.includes(query);
-                    card.style.display = isVisible ? 'flex' : 'none';
-                    if (isVisible) { visibleCards++; }
-                });
-                noResultsMessage.style.display = visibleCards === 0 ? 'block' : 'none';
-            };
+            const handleSearch = () => { const query = searchInput.value.toLowerCase().trim(); let visibleCards = 0; cards.forEach(card => { const title = card.querySelector('h2').textContent.toLowerCase(); const description = card.querySelector('p.description').textContent.toLowerCase(); const isVisible = title.includes(query) || description.includes(query); card.style.display = isVisible ? 'flex' : 'none'; if (isVisible) { visibleCards++; } }); noResultsMessage.style.display = visibleCards === 0 ? 'block' : 'none'; };
             searchInput.addEventListener('input', handleSearch);
+            
+            searchIconButton.addEventListener('click', () => {
+                searchInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                setTimeout(() => { searchInput.focus(); }, 500);
+            });
 
             cards.forEach((card, index) => { card.style.animationDelay = `${index * 100}ms`; });
             document.getElementById('year').textContent = new Date().getFullYear();
         });
     </script>
-
 </body>
 </html>
-
