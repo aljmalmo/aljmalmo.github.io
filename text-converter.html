@@ -1,0 +1,1848 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>أداة تحويل النصوص المتقدمة - Advanced Text Converter Pro</title>
+    <meta name="description" content="The most complete and advanced text manipulation tool online. Convert text cases, normalize formatting, and manage text with professional features.">
+    <meta name="keywords" content="text converter, case converter, text manipulation, Arabic text, English text, text tools">
+    <style>
+        /* CSS Variables for Theme Management */
+        :root {
+            --primary-color: #3b82f6;
+            --primary-hover: #2563eb;
+            --primary-light: #dbeafe;
+            --secondary-color: #64748b;
+            --secondary-hover: #475569;
+            --accent-color: #10b981;
+            --accent-hover: #059669;
+            --warning-color: #f59e0b;
+            --warning-hover: #d97706;
+            --error-color: #ef4444;
+            --error-hover: #dc2626;
+            --background-color: #ffffff;
+            --surface-color: #f8fafc;
+            --surface-hover: #f1f5f9;
+            --text-color: #1e293b;
+            --text-secondary: #64748b;
+            --text-muted: #94a3b8;
+            --border-color: #e2e8f0;
+            --border-hover: #cbd5e1;
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --radius-sm: 4px;
+            --radius: 6px;
+            --radius-md: 8px;
+            --radius-lg: 12px;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* Dark Theme */
+        [data-theme="dark"] {
+            --primary-color: #60a5fa;
+            --primary-hover: #3b82f6;
+            --primary-light: #1e3a8a;
+            --secondary-color: #94a3b8;
+            --secondary-hover: #cbd5e1;
+            --accent-color: #34d399;
+            --accent-hover: #10b981;
+            --warning-color: #fbbf24;
+            --warning-hover: #f59e0b;
+            --error-color: #f87171;
+            --error-hover: #ef4444;
+            --background-color: #0f172a;
+            --surface-color: #1e293b;
+            --surface-hover: #334155;
+            --text-color: #f1f5f9;
+            --text-secondary: #cbd5e1;
+            --text-muted: #94a3b8;
+            --border-color: #334155;
+            --border-hover: #475569;
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+            --shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.3), 0 1px 2px 0 rgba(0, 0, 0, 0.2);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -2px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, var(--background-color) 0%, var(--surface-color) 100%);
+            color: var(--text-color);
+            line-height: 1.6;
+            transition: var(--transition);
+            min-height: 100vh;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 30px 20px;
+            background: var(--surface-color);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-color), var(--warning-color));
+        }
+
+        .header h1 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 700;
+        }
+
+        .header p {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+        }
+
+        .header .subtitle {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            font-style: italic;
+        }
+
+        /* Theme Toggle */
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            background: var(--surface-color);
+            border: 2px solid var(--border-color);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: var(--shadow);
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.1);
+            box-shadow: var(--shadow-lg);
+        }
+
+        /* Stats Panel */
+        .stats-panel {
+            background: var(--surface-color);
+            border-radius: var(--radius-lg);
+            padding: 25px;
+            box-shadow: var(--shadow-md);
+            margin-bottom: 25px;
+            border: 1px solid var(--border-color);
+        }
+
+        .stats-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .stats-header h3 {
+            color: var(--text-color);
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 15px;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 20px 15px;
+            background: var(--background-color);
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border-color);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--primary-color);
+            transform: scaleX(0);
+            transition: var(--transition);
+        }
+
+        .stat-item:hover::before {
+            transform: scaleX(1);
+        }
+
+        .stat-item:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .stat-number {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            display: block;
+            line-height: 1;
+        }
+
+        .stat-label {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-top: 8px;
+            font-weight: 500;
+        }
+
+        /* Main Layout */
+        .main-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+            margin-bottom: 25px;
+        }
+
+        /* Text Areas */
+        .text-section {
+            background: var(--surface-color);
+            border-radius: var(--radius-lg);
+            padding: 25px;
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--border-color);
+            position: relative;
+        }
+
+        .text-section h3 {
+            margin-bottom: 15px;
+            color: var(--text-color);
+            font-size: 1.2rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-icon {
+            width: 20px;
+            height: 20px;
+            background: var(--primary-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 12px;
+        }
+
+        .textarea-container {
+            position: relative;
+        }
+
+        textarea {
+            width: 100%;
+            height: 350px;
+            padding: 20px;
+            border: 2px solid var(--border-color);
+            border-radius: var(--radius-md);
+            background: var(--background-color);
+            color: var(--text-color);
+            font-size: 15px;
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+            resize: vertical;
+            transition: var(--transition);
+            line-height: 1.6;
+        }
+
+        textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px var(--primary-light);
+        }
+
+        textarea::placeholder {
+            color: var(--text-muted);
+        }
+
+        /* Quick Actions */
+        .quick-actions {
+            display: flex;
+            gap: 8px;
+            margin-top: 15px;
+            flex-wrap: wrap;
+        }
+
+        .quick-btn {
+            padding: 8px 12px;
+            background: var(--surface-hover);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius);
+            color: var(--text-secondary);
+            font-size: 12px;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .quick-btn:hover {
+            background: var(--primary-color);
+            color: white;
+            transform: translateY(-1px);
+        }
+
+        /* Controls Panel */
+        .controls-panel {
+            background: var(--surface-color);
+            border-radius: var(--radius-lg);
+            padding: 25px;
+            box-shadow: var(--shadow-md);
+            margin-bottom: 25px;
+            border: 1px solid var(--border-color);
+        }
+
+        .controls-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 25px;
+        }
+
+        .controls-header h3 {
+            color: var(--text-color);
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+
+        .controls-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .control-group {
+            background: var(--background-color);
+            border-radius: var(--radius-md);
+            padding: 20px;
+            border: 1px solid var(--border-color);
+        }
+
+        .control-group h4 {
+            color: var(--text-color);
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .group-icon {
+            width: 24px;
+            height: 24px;
+            background: var(--accent-color);
+            border-radius: var(--radius);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 12px;
+        }
+
+        .button-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 10px;
+        }
+
+        /* Buttons */
+        .btn {
+            padding: 12px 16px;
+            border: none;
+            border-radius: var(--radius);
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            text-decoration: none;
+            position: relative;
+            overflow: hidden;
+            min-height: 44px;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn-primary {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-hover);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .btn-secondary {
+            background: var(--secondary-color);
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: var(--secondary-hover);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .btn-success {
+            background: var(--accent-color);
+            color: white;
+        }
+
+        .btn-success:hover {
+            background: var(--accent-hover);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .btn-warning {
+            background: var(--warning-color);
+            color: white;
+        }
+
+        .btn-warning:hover {
+            background: var(--warning-hover);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .btn-error {
+            background: var(--error-color);
+            color: white;
+        }
+
+        .btn-error:hover {
+            background: var(--error-hover);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--text-color);
+            border: 2px solid var(--border-color);
+        }
+
+        .btn-outline:hover {
+            background: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none !important;
+        }
+
+        .btn:disabled:hover {
+            transform: none !important;
+            box-shadow: none !important;
+        }
+
+        /* Tooltips */
+        .tooltip {
+            position: relative;
+        }
+
+        .tooltip::after {
+            content: attr(data-tooltip);
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--text-color);
+            color: var(--background-color);
+            padding: 8px 12px;
+            border-radius: var(--radius);
+            font-size: 12px;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: var(--transition);
+            z-index: 1000;
+            margin-bottom: 5px;
+        }
+
+        .tooltip::before {
+            content: '';
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 5px solid transparent;
+            border-top-color: var(--text-color);
+            opacity: 0;
+            pointer-events: none;
+            transition: var(--transition);
+            z-index: 1000;
+        }
+
+        .tooltip:hover::after,
+        .tooltip:hover::before {
+            opacity: 1;
+        }
+
+        /* Toast Notifications */
+        .toast {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--accent-color);
+            color: white;
+            padding: 15px 25px;
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-lg);
+            z-index: 1000;
+            opacity: 0;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            max-width: 400px;
+        }
+
+        .toast.show {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .toast.error {
+            background: var(--error-color);
+        }
+
+        .toast.warning {
+            background: var(--warning-color);
+        }
+
+        .toast-icon {
+            font-size: 18px;
+        }
+
+        /* Progress Bar */
+        .progress-bar {
+            width: 100%;
+            height: 4px;
+            background: var(--border-color);
+            border-radius: 2px;
+            overflow: hidden;
+            margin-top: 10px;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--primary-color);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .controls-grid {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+
+            .main-layout {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .controls-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .header {
+                padding: 20px 15px;
+            }
+
+            textarea {
+                height: 250px;
+                padding: 15px;
+            }
+
+            .button-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .theme-toggle {
+                top: 15px;
+                right: 15px;
+                width: 45px;
+                height: 45px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .quick-actions {
+                justify-content: center;
+            }
+
+            .btn {
+                padding: 10px 14px;
+                font-size: 13px;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        .fade-in {
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+
+        /* Accessibility */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+
+        /* Focus styles for accessibility */
+        button:focus,
+        textarea:focus,
+        .theme-toggle:focus {
+            outline: 2px solid var(--primary-color);
+            outline-offset: 2px;
+        }
+
+        /* High contrast mode support */
+        @media (prefers-contrast: high) {
+            :root {
+                --border-color: #000000;
+                --text-color: #000000;
+                --background-color: #ffffff;
+            }
+
+            [data-theme="dark"] {
+                --border-color: #ffffff;
+                --text-color: #ffffff;
+                --background-color: #000000;
+            }
+        }
+
+        /* Reduced motion support */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
+        /* Print styles */
+        @media print {
+            .theme-toggle,
+            .controls-panel,
+            .quick-actions {
+                display: none;
+            }
+
+            .main-layout {
+                grid-template-columns: 1fr;
+            }
+
+            body {
+                background: white;
+                color: black;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Theme Toggle -->
+    <div class="theme-toggle tooltip" data-tooltip="تبديل الوضع الداكن/الفاتح" id="themeToggle" role="button" tabindex="0" aria-label="تبديل الوضع الداكن/الفاتح">
+        <span id="themeIcon">🌙</span>
+    </div>
+
+    <!-- Toast Container -->
+    <div id="toast" class="toast" role="alert" aria-live="polite"></div>
+
+    <div class="container">
+        <!-- Header -->
+        <header class="header fade-in">
+            <h1>أداة تحويل النصوص المتقدمة</h1>
+            <p>Advanced Text Converter Pro</p>
+            <div class="subtitle">The most complete and professional text manipulation tool online</div>
+        </header>
+
+        <!-- Stats Panel -->
+        <div class="stats-panel fade-in">
+            <div class="stats-header">
+                <h3>📊 إحصائيات النص</h3>
+                <button class="btn btn-outline tooltip" data-tooltip="إعادة تعيين الإحصائيات" onclick="resetStats()">
+                    🔄 إعادة تعيين
+                </button>
+            </div>
+            <div class="stats-grid">
+                <div class="stat-item tooltip" data-tooltip="العدد الإجمالي للأحرف">
+                    <span id="charCount" class="stat-number">0</span>
+                    <div class="stat-label">أحرف</div>
+                </div>
+                <div class="stat-item tooltip" data-tooltip="العدد الإجمالي للكلمات">
+                    <span id="wordCount" class="stat-number">0</span>
+                    <div class="stat-label">كلمات</div>
+                </div>
+                <div class="stat-item tooltip" data-tooltip="عدد الفقرات">
+                    <span id="paragraphCount" class="stat-number">0</span>
+                    <div class="stat-label">فقرات</div>
+                </div>
+                <div class="stat-item tooltip" data-tooltip="عدد الأسطر">
+                    <span id="lineCount" class="stat-number">0</span>
+                    <div class="stat-label">أسطر</div>
+                </div>
+                <div class="stat-item tooltip" data-tooltip="عدد الجمل">
+                    <span id="sentenceCount" class="stat-number">0</span>
+                    <div class="stat-label">جمل</div>
+                </div>
+                <div class="stat-item tooltip" data-tooltip="متوسط طول الكلمة">
+                    <span id="avgWordLength" class="stat-number">0</span>
+                    <div class="stat-label">متوسط الكلمة</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Layout -->
+        <div class="main-layout fade-in">
+            <!-- Input Section -->
+            <div class="text-section">
+                <h3>
+                    <span class="section-icon">📝</span>
+                    النص المدخل
+                </h3>
+                <div class="textarea-container">
+                    <textarea 
+                        id="inputText" 
+                        placeholder="اكتب أو الصق النص هنا... يدعم العربية والإنجليزية والنصوص المختلطة"
+                        aria-label="النص المدخل"
+                        spellcheck="true"
+                    ></textarea>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="inputProgress"></div>
+                    </div>
+                </div>
+                <div class="quick-actions">
+                    <button class="quick-btn tooltip" data-tooltip="لصق من الحافظة" onclick="pasteFromClipboard()">
+                        📋 لصق
+                    </button>
+                    <button class="quick-btn tooltip" data-tooltip="تحديد الكل" onclick="selectAllInput()">
+                        🔘 تحديد الكل
+                    </button>
+                    <button class="quick-btn tooltip" data-tooltip="حذف المحدد" onclick="deleteSelected()">
+                        🗑️ حذف المحدد
+                    </button>
+                    <button class="quick-btn tooltip" data-tooltip="مسح الكل" onclick="clearAll()">
+                        🧹 مسح الكل
+                    </button>
+                </div>
+            </div>
+
+            <!-- Output Section -->
+            <div class="text-section">
+                <h3>
+                    <span class="section-icon">✨</span>
+                    النص المحول
+                </h3>
+                <div class="textarea-container">
+                    <textarea 
+                        id="outputText" 
+                        readonly 
+                        placeholder="النتيجة ستظهر هنا..."
+                        aria-label="النص المحول"
+                    ></textarea>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="outputProgress"></div>
+                    </div>
+                </div>
+                <div class="quick-actions">
+                    <button class="quick-btn tooltip" data-tooltip="نسخ إلى الحافظة" onclick="copyToClipboard()">
+                        📋 نسخ
+                    </button>
+                    <button class="quick-btn tooltip" data-tooltip="تحديد الكل" onclick="selectAllOutput()">
+                        🔘 تحديد الكل
+                    </button>
+                    <button class="quick-btn tooltip" data-tooltip="قراءة النص" onclick="speakText()">
+                        🔊 قراءة
+                    </button>
+                    <button class="quick-btn tooltip" data-tooltip="نسخ إلى المدخل" onclick="copyToInput()">
+                        ↩️ نسخ للمدخل
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Controls Panel -->
+        <div class="controls-panel fade-in">
+            <div class="controls-header">
+                <h3>🛠️ أدوات التحويل والمعالجة</h3>
+                <div style="display: flex; gap: 10px;">
+                    <button class="btn btn-outline tooltip" data-tooltip="تراجع" onclick="undo()" id="undoBtn" disabled>
+                        ↶ تراجع
+                    </button>
+                    <button class="btn btn-outline tooltip" data-tooltip="إعادة" onclick="redo()" id="redoBtn" disabled>
+                        ↷ إعادة
+                    </button>
+                </div>
+            </div>
+            
+            <div class="controls-grid">
+                <!-- Text Case Conversion -->
+                <div class="control-group">
+                    <h4>
+                        <span class="group-icon">Aa</span>
+                        تحويل الحالة
+                    </h4>
+                    <div class="button-grid">
+                        <button class="btn btn-primary tooltip" data-tooltip="تحويل إلى أحرف كبيرة" onclick="convertText('uppercase')">
+                            أحرف كبيرة
+                        </button>
+                        <button class="btn btn-primary tooltip" data-tooltip="تحويل إلى أحرف صغيرة" onclick="convertText('lowercase')">
+                            أحرف صغيرة
+                        </button>
+                        <button class="btn btn-primary tooltip" data-tooltip="تحويل إلى حالة العنوان" onclick="convertText('titlecase')">
+                            حالة العنوان
+                        </button>
+                        <button class="btn btn-primary tooltip" data-tooltip="تحويل إلى حالة الجملة" onclick="convertText('sentencecase')">
+                            حالة الجملة
+                        </button>
+                        <button class="btn btn-primary tooltip" data-tooltip="تبديل حالة الأحرف" onclick="convertText('togglecase')">
+                            تبديل الحالة
+                        </button>
+                        <button class="btn btn-primary tooltip" data-tooltip="تحويل إلى حالة الجمل" onclick="convertText('camelcase')">
+                            CamelCase
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Text Formatting -->
+                <div class="control-group">
+                    <h4>
+                        <span class="group-icon">📝</span>
+                        تنسيق النص
+                    </h4>
+                    <div class="button-grid">
+                        <button class="btn btn-secondary tooltip" data-tooltip="إزالة المسافات الزائدة" onclick="removeExtraSpaces()">
+                            إزالة المسافات
+                        </button>
+                        <button class="btn btn-secondary tooltip" data-tooltip="تطبيع النص وتصحيحه" onclick="normalizeText()">
+                            تطبيع النص
+                        </button>
+                        <button class="btn btn-secondary tooltip" data-tooltip="إزالة الأسطر الفارغة" onclick="removeEmptyLines()">
+                            إزالة الأسطر الفارغة
+                        </button>
+                        <button class="btn btn-secondary tooltip" data-tooltip="إزالة الأرقام" onclick="removeNumbers()">
+                            إزالة الأرقام
+                        </button>
+                        <button class="btn btn-secondary tooltip" data-tooltip="إزالة علامات الترقيم" onclick="removePunctuation()">
+                            إزالة الترقيم
+                        </button>
+                        <button class="btn btn-secondary tooltip" data-tooltip="عكس النص" onclick="reverseText()">
+                            عكس النص
+                        </button>
+                    </div>
+                </div>
+
+                <!-- File Operations -->
+                <div class="control-group">
+                    <h4>
+                        <span class="group-icon">💾</span>
+                        العمليات
+                    </h4>
+                    <div class="button-grid">
+                        <button class="btn btn-success tooltip" data-tooltip="نسخ النتيجة إلى الحافظة" onclick="copyToClipboard()">
+                            📋 نسخ النتيجة
+                        </button>
+                        <button class="btn btn-outline tooltip" data-tooltip="تنزيل كملف نصي" onclick="downloadText()">
+                            📄 تنزيل TXT
+                        </button>
+                        <button class="btn btn-outline tooltip" data-tooltip="تنزيل كملف PDF" onclick="downloadPDF()">
+                            📑 تنزيل PDF
+                        </button>
+                        <button class="btn btn-outline tooltip" data-tooltip="قراءة النص بالصوت" onclick="speakText()">
+                            🔊 قراءة النص
+                        </button>
+                        <button class="btn btn-outline tooltip" data-tooltip="إيقاف القراءة" onclick="stopSpeaking()">
+                            🔇 إيقاف القراءة
+                        </button>
+                        <button class="btn btn-outline tooltip" data-tooltip="مشاركة النص" onclick="shareText()">
+                            📤 مشاركة
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Advanced Tools -->
+                <div class="control-group">
+                    <h4>
+                        <span class="group-icon">🔧</span>
+                        أدوات متقدمة
+                    </h4>
+                    <div class="button-grid">
+                        <button class="btn btn-warning tooltip" data-tooltip="ترقيم الأسطر" onclick="addLineNumbers()">
+                            📝 ترقيم الأسطر
+                        </button>
+                        <button class="btn btn-warning tooltip" data-tooltip="فرز الأسطر أبجدياً" onclick="sortLines()">
+                            🔤 فرز الأسطر
+                        </button>
+                        <button class="btn btn-warning tooltip" data-tooltip="إزالة الأسطر المكررة" onclick="removeDuplicateLines()">
+                            🗑️ إزالة المكرر
+                        </button>
+                        <button class="btn btn-warning tooltip" data-tooltip="خلط الأسطر عشوائياً" onclick="shuffleLines()">
+                            🎲 خلط الأسطر
+                        </button>
+                        <button class="btn btn-warning tooltip" data-tooltip="تحويل إلى قائمة" onclick="convertToList()">
+                            📋 تحويل لقائمة
+                        </button>
+                        <button class="btn btn-warning tooltip" data-tooltip="استخراج الإيميلات" onclick="extractEmails()">
+                            📧 استخراج الإيميلات
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Global Variables
+        let history = [];
+        let historyIndex = -1;
+        let isDarkMode = localStorage.getItem('darkMode') === 'true';
+        let speechSynthesis = window.speechSynthesis;
+        let currentUtterance = null;
+
+        // Initialize Application
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeTheme();
+            loadSavedText();
+            updateStats();
+            setupScrollSync();
+            setupEventListeners();
+            setupKeyboardShortcuts();
+            
+            // Add fade-in animation
+            setTimeout(() => {
+                document.querySelectorAll('.fade-in').forEach(el => {
+                    el.style.opacity = '1';
+                    el.style.transform = 'translateY(0)';
+                });
+            }, 100);
+        });
+
+        // Event Listeners Setup
+        function setupEventListeners() {
+            const inputText = document.getElementById('inputText');
+            const themeToggle = document.getElementById('themeToggle');
+            
+            inputText.addEventListener('input', handleInputChange);
+            inputText.addEventListener('paste', handlePaste);
+            inputText.addEventListener('select', updateProgress);
+            
+            themeToggle.addEventListener('click', toggleTheme);
+            themeToggle.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    toggleTheme();
+                }
+            });
+        }
+
+        // Keyboard Shortcuts
+        function setupKeyboardShortcuts() {
+            document.addEventListener('keydown', function(e) {
+                if (e.ctrlKey || e.metaKey) {
+                    switch (e.key) {
+                        case 'z':
+                            if (e.shiftKey) {
+                                e.preventDefault();
+                                redo();
+                            } else {
+                                e.preventDefault();
+                                undo();
+                            }
+                            break;
+                        case 'a':
+                            if (e.target.id !== 'inputText' && e.target.id !== 'outputText') {
+                                e.preventDefault();
+                                selectAllInput();
+                            }
+                            break;
+                        case 's':
+                            e.preventDefault();
+                            downloadText();
+                            break;
+                        case 'd':
+                            e.preventDefault();
+                            toggleTheme();
+                            break;
+                        case 'u':
+                            e.preventDefault();
+                            convertText('uppercase');
+                            break;
+                        case 'l':
+                            e.preventDefault();
+                            convertText('lowercase');
+                            break;
+                        case 'c':
+                            if (e.target.id === 'outputText') {
+                                e.preventDefault();
+                                copyToClipboard();
+                            }
+                            break;
+                        case 'v':
+                            if (e.target.id === 'inputText') {
+                                // Allow default paste behavior
+                                setTimeout(handleInputChange, 10);
+                            }
+                            break;
+                    }
+                }
+                
+                // ESC key to stop speech
+                if (e.key === 'Escape') {
+                    stopSpeaking();
+                }
+            });
+        }
+
+        // Theme Management
+        function initializeTheme() {
+            const themeIcon = document.getElementById('themeIcon');
+            if (isDarkMode) {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                themeIcon.textContent = '☀️';
+            } else {
+                document.documentElement.removeAttribute('data-theme');
+                themeIcon.textContent = '🌙';
+            }
+        }
+
+        function toggleTheme() {
+            isDarkMode = !isDarkMode;
+            localStorage.setItem('darkMode', isDarkMode);
+            initializeTheme();
+            showToast('تم تغيير الوضع بنجاح', 'success');
+        }
+
+        // Text Input Handling
+        function handleInputChange() {
+            const inputText = document.getElementById('inputText').value;
+            saveToHistory(inputText);
+            updateStats();
+            updateProgress();
+            autoSave();
+        }
+
+        function handlePaste(e) {
+            setTimeout(() => {
+                handleInputChange();
+                showToast('تم لصق النص بنجاح', 'success');
+            }, 10);
+        }
+
+        function updateProgress() {
+            const inputText = document.getElementById('inputText');
+            const outputText = document.getElementById('outputText');
+            const inputProgress = document.getElementById('inputProgress');
+            const outputProgress = document.getElementById('outputProgress');
+            
+            const maxLength = 10000; // Arbitrary max length for progress calculation
+            
+            const inputPercent = Math.min((inputText.value.length / maxLength) * 100, 100);
+            const outputPercent = Math.min((outputText.value.length / maxLength) * 100, 100);
+            
+            inputProgress.style.width = inputPercent + '%';
+            outputProgress.style.width = outputPercent + '%';
+        }
+
+        // Auto Save and Load
+        function autoSave() {
+            const inputText = document.getElementById('inputText').value;
+            localStorage.setItem('savedText', inputText);
+        }
+
+        function loadSavedText() {
+            const savedText = localStorage.getItem('savedText');
+            if (savedText) {
+                document.getElementById('inputText').value = savedText;
+                updateStats();
+                updateProgress();
+            }
+        }
+
+        // History Management
+        function saveToHistory(text) {
+            if (historyIndex < history.length - 1) {
+                history = history.slice(0, historyIndex + 1);
+            }
+            history.push(text);
+            if (history.length > 50) { // Limit history size
+                history.shift();
+            } else {
+                historyIndex = history.length - 1;
+            }
+            updateHistoryButtons();
+        }
+
+        function undo() {
+            if (historyIndex > 0) {
+                historyIndex--;
+                document.getElementById('inputText').value = history[historyIndex];
+                updateStats();
+                updateProgress();
+                updateHistoryButtons();
+                showToast('تم التراجع', 'success');
+            }
+        }
+
+        function redo() {
+            if (historyIndex < history.length - 1) {
+                historyIndex++;
+                document.getElementById('inputText').value = history[historyIndex];
+                updateStats();
+                updateProgress();
+                updateHistoryButtons();
+                showToast('تم الإعادة', 'success');
+            }
+        }
+
+        function updateHistoryButtons() {
+            document.getElementById('undoBtn').disabled = historyIndex <= 0;
+            document.getElementById('redoBtn').disabled = historyIndex >= history.length - 1;
+        }
+
+        // Text Conversion Functions
+        function convertText(type) {
+            const inputText = document.getElementById('inputText').value;
+            if (!inputText.trim()) {
+                showToast('يرجى إدخال نص للتحويل', 'error');
+                return;
+            }
+
+            let convertedText = '';
+
+            switch (type) {
+                case 'uppercase':
+                    convertedText = inputText.toUpperCase();
+                    break;
+                case 'lowercase':
+                    convertedText = inputText.toLowerCase();
+                    break;
+                case 'titlecase':
+                    convertedText = toTitleCase(inputText);
+                    break;
+                case 'sentencecase':
+                    convertedText = toSentenceCase(inputText);
+                    break;
+                case 'togglecase':
+                    convertedText = toggleCase(inputText);
+                    break;
+                case 'camelcase':
+                    convertedText = toCamelCase(inputText);
+                    break;
+            }
+
+            document.getElementById('outputText').value = convertedText;
+            updateProgress();
+            showToast('تم التحويل بنجاح', 'success');
+        }
+
+        function toTitleCase(text) {
+            return text.replace(/\w\S*/g, function(txt) {
+                return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+            });
+        }
+
+        function toSentenceCase(text) {
+            return text.toLowerCase().replace(/(^\s*\w|[\.\!\?]\s*\w)/g, function(c) {
+                return c.toUpperCase();
+            });
+        }
+
+        function toggleCase(text) {
+            return text.split('').map(char => {
+                return char === char.toUpperCase() ? char.toLowerCase() : char.toUpperCase();
+            }).join('');
+        }
+
+        function toCamelCase(text) {
+            return text.replace(/(?:^\w|[A-Z]|\b\w)/g, function(word, index) {
+                return index === 0 ? word.toLowerCase() : word.toUpperCase();
+            }).replace(/\s+/g, '');
+        }
+
+        // Text Formatting Functions
+        function removeExtraSpaces() {
+            const inputText = document.getElementById('inputText').value;
+            if (!inputText.trim()) {
+                showToast('يرجى إدخال نص للمعالجة', 'error');
+                return;
+            }
+
+            const cleanedText = inputText
+                .replace(/\s+/g, ' ')
+                .replace(/^\s+|\s+$/g, '')
+                .replace(/\n\s*\n/g, '\n\n');
+
+            document.getElementById('outputText').value = cleanedText;
+            updateProgress();
+            showToast('تم إزالة المسافات الزائدة', 'success');
+        }
+
+        function normalizeText() {
+            const inputText = document.getElementById('inputText').value;
+            if (!inputText.trim()) {
+                showToast('يرجى إدخال نص للمعالجة', 'error');
+                return;
+            }
+
+            let normalizedText = inputText
+                .replace(/\s+/g, ' ')
+                .replace(/^\s+|\s+$/g, '')
+                .replace(/\n\s*\n/g, '\n\n')
+                .replace(/[""]/g, '"')
+                .replace(/['']/g, "'")
+                .replace(/…/g, '...')
+                .replace(/–|—/g, '-')
+                .replace(/[\u200B-\u200D\uFEFF]/g, ''); // Remove zero-width characters
+
+            document.getElementById('outputText').value = normalizedText;
+            updateProgress();
+            showToast('تم تطبيع النص', 'success');
+        }
+
+        function removeEmptyLines() {
+            const inputText = document.getElementById('inputText').value;
+            if (!inputText.trim()) {
+                showToast('يرجى إدخال نص للمعالجة', 'error');
+                return;
+            }
+
+            const cleanedText = inputText
+                .split('\n')
+                .filter(line => line.trim() !== '')
+                .join('\n');
+
+            document.getElementById('outputText').value = cleanedText;
+            updateProgress();
+            showToast('تم إزالة الأسطر الفارغة', 'success');
+        }
+
+        function removeNumbers() {
+            const inputText = document.getElementById('inputText').value;
+            if (!inputText.trim()) {
+                showToast('يرجى إدخال نص للمعالجة', 'error');
+                return;
+            }
+
+            const cleanedText = inputText.replace(/\d+/g, '');
+            document.getElementById('outputText').value = cleanedText;
+            updateProgress();
+            showToast('تم إزالة الأرقام', 'success');
+        }
+
+        function removePunctuation() {
+            const inputText = document.getElementById('inputText').value;
+            if (!inputText.trim()) {
+                showToast('يرجى إدخال نص للمعالجة', 'error');
+                return;
+            }
+
+            const cleanedText = inputText.replace(/[^\w\s\u0600-\u06FF]/g, '');
+            document.getElementById('outputText').value = cleanedText;
+            updateProgress();
+            showToast('تم إزالة علامات الترقيم', 'success');
+        }
+
+        function reverseText() {
+            const inputText = document.getElementById('inputText').value;
+            if (!inputText.trim()) {
+                showToast('يرجى إدخال نص للمعالجة', 'error');
+                return;
+            }
+
+            const reversedText = inputText.split('').reverse().join('');
+            document.getElementById('outputText').value = reversedText;
+            updateProgress();
+            showToast('تم عكس النص', 'success');
+        }
+
+        // Advanced Tools
+        function addLineNumbers() {
+            const inputText = document.getElementById('inputText').value;
+            if (!inputText.trim()) {
+                showToast('يرجى إدخال نص للمعالجة', 'error');
+                return;
+            }
+
+            const lines = inputText.split('\n');
+            const numberedLines = lines.map((line, index) => `${index + 1}. ${line}`);
+            document.getElementById('outputText').value = numberedLines.join('\n');
+            updateProgress();
+            showToast('تم ترقيم الأسطر', 'success');
+        }
+
+        function sortLines() {
+            const inputText = document.getElementById('inputText').value;
+            if (!inputText.trim()) {
+                showToast('يرجى إدخال نص للمعالجة', 'error');
+                return;
+            }
+
+            const lines = inputText.split('\n');
+            const sortedLines = lines.sort((a, b) => a.localeCompare(b, 'ar'));
+            document.getElementById('outputText').value = sortedLines.join('\n');
+            updateProgress();
+            showToast('تم فرز الأسطر أبجدياً', 'success');
+        }
+
+        function removeDuplicateLines() {
+            const inputText = document.getElementById('inputText').value;
+            if (!inputText.trim()) {
+                showToast('يرجى إدخال نص للمعالجة', 'error');
+                return;
+            }
+
+            const lines = inputText.split('\n');
+            const uniqueLines = [...new Set(lines)];
+            document.getElementById('outputText').value = uniqueLines.join('\n');
+            updateProgress();
+            showToast('تم إزالة الأسطر المكررة', 'success');
+        }
+
+        function shuffleLines() {
+            const inputText = document.getElementById('inputText').value;
+            if (!inputText.trim()) {
+                showToast('يرجى إدخال نص للمعالجة', 'error');
+                return;
+            }
+
+            const lines = inputText.split('\n');
+            for (let i = lines.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [lines[i], lines[j]] = [lines[j], lines[i]];
+            }
+            document.getElementById('outputText').value = lines.join('\n');
+            updateProgress();
+            showToast('تم خلط الأسطر عشوائياً', 'success');
+        }
+
+        function convertToList() {
+            const inputText = document.getElementById('inputText').value;
+            if (!inputText.trim()) {
+                showToast('يرجى إدخال نص للمعالجة', 'error');
+                return;
+            }
+
+            const lines = inputText.split('\n').filter(line => line.trim() !== '');
+            const listItems = lines.map(line => `• ${line.trim()}`);
+            document.getElementById('outputText').value = listItems.join('\n');
+            updateProgress();
+            showToast('تم تحويل النص إلى قائمة', 'success');
+        }
+
+        function extractEmails() {
+            const inputText = document.getElementById('inputText').value;
+            if (!inputText.trim()) {
+                showToast('يرجى إدخال نص للمعالجة', 'error');
+                return;
+            }
+
+            const emailRegex = /\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b/g;
+            const emails = inputText.match(emailRegex);
+            
+            if (emails && emails.length > 0) {
+                const uniqueEmails = [...new Set(emails)];
+                document.getElementById('outputText').value = uniqueEmails.join('\n');
+                updateProgress();
+                showToast(`تم استخراج ${uniqueEmails.length} إيميل`, 'success');
+            } else {
+                document.getElementById('outputText').value = '';
+                showToast('لم يتم العثور على أي إيميلات', 'warning');
+            }
+        }
+
+        // Clipboard Operations
+        async function pasteFromClipboard() {
+            try {
+                const text = await navigator.clipboard.readText();
+                const inputTextarea = document.getElementById('inputText');
+                const start = inputTextarea.selectionStart;
+                const end = inputTextarea.selectionEnd;
+                const currentText = inputTextarea.value;
+                
+                inputTextarea.value = currentText.substring(0, start) + text + currentText.substring(end);
+                inputTextarea.setSelectionRange(start + text.length, start + text.length);
+                inputTextarea.focus();
+                
+                handleInputChange();
+                showToast('تم لصق النص من الحافظة', 'success');
+            } catch (err) {
+                showToast('فشل في لصق النص من الحافظة', 'error');
+            }
+        }
+
+        async function copyToClipboard() {
+            const outputText = document.getElementById('outputText').value;
+            if (!outputText.trim()) {
+                showToast('لا يوجد نص للنسخ', 'error');
+                return;
+            }
+
+            try {
+                await navigator.clipboard.writeText(outputText);
+                showToast('تم نسخ النص إلى الحافظة', 'success');
+            } catch (err) {
+                // Fallback for older browsers
+                const textArea = document.createElement('textarea');
+                textArea.value = outputText;
+                document.body.appendChild(textArea);
+                textArea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textArea);
+                showToast('تم نسخ النص إلى الحافظة', 'success');
+            }
+        }
+
+        // Selection Operations
+        function selectAllInput() {
+            const inputTextarea = document.getElementById('inputText');
+            inputTextarea.select();
+            inputTextarea.focus();
+            showToast('تم تحديد النص', 'success');
+        }
+
+        function selectAllOutput() {
+            const outputTextarea = document.getElementById('outputText');
+            outputTextarea.select();
+            outputTextarea.focus();
+            showToast('تم تحديد النص', 'success');
+        }
+
+        function deleteSelected() {
+            const inputTextarea = document.getElementById('inputText');
+            const start = inputTextarea.selectionStart;
+            const end = inputTextarea.selectionEnd;
+            
+            if (start !== end) {
+                const currentText = inputTextarea.value;
+                inputTextarea.value = currentText.substring(0, start) + currentText.substring(end);
+                inputTextarea.setSelectionRange(start, start);
+                inputTextarea.focus();
+                handleInputChange();
+                showToast('تم حذف النص المحدد', 'success');
+            } else {
+                showToast('لم يتم تحديد أي نص', 'warning');
+            }
+        }
+
+        function copyToInput() {
+            const outputText = document.getElementById('outputText').value;
+            if (!outputText.trim()) {
+                showToast('لا يوجد نص للنسخ', 'error');
+                return;
+            }
+
+            document.getElementById('inputText').value = outputText;
+            handleInputChange();
+            showToast('تم نسخ النص إلى المدخل', 'success');
+        }
+
+        // Utility Functions
+        function clearAll() {
+            document.getElementById('inputText').value = '';
+            document.getElementById('outputText').value = '';
+            updateStats();
+            updateProgress();
+            autoSave();
+            showToast('تم مسح جميع النصوص', 'success');
+        }
+
+        function resetStats() {
+            updateStats();
+            showToast('تم إعادة تعيين الإحصائيات', 'success');
+        }
+
+        // Download Functions
+        function downloadText() {
+            const outputText = document.getElementById('outputText').value;
+            if (!outputText.trim()) {
+                showToast('لا يوجد نص للتنزيل', 'error');
+                return;
+            }
+
+            const blob = new Blob([outputText], { type: 'text/plain;charset=utf-8' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `converted-text-${new Date().toISOString().slice(0, 10)}.txt`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+            showToast('تم تنزيل الملف', 'success');
+        }
+
+        function downloadPDF() {
+            const outputText = document.getElementById('outputText').value;
+            if (!outputText.trim()) {
+                showToast('لا يوجد نص للتنزيل', 'error');
+                return;
+            }
+
+            // Create a print-friendly window
+            const printWindow = window.open('', '_blank');
+            printWindow.document.write(`
+                <!DOCTYPE html>
+                <html>
+                <head>
+                    <title>Converted Text</title>
+                    <style>
+                        body { 
+                            font-family: Arial, sans-serif; 
+                            padding: 40px; 
+                            line-height: 1.8; 
+                            color: #333;
+                            max-width: 800px;
+                            margin: 0 auto;
+                        }
+                        .header { 
+                            text-align: center; 
+                            margin-bottom: 40px; 
+                            border-bottom: 2px solid #3b82f6;
+                            padding-bottom: 20px;
+                        }
+                        .header h1 {
+                            color: #3b82f6;
+                            margin-bottom: 10px;
+                        }
+                        .content { 
+                            white-space: pre-wrap; 
+                            font-size: 14px;
+                            background: #f8fafc;
+                            padding: 30px;
+                            border-radius: 8px;
+                            border: 1px solid #e2e8f0;
+                        }
+                        .footer {
+                            text-align: center;
+                            margin-top: 40px;
+                            padding-top: 20px;
+                            border-top: 1px solid #e2e8f0;
+                            color: #64748b;
+                            font-size: 12px;
+                        }
+                        @media print {
+                            body { padding: 20px; }
+                        }
+                    </style>
+                </head>
+                <body>
+                    <div class="header">
+                        <h1>Converted Text</h1>
+                        <p>Generated by Advanced Text Converter Pro</p>
+                        <p>Date: ${new Date().toLocaleDateString('ar-SA')}</p>
+                    </div>
+                    <div class="content">${outputText.replace(/\n/g, '<br>')}</div>
+                    <div class="footer">
+                        <p>Advanced Text Converter Pro - The most complete text manipulation tool</p>
+                    </div>
+                </body>
+                </html>
+            `);
+            printWindow.document.close();
+            
+            setTimeout(() => {
+                printWindow.print();
+                showToast('تم فتح نافذة الطباعة', 'success');
+            }, 500);
+        }
+
+        // Text-to-Speech Functions
+        function speakText() {
+            const outputText = document.getElementById('outputText').value;
+            if (!outputText.trim()) {
+                showToast('لا يوجد نص للقراءة', 'error');
+                return;
+            }
+
+            if (!('speechSynthesis' in window)) {
+                showToast('المتصفح لا يدعم تحويل النص إلى كلام', 'error');
+                return;
+            }
+
+            // Stop any ongoing speech
+            speechSynthesis.cancel();
+            
+            currentUtterance = new SpeechSynthesisUtterance(outputText);
+            
+            // Detect language and set appropriate voice
+            const isArabic = /[\u0600-\u06FF]/.test(outputText);
+            const isEnglish = /[a-zA-Z]/.test(outputText);
+            
+            if (isArabic) {
+                currentUtterance.lang = 'ar-SA';
+            } else if (isEnglish) {
+                currentUtterance.lang = 'en-US';
+            } else {
+                currentUtterance.lang = 'en-US';
+            }
+            
+            currentUtterance.rate = 0.8;
+            currentUtterance.pitch = 1;
+            currentUtterance.volume = 1;
+            
+            currentUtterance.onstart = function() {
+                showToast('بدء قراءة النص', 'success');
+            };
+            
+            currentUtterance.onend = function() {
+                showToast('انتهت قراءة النص', 'success');
+                currentUtterance = null;
+            };
+            
+            currentUtterance.onerror = function(event) {
+                showToast('حدث خطأ أثناء قراءة النص', 'error');
+                currentUtterance = null;
+            };
+            
+            speechSynthesis.speak(currentUtterance);
+        }
+
+        function stopSpeaking() {
+            if (speechSynthesis.speaking) {
+                speechSynthesis.cancel();
+                showToast('تم إيقاف القراءة', 'success');
+            }
+        }
+
+        // Share Function
+        async function shareText() {
+            const outputText = document.getElementById('outputText').value;
+            if (!outputText.trim()) {
+                showToast('لا يوجد نص للمشاركة', 'error');
+                return;
+            }
+
+            if (navigator.share) {
+                try {
+                    await navigator.share({
+                        title: 'Converted Text',
+                        text: outputText
+                    });
+                    showToast('تم مشاركة النص', 'success');
+                } catch (err) {
+                    if (err.name !== 'AbortError') {
+                        copyToClipboard();
+                    }
+                }
+            } else {
+                copyToClipboard();
+            }
+        }
+
+        // Scroll Synchronization
+        function setupScrollSync() {
+            const inputTextarea = document.getElementById('inputText');
+            const outputTextarea = document.getElementById('outputText');
+            
+            let isInputScrolling = false;
+            let isOutputScrolling = false;
+            
+            inputTextarea.addEventListener('scroll', function() {
+                if (!isOutputScrolling) {
+                    isInputScrolling = true;
+                    const scrollPercentage = this.scrollTop / (this.scrollHeight - this.clientHeight);
+                    outputTextarea.scrollTop = scrollPercentage * (outputTextarea.scrollHeight - outputTextarea.clientHeight);
+                    setTimeout(() => { isInputScrolling = false; }, 100);
+                }
+            });
+            
+            outputTextarea.addEventListener('scroll', function() {
+                if (!isInputScrolling) {
+                    isOutputScrolling = true;
+                    const scrollPercentage = this.scrollTop / (this.scrollHeight - this.clientHeight);
+                    inputTextarea.scrollTop = scrollPercentage * (inputTextarea.scrollHeight - inputTextarea.clientHeight);
+                    setTimeout(() => { isOutputScrolling = false; }, 100);
+                }
+            });
+        }
+
+        // Statistics Update
+        function updateStats() {
+            const inputText = document.getElementById('inputText').value;
+            
+            const charCount = inputText.length;
+            const wordCount = inputText.trim() ? inputText.trim().split(/\s+/).length : 0;
+            const paragraphCount = inputText.trim() ? inputText.split(/\n\s*\n/).length : 0;
+            const lineCount = inputText ? inputText.split('\n').length : 0;
+            const sentenceCount = inputText.trim() ? (inputText.match(/[.!?]+/g) || []).length : 0;
+            const avgWordLength = wordCount > 0 ? Math.round((charCount - (wordCount - 1)) / wordCount * 10) / 10 : 0;
+
+            document.getElementById('charCount').textContent = charCount.toLocaleString();
+            document.getElementById('wordCount').textContent = wordCount.toLocaleString();
+            document.getElementById('paragraphCount').textContent = paragraphCount.toLocaleString();
+            document.getElementById('lineCount').textContent = lineCount.toLocaleString();
+            document.getElementById('sentenceCount').textContent = sentenceCount.toLocaleString();
+            document.getElementById('avgWordLength').textContent = avgWordLength;
+        }
+
+        // Toast Notifications
+        function showToast(message, type = 'success') {
+            const toast = document.getElementById('toast');
+            const icons = {
+                success: '✅',
+                error: '❌',
+                warning: '⚠️',
+                info: 'ℹ️'
+            };
+            
+            toast.innerHTML = `
+                <span class="toast-icon">${icons[type] || icons.success}</span>
+                <span>${message}</span>
+            `;
+            toast.className = `toast ${type}`;
+            toast.classList.add('show');
+
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+
+        // Performance Optimization
+        function debounce(func, wait) {
+            let timeout;
+            return function executedFunction(...args) {
+                const later = () => {
+                    clearTimeout(timeout);
+                    func(...args);
+                };
+                clearTimeout(timeout);
+                timeout = setTimeout(later, wait);
+            };
+        }
+
+        // Optimize input handling for better performance
+        const debouncedInputChange = debounce(handleInputChange, 300);
+        
+        // Replace the direct event listener with debounced version for better performance
+        document.addEventListener('DOMContentLoaded', function() {
+            const inputText = document.getElementById('inputText');
+            inputText.removeEventListener('input', handleInputChange);
+            inputText.addEventListener('input', debouncedInputChange);
+        });
+    </script>
+</body>
+</html>
