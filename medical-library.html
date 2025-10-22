@@ -1,101 +1,185 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>مكتبة الكتب الطبية</title>
-<link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.3.3/dist/tailwind.min.css" rel="stylesheet">
-<style>
-body {
-  background-color: #f9fafb;
-  font-family: 'Cairo', sans-serif;
-}
-.card {
-  background: white;
-  border-radius: 1rem;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-  padding: 1rem;
-  transition: transform 0.2s ease;
-}
-.card:hover {
-  transform: translateY(-4px);
-}
-.btn {
-  background: linear-gradient(135deg, #10b981, #059669);
-  color: white;
-  padding: 0.5rem 1rem;
-  border-radius: 9999px;
-  font-weight: bold;
-  transition: background 0.3s;
-}
-.btn:hover {
-  background: linear-gradient(135deg, #059669, #047857);
-}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>مكتبة الكتب الطبية</title>
+  <style>
+    :root {
+      --main-color: #0077b6;
+      --bg-color: #f9f9fb;
+      --text-color: #222;
+      --card-bg: #fff;
+      --radius: 14px;
+      --shadow: 0 2px 6px rgba(0,0,0,0.08);
+    }
+
+    body {
+      font-family: "Cairo", sans-serif;
+      background: var(--bg-color);
+      margin: 0;
+      padding: 20px;
+      color: var(--text-color);
+    }
+
+    .container {
+      max-width: 750px;
+      margin: auto;
+    }
+
+    h1 {
+      text-align: center;
+      color: var(--main-color);
+      margin-bottom: 10px;
+    }
+
+    p.note {
+      text-align: center;
+      font-size: 15px;
+      color: #555;
+      margin-bottom: 20px;
+    }
+
+    select, input {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 12px;
+      border: 1px solid #ccc;
+      border-radius: var(--radius);
+      font-size: 15px;
+      box-sizing: border-box;
+    }
+
+    .book-card {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      padding: 15px;
+      margin-bottom: 15px;
+      box-shadow: var(--shadow);
+      transition: transform 0.15s ease;
+    }
+
+    .book-card:hover {
+      transform: scale(1.01);
+    }
+
+    .book-title {
+      font-weight: bold;
+      color: var(--text-color);
+      margin-bottom: 10px;
+    }
+
+    .download-btn {
+      display: inline-block;
+      background: var(--main-color);
+      color: white;
+      text-decoration: none;
+      padding: 8px 14px;
+      border-radius: 8px;
+      font-size: 14px;
+      transition: background 0.2s ease;
+    }
+
+    .download-btn:hover {
+      background: #023e8a;
+    }
+
+    #loadMore {
+      display: block;
+      width: 100%;
+      background: #eee;
+      border: none;
+      padding: 10px;
+      font-size: 15px;
+      border-radius: var(--radius);
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    #loadMore:hover {
+      background: #ddd;
+    }
+
+    @media (max-width: 600px) {
+      .book-card {
+        padding: 12px;
+      }
+    }
+  </style>
 </head>
-<body class="p-4 max-w-3xl mx-auto">
+<body>
 
-<h1 class="text-2xl font-bold text-center mb-4">📚 مكتبة الكتب الطبية</h1>
-<p class="text-gray-600 text-center mb-6">
-تصفح أو ابحث عن الكتب الطبية بسهولة. اختر تخصصك ثم ابحث عن الكتاب المطلوب أو استعرض الكتب المتاحة.
-</p>
+  <div class="container">
+    <h1>مكتبة الكتب الطبية</h1>
+    <p class="note">اختر التخصص أو ابحث مباشرة للوصول إلى كتابك المفضل.</p>
 
-<div class="flex flex-col sm:flex-row gap-3 mb-4">
-  <select id="filter" class="border p-2 rounded-md flex-1">
-    <option value="all">كل الأقسام</option>
-    <option value="طب بشري">الطب البشري</option>
-    <option value="صيدلة">الصيدلة</option>
-    <option value="تمريض">التمريض</option>
-    <option value="تحاليل">التحاليل</option>
-    <option value="أسئلة">الأسئلة الطبية</option>
-    <option value="مصطلحات">المصطلحات الطبية</option>
-    <option value="أمراض">الأمراض وعلاجها</option>
-    <option value="إسعافات">الإسعافات الأولية</option>
-    <option value="أدوات">الأدوات الطبية</option>
-  </select>
-  <input type="text" id="search" placeholder="ابحث باسم الكتاب..." class="border p-2 rounded-md flex-1">
-</div>
+    <select id="filter">
+      <option value="all">جميع الأقسام</option>
+      <option value="طب بشري">كتب الطب البشري</option>
+      <option value="صيدلة">كتب الصيدلة</option>
+      <option value="تمريض">كتب التمريض</option>
+      <option value="تحاليل">كتب التحاليل</option>
+      <option value="أسئلة">كتب الأسئلة الطبية</option>
+      <option value="مصطلحات">كتب المصطلحات الطبية</option>
+      <option value="أمراض">كتب الأمراض وعلاجها</option>
+      <option value="إسعافات">كتب الإسعافات الأولية</option>
+      <option value="أدوات">كتب الأدوات الطبية</option>
+    </select>
 
-<div id="booksList" class="grid gap-4"></div>
+    <input type="text" id="search" placeholder="ابحث باسم الكتاب...">
 
-<div class="text-center mt-6">
-  <button id="loadMore" class="btn hidden">عرض المزيد</button>
-</div>
+    <div id="booksList"></div>
+    <button id="loadMore">عرض المزيد</button>
+  </div>
 
-<script>
-const books = [
-  { title: "كتاب الباطنة الشامل", category: "طب بشري", url: "https://go.doctorhypo.me/b1" },
-  { title: "مرجع الأدوية الصيدلانية", category: "صيدلة", url: "https://go.doctorhypo.me/b2" },
-  { title: "موسوعة التمريض العملي", category: "تمريض", url: "https://go.doctorhypo.me/b3" },
-  { title: "دليل التحاليل الطبية", category: "تحاليل", url: "https://go.doctorhypo.me/b4" },
-  { title: "أسئلة MCQ في الجراحة", category: "أسئلة", url: "https://go.doctorhypo.me/b5" },
-  { title: "قاموس المصطلحات الطبية", category: "مصطلحات", url: "https://go.doctorhypo.me/b6" },
-  { title: "أمراض القلب وعلاجها", category: "أمراض", url: "https://go.doctorhypo.me/b7" },
-  { title: "دليل الإسعافات الأولية", category: "إسعافات", url: "https://go.doctorhypo.me/b8" },
-  { title: "أدوات الجراحة الأساسية", category: "أدوات", url: "https://go.doctorhypo.me/b9" },
-];
+  <script>
+    const books = [
+      { title: "كتاب تشريح Gray’s Anatomy", category: "طب بشري", url: "https://go.doctorhypo.me/a1" },
+      { title: "Pharmacology Made Easy", category: "صيدلة", url: "https://go.doctorhypo.me/a2" },
+      { title: "أساسيات التمريض", category: "تمريض", url: "https://go.doctorhypo.me/a3" },
+      { title: "كتاب التحاليل الطبية الشامل", category: "تحاليل", url: "https://go.doctorhypo.me/a4" },
+      { title: "MCQs in Internal Medicine", category: "أسئلة", url: "https://go.doctorhypo.me/a5" },
+      { title: "قاموس المصطلحات الطبية", category: "مصطلحات", url: "https://go.doctorhypo.me/a6" },
+      { title: "كتاب الأمراض والعلاج", category: "أمراض", url: "https://go.doctorhypo.me/a7" },
+      { title: "دليل الإسعافات الأولية", category: "إسعافات", url: "https://go.doctorhypo.me/a8" },
+      { title: "دليل الأدوات الطبية", category: "أدوات", url: "https://go.doctorhypo.me/a9" }
+    ];
 
-const booksList = document.getElementById('booksList');
-const searchInput = document.getElementById('search');
-const filterSelect = document.getElementById('filter');
-const loadMoreBtn = document.getElementById('loadMore');
-let visibleCount = 0;
-const step = 20;
+    const listContainer = document.getElementById("booksList");
+    const filter = document.getElementById("filter");
+    const search = document.getElementById("search");
+    const loadMoreBtn = document.getElementById("loadMore");
 
-function renderBooks() {
-  const searchTerm = searchInput.value.toLowerCase();
-  const selectedCategory = filterSelect.value;
-  const filtered = books.filter(b =>
-    (selectedCategory === 'all' || b.category === selectedCategory) &&
-    b.title.toLowerCase().includes(searchTerm)
-  );
+    let visibleCount = 20;
 
-  const toDisplay = filtered.slice(0, visibleCount);
-  booksList.innerHTML = toDisplay.map(item => `
-    <div class="card flex justify-between items-center">
-      <div>
-        <h2 class="font-semibold">${item.title}</h2>
-        <p class="text-sm text-gray-500">${item.category}</p>
-      </div>
-      <a href="${item.url}" target="_blank" rel="noopener noreferrer" class="btn">صفحة التحميل</a>
-   
+    function renderBooks() {
+      const searchTerm = search.value.toLowerCase();
+      const category = filter.value;
+      const filtered = books.filter(book => {
+        const matchCat = (category === "all" || book.category === category);
+        const matchSearch = book.title.toLowerCase().includes(searchTerm);
+        return matchCat && matchSearch;
+      });
+
+      listContainer.innerHTML = "";
+      filtered.slice(0, visibleCount).forEach(book => {
+        const card = document.createElement("div");
+        card.className = "book-card";
+        card.innerHTML = `
+          <div class="book-title">${book.title}</div>
+          <a href="${book.url}" target="_blank" rel="noopener noreferrer" class="download-btn">صفحة التحميل</a>
+        `;
+        listContainer.appendChild(card);
+      });
+
+      loadMoreBtn.style.display = filtered.length > visibleCount ? "block" : "none";
+    }
+
+    filter.addEventListener("change", () => { visibleCount = 20; renderBooks(); });
+    search.addEventListener("input", () => { visibleCount = 20; renderBooks(); });
+    loadMoreBtn.addEventListener("click", () => { visibleCount += 20; renderBooks(); });
+
+    renderBooks();
+  </script>
+</body>
+</html>
