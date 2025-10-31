@@ -51,7 +51,8 @@
         }
         .button-group {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            /* --- (تعديل) --- تم تغيير عدد الأعمدة إلى 3 */
+            grid-template-columns: 1fr 1fr 1fr; 
             gap: 12px;
             margin-bottom: 16px;
         }
@@ -69,7 +70,7 @@
             gap: 8px;
         }
         
-        /* أزرار اللصق والنسخ */
+        /* أزرار اللصق والنسخ والمسح */
         #paste-btn {
             background-color: #ecf0f1;
             color: #34495e;
@@ -83,6 +84,16 @@
         }
         #copy-btn:hover {
             background-color: #2980b9;
+        }
+
+        /* --- (جديد) --- ستايل زر المسح */
+        #clear-btn {
+            background-color: #f1f2f6;
+            color: #e74c3c; /* لون أحمر للنص */
+        }
+        #clear-btn:hover {
+            background-color: #e74c3c;
+            color: white;
         }
         
         /* أزرار التحويل */
@@ -106,7 +117,6 @@
             background-color: #c0392b;
         }
         
-        /* لرسالة "تم النسخ" */
         .copied {
             background-color: #2ecc71 !important;
         }
@@ -128,6 +138,11 @@
                 <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect></svg>
                 نسخ
             </button>
+            
+            <button id="clear-btn">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+                مسح
+            </button>
         </div>
 
         <div class="convert-group">
@@ -145,20 +160,19 @@
             const toViewBtn = document.getElementById('to-view-btn');
             const toDirectBtn = document.getElementById('to-direct-btn');
             const copyBtnOriginalText = copyBtn.innerHTML;
+            
+            // --- (جديد) --- تحديد زر المسح
+            const clearBtn = document.getElementById('clear-btn');
 
             // --- 2. دالة استخراج ID الملف ---
-            // تستخرج ID الملف من أي صيغة رابط (مباشر أو عرض)
             function extractFileId(url) {
                 let fileId = null;
-                
-                // Regex لرابط العرض: /file/d/FILE_ID/
                 const regexView = /file\/d\/([a-zA-Z0-9_-]+)/;
                 const matchView = url.match(regexView);
                 
                 if (matchView && matchView[1]) {
                     fileId = matchView[1];
                 } else {
-                    // Regex للرابط المباشر: /uc?id=FILE_ID
                     const regexDirect = /id=([a-zA-Z0-9_-]+)/;
                     const matchDirect = url.match(regexDirect);
                     if (matchDirect && matchDirect[1]) {
@@ -170,12 +184,12 @@
 
             // --- 3. دالة التحويل الأساسية ---
             function convertLinks(mode) {
-                const links = textarea.value.split('\n'); // تقسيم الروابط المدخلة
+                const links = textarea.value.split('\n');
                 const newLinks = [];
 
                 for (const link of links) {
                     if (link.trim() === '') {
-                        newLinks.push(''); // الحفاظ على السطور الفارغة
+                        newLinks.push('');
                         continue;
                     }
                     
@@ -188,11 +202,9 @@
                             newLinks.push(`https://drive.google.com/uc?export=download&id=${fileId}`);
                         }
                     } else {
-                        // إذا لم يتم العثور على ID (رابط خطأ أو نص عادي)
                         newLinks.push(link); 
                     }
                 }
-                // تحديث الخانة بالروابط الجديدة
                 textarea.value = newLinks.join('\n');
             }
 
@@ -212,15 +224,13 @@
             // زر النسخ
             copyBtn.addEventListener('click', () => {
                 const text = textarea.value;
-                if (!text) return; // لا تفعل شيئاً لو الخانة فارغة
+                if (!text) return;
                 
                 navigator.clipboard.writeText(text)
                     .then(() => {
-                        // إعطاء علامة للمستخدم أنه تم النسخ
                         copyBtn.innerHTML = '✅ تم النسخ!';
                         copyBtn.classList.add('copied');
                         
-                        // إعادة الزر لوضعه الطبيعي بعد ثانيتين
                         setTimeout(() => {
                             copyBtn.innerHTML = copyBtnOriginalText;
                             copyBtn.classList.remove('copied');
@@ -229,6 +239,11 @@
                     .catch(err => {
                         console.error('Failed to copy: ', err);
                     });
+            });
+
+            // --- (جديد) --- زر المسح
+            clearBtn.addEventListener('click', () => {
+                textarea.value = ''; // يفرغ الخانة
             });
 
             // أزرار التحويل
