@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>أداة حذف السطور الفارغة</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* 1. إعدادات عامة وتنسيق الخط */
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background-color: #f4f7f6;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            box-sizing: border-box;
+        }
+
+        /* 2. الحاوية الرئيسية للأداة */
+        .tool-container {
+            width: 100%;
+            max-width: 1200px;
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.07);
+            box-sizing: border-box;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        h1 {
+            color: #0056b3; /* لون أزرق مميز */
+            margin: 0;
+        }
+
+        header p {
+            font-size: 1.1rem;
+            color: #555;
+            margin-top: 5px;
+        }
+
+        /* 3. حاوية مربعات النص (الإدخال والإخراج) */
+        .text-areas {
+            display: flex;
+            gap: 20px;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        textarea {
+            width: 100%;
+            height: 350px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            line-height: 1.6;
+            font-family: 'Tajawal', sans-serif;
+            resize: vertical; /* السماح بتغيير الحجم عمودياً فقط */
+            box-sizing: border-box;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        textarea:focus {
+            border-color: #007bff;
+            box-shadow: 0 0 5px rgba(0, 123, 255, 0.25);
+            outline: none;
+        }
+
+        /* تمييز مربع النتائج */
+        #outputText {
+            background-color: #f9f9f9;
+        }
+
+        /* 4. حاوية الأزرار (تخطيط مرن) */
+        .buttons-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+        }
+
+        button {
+            padding: 12px 20px;
+            font-family: 'Tajawal', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease-in-out;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        /* 5. تصميم الأزرار بألوان مختلفة لكل وظيفة */
+        
+        /* الزر الرئيسي: تنظيف */
+        #processBtn {
+            background-color: #007bff;
+            color: white;
+            /* إضافة أيقونة SVG بسيطة */
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 5h9'%3E%3C/path%3E%3Cpath d='M12 12h9'%3E%3C/path%3E%3Cpath d='M12 19h9'%3E%3C/path%3E%3Cpath d='M3 5l4 4'%3E%3C/path%3E%3Cpath d='M3 19l4-4'%3E%3C/path%3E%3Cpath d='M3 12h4'%3E%3C/path%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 15px center;
+            padding-right: 45px; /* إتاحة مساحة للأيقونة */
+        }
+        #processBtn:hover {
+            background-color: #0056b3;
+            transform: translateY(-2px);
+        }
+
+        /* زر النسخ */
+        #copyBtn {
+            background-color: #28a745;
+            color: white;
+        }
+        #copyBtn:hover {
+            background-color: #1e7e34;
+        }
+        /* حالة "تم النسخ" */
+        #copyBtn.copied {
+            background-color: #1a9c3b;
+        }
+
+        /* زر اللصق السريع */
+        #pasteBtn {
+            background-color: #6c757d;
+            color: white;
+        }
+        #pasteBtn:hover {
+            background-color: #5a6268;
+        }
+
+        /* زر المسح */
+        #clearBtn {
+            background-color: #dc3545;
+            color: white;
+        }
+        #clearBtn:hover {
+            background-color: #b02a37;
+        }
+
+        /* 6. التوافق مع الجوال */
+        @media (max-width: 768px) {
+            .text-areas {
+                flex-direction: column; /* تحويل المربعات إلى عمودية */
+            }
+
+            textarea {
+                height: 250px; /* تقليل الارتفاع على الجوال */
+            }
+
+            .tool-container {
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 1.5rem;
+            }
+
+            header p {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <main class="tool-container">
+        <header>
+            <h1>أداة حذف السطور الفارغة</h1>
+            <p>لصق النص في المربع الأول، واضغط "تنظيف" لإزالة كل الأسطر الفارغة أو التي تحتوي على مسافات فقط.</p>
+        </header>
+
+        <div class="text-areas">
+            <textarea id="inputText" placeholder="الصق النص هنا..."></textarea>
+            <textarea id="outputText" placeholder="النتيجة النظيفة ستظهر هنا..." readonly></textarea>
+        </div>
+
+        <div class="buttons-grid">
+            <button id="processBtn">تنظيف النص</button>
+            <button id="copyBtn" data-original-text="نسخ النتيجة">نسخ النتيجة</button>
+            <button id="pasteBtn">لصق من الحافظة</button>
+            <button id="clearBtn">مسح الكل</button>
+        </div>
+    </main>
+
+    <script>
+        // تحديد العناصر
+        const inputText = document.getElementById('inputText');
+        const outputText = document.getElementById('outputText');
+        const processBtn = document.getElementById('processBtn');
+        const copyBtn = document.getElementById('copyBtn');
+        const pasteBtn = document.getElementById('pasteBtn');
+        const clearBtn = document.getElementById('clearBtn');
+        const copyBtnOriginalText = copyBtn.dataset.originalText;
+
+        // 1. الدالة الأساسية: تنظيف النص
+        function processText() {
+            const text = inputText.value;
+            
+            // 1. قسم النص إلى سطور
+            const lines = text.split('\n');
+            
+            // 2. فلتر السطور:
+            // - نستخدم .trim() لإزالة المسافات البيضاء من بداية ونهاية السطر
+            // - نحتفظ بالسطر فقط إذا لم يكن فارغاً بعد .trim()
+            const filteredLines = lines.filter(line => line.trim() !== '');
+            
+            // 3. أعد تجميع السطور النظيفة
+            const result = filteredLines.join('\n');
+            
+            // 4. اعرض النتيجة
+            outputText.value = result;
+        }
+
+        // 2. دالة النسخ مع إظهار تأكيد
+        function copyText() {
+            if (!outputText.value) return; // لا تفعل شيئاً إذا كان مربع النتيجة فارغاً
+
+            navigator.clipboard.writeText(outputText.value).then(() => {
+                // نجح النسخ
+                copyBtn.textContent = 'تم النسخ!';
+                copyBtn.classList.add('copied'); // لتغيير اللون إذا أردنا
+                
+                // إعادة الزر لحالته الأصلية بعد ثانيتين
+                setTimeout(() => {
+                    copyBtn.textContent = copyBtnOriginalText;
+                    copyBtn.classList.remove('copied');
+                }, 2000);
+            }).catch(err => {
+                console.error('فشل النسخ: ', err);
+                alert('حدث خطأ أثناء النسخ.');
+            });
+        }
+        
+        // 3. دالة اللصق السريع (لتحسين تجربة المستخدم)
+        async function pasteText() {
+            try {
+                const text = await navigator.clipboard.readText();
+                inputText.value = text;
+                // بعد اللصق، نقوم بالتنظيف مباشرة
+                processText();
+            } catch (err) {
+                console.error('فشل اللصق: ', err);
+                alert('لا يمكن قراءة الحافظة. يرجى اللصق يدوياً (Ctrl+V).');
+            }
+        }
+
+        // 4. دالة المسح
+        function clearAll() {
+            inputText.value = '';
+            outputText.value = '';
+            // إعادة زر النسخ لنصه الأصلي إذا كان في حالة "تم النسخ"
+            copyBtn.textContent = copyBtnOriginalText;
+            copyBtn.classList.remove('copied');
+        }
+
+        // ربط الدوال بالأزرار
+        processBtn.addEventListener('click', processText);
+        copyBtn.addEventListener('click', copyText);
+        pasteBtn.addEventListener('click', pasteText);
+        clearBtn.addEventListener('click', clearAll);
+        
+        // تحسين إضافي: التنظيف تلقائياً أثناء الكتابة (اختياري، لكنه مفيد)
+        // inputText.addEventListener('input', processText);
+
+    </script>
+
+</body>
+</html>
