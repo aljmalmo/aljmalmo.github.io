@@ -3,86 +3,134 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>أداة تنسيق العناوين والروابط</title>
+    <title>أداة التنسيق السريع للعناوين والروابط</title>
     <style>
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 20px;
-            background-color: #f4f4f9;
-            direction: rtl; /* لضمان دعم اللغة العربية بشكل صحيح */
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #eef2f7;
+            direction: rtl; 
             text-align: right;
         }
         .container {
-            max-width: 800px;
-            margin: auto;
-            background: #fff;
+            max-width: 700px;
+            margin: 20px auto;
+            background: #ffffff;
             padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 12px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
         }
         h1 {
-            color: #007bff;
-            border-bottom: 2px solid #007bff;
+            color: #1e88e5; /* لون أزرق جذاب */
+            text-align: center;
+            margin-bottom: 25px;
             padding-bottom: 10px;
-            margin-bottom: 20px;
+            border-bottom: 3px solid #e1f5fe;
+        }
+        p {
+            color: #555;
+            margin-bottom: 15px;
+            font-size: 15px;
         }
         textarea {
             width: 100%;
             min-height: 200px;
             padding: 15px;
-            margin-bottom: 20px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
+            margin-top: 10px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
             font-size: 16px;
-            box-sizing: border-box; /* لضمان بقاء الحجم ضمن 100% */
+            box-sizing: border-box;
             resize: vertical;
+            line-height: 1.6;
+        }
+        /* المنطقة المخصصة للأزرار */
+        .button-group {
+            display: flex;
+            justify-content: space-between;
+            gap: 15px;
+            margin-top: 20px;
         }
         button {
-            background-color: #28a745;
-            color: white;
-            padding: 12px 20px;
+            flex-grow: 1; /* لجعل الأزرار تتمدد بشكل متساوٍ */
+            padding: 12px 15px;
             border: none;
-            border-radius: 5px;
+            border-radius: 8px;
             cursor: pointer;
-            font-size: 18px;
-            transition: background-color 0.3s;
+            font-size: 16px;
+            font-weight: bold;
+            transition: background-color 0.3s, transform 0.2s;
         }
-        button:hover {
-            background-color: #1e7e34;
+        /* زر التنسيق */
+        #formatBtn {
+            background-color: #4caf50; /* أخضر */
+            color: white;
         }
-        /* تصميم خاص لنتائج الإخراج */
-        #output {
-            margin-top: 20px;
-            border: 1px dashed #007bff;
-            padding: 15px;
-            background-color: #e9f7ff;
-            white-space: pre-wrap; /* للحفاظ على تنسيق السطور الجديدة */
-            text-align: left; /* لروابط اللينك */
-            direction: ltr; /* لروابط اللينك */
+        #formatBtn:hover {
+            background-color: #43a047;
+            transform: translateY(-2px);
+        }
+        /* زر النسخ */
+        #copyBtn {
+            background-color: #ff9800; /* برتقالي */
+            color: white;
+        }
+        #copyBtn:hover {
+            background-color: #fb8c00;
+            transform: translateY(-2px);
+        }
+        /* تخصيص مظهر منطقة الإخراج */
+        #outputText {
+            background-color: #f7f9fc;
+            border: 2px dashed #bbdefb;
+            direction: ltr; /* لعرض الروابط بشكل صحيح */
+            text-align: left;
+            font-family: monospace;
+        }
+        .status-message {
+            margin-top: 10px;
+            font-weight: bold;
+            color: #e53935; /* أحمر مبدئي */
         }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <h1>أداة تنسيق العناوين والروابط 📝</h1>
+    <h1>✨ أداة التنسيق السريع ✨</h1>
     
-    <p>أدخل النص الذي يحتوي على العناوين والروابط بالصيغة: "العنوان *مسافة* الرابط" في الصندوق التالي:</p>
+    <p>➡️ الصق النصوص هنا: (كل عنوان ورابطه في سطرين متتاليين أو يفصلهما مسافات)</p>
+    <textarea id="inputText" placeholder="مثال:
+دليل الباطنة للامتياز   
+https://t.me/doctorhypo/8583
     
-    <textarea id="inputText" placeholder="الصق نصوصك هنا..."></textarea>
+كتاب الجراحة 
+https://t.me/doctorhypo/8000"></textarea>
     
-    <button onclick="processText()">تنسيق النص وتصديره ✨</button>
+    <div class="button-group">
+        <button id="formatBtn" onclick="processText()">تنسيق النص (إضافة 👇 وحذف https://)</button>
+        <button id="copyBtn" onclick="copyOutput()" disabled>نسخ النتائج</button>
+    </div>
     
-    <h3>النتائج المنسقة:</h3>
-    <textarea id="outputText" readonly placeholder="ستظهر النتائج المنسقة هنا..." style="min-height: 300px; direction: ltr; text-align: left;"></textarea>
-
+    <p id="statusMessage" class="status-message" style="visibility: hidden;">تم النسخ بنجاح!</p>
+    
+    <p style="margin-top: 30px;">✅ النتائج المنسقة جاهزة للنسخ:</p>
+    <textarea id="outputText" readonly placeholder="ستظهر هنا النصوص المنسقة..." style="min-height: 250px;"></textarea>
 </div>
 
 <script>
     function processText() {
         const inputText = document.getElementById('inputText').value;
-        
-        // تقسيم النص إلى سطور
+        const outputTextArea = document.getElementById('outputText');
+        const copyBtn = document.getElementById('copyBtn');
+        const statusMessage = document.getElementById('statusMessage');
+
+        // إخفاء رسالة الحالة وتفعيل زر النسخ
+        statusMessage.style.visibility = 'hidden';
+        copyBtn.disabled = true;
+
+        // تقسيم النص إلى سطور (مع الاحتفاظ بالسطور الفارغة مؤقتاً لتسهيل الفصل)
         let lines = inputText.split('\n');
         
         let outputLines = [];
@@ -91,16 +139,17 @@
         for (let i = 0; i < lines.length; i++) {
             let line = lines[i].trim();
             
-            // تخطي السطور الفارغة تمامًا
+            // تخطي السطور الفارغة أو البيضاء تماماً
             if (line === '') {
                 continue;
             }
             
             // 1. معالجة العنوان (إذا لم نكن قد عثرنا على عنوان بعد)
-            // نعتبر أن أي سطر لا يبدأ بـ 'http' أو 'https' هو عنوان
+            // نعتبر أن أي سطر لا يبدأ بـ 'http' هو عنوان محتمل
             if (!line.toLowerCase().startsWith('http') && !currentTitle) {
                 // إزالة أي مسافات زائدة من نهاية العنوان وإضافة علامة (👇)
-                currentTitle = line.trim() + '👇';
+                // يستخدم `replace(/\s+$/, '')` لإزالة جميع أنواع المسافات في النهاية
+                currentTitle = line.replace(/\s+$/, '') + '👇';
             } 
             
             // 2. معالجة الرابط (إذا كان لدينا عنوان متاح)
@@ -112,14 +161,13 @@
                 outputLines.push(currentTitle);
                 outputLines.push(cleanedLink);
                 
-                // إضافة سطر فارغ بين المدخلات
+                // إضافة سطر فارغ واحد بين المدخلات
                 outputLines.push(''); 
                 
                 // إعادة تعيين العنوان الحالي للبحث عن مدخلة جديدة
                 currentTitle = null;
             }
-            // في حال وجود سطر آخر بين العنوان والرابط (مثل مسافة أو سطر خاطئ)
-            // أو في حال وجود سطر رابط دون عنوان سابق، يتم تجاهله ضمن المنطق الحالي
+            // ملاحظة: إذا كان هناك سطر رابط دون عنوان سابق، يتم تجاهله.
         }
         
         // تصفية أي سطر فارغ زائد في نهاية المخرجات
@@ -127,8 +175,42 @@
             outputLines.pop();
         }
 
-        // عرض النتائج المنسقة
-        document.getElementById('outputText').value = outputLines.join('\n');
+        // عرض النتائج المنسقة وتفعيل زر النسخ
+        outputTextArea.value = outputLines.join('\n');
+        copyBtn.disabled = false;
+        
+        // عرض رسالة نجاح بسيطة
+        statusMessage.style.color = '#1e88e5'; // أزرق للنجاح
+        statusMessage.innerText = 'تم التنسيق بنجاح! يمكنك الآن النسخ.';
+        statusMessage.style.visibility = 'visible';
+    }
+
+    function copyOutput() {
+        const outputTextArea = document.getElementById('outputText');
+        const statusMessage = document.getElementById('statusMessage');
+
+        if (outputTextArea.value.trim() === "") {
+            statusMessage.style.color = '#e53935';
+            statusMessage.innerText = 'لا يوجد نص لنسخه.';
+            statusMessage.style.visibility = 'visible';
+            return;
+        }
+
+        outputTextArea.select();
+        outputTextArea.setSelectionRange(0, 99999); // لتحديد النص بالكامل في الهواتف
+        
+        try {
+            document.execCommand('copy');
+            statusMessage.style.color = '#4caf50'; // أخضر للنسخ
+            statusMessage.innerText = '✅ تم نسخ النص المنسق بنجاح إلى الحافظة!';
+            statusMessage.style.visibility = 'visible';
+        } catch (err) {
+            statusMessage.style.color = '#e53935';
+            statusMessage.innerText = '❌ فشل النسخ التلقائي. يرجى النسخ يدوياً.';
+            statusMessage.style.visibility = 'visible';
+        }
+        // إلغاء تحديد النص بعد النسخ
+        window.getSelection().removeAllRanges();
     }
 </script>
 
