@@ -3,215 +3,286 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>أداة التنسيق السريع للعناوين والروابط</title>
+    <title>منسق العناوين والروابط الاحترافي</title>
     <style>
+        /* الخطوط والألوان الأساسية */
         body {
-            font-family: 'Arial', sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
-            padding: 20px;
-            background-color: #eef2f7;
+            padding: 40px 20px;
+            background-color: #f0f4f8; /* خلفية فاتحة وناعمة */
             direction: rtl; 
             text-align: right;
+            line-height: 1.6;
         }
         .container {
-            max-width: 700px;
-            margin: 20px auto;
+            max-width: 800px;
+            margin: 0 auto;
             background: #ffffff;
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+            padding: 35px;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border: 1px solid #e0e7ee;
         }
+        /* العنوان */
         h1 {
-            color: #1e88e5; /* لون أزرق جذاب */
+            color: #1a73e8; /* أزرق مميز */
             text-align: center;
-            margin-bottom: 25px;
-            padding-bottom: 10px;
-            border-bottom: 3px solid #e1f5fe;
+            margin-bottom: 30px;
+            font-size: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
-        p {
-            color: #555;
-            margin-bottom: 15px;
-            font-size: 15px;
+        h1 span {
+            margin-left: 10px;
+            font-size: 32px;
         }
+
+        /* حقول النص */
         textarea {
             width: 100%;
             min-height: 200px;
             padding: 15px;
             margin-top: 10px;
-            border: 1px solid #ddd;
+            border: 1px solid #cce0ff; /* إطار أزرق فاتح */
             border-radius: 8px;
             font-size: 16px;
             box-sizing: border-box;
             resize: vertical;
-            line-height: 1.6;
+            transition: border-color 0.3s;
         }
-        /* المنطقة المخصصة للأزرار */
-        .button-group {
+        textarea:focus {
+            border-color: #1a73e8;
+            box-shadow: 0 0 5px rgba(26, 115, 232, 0.5);
+            outline: none;
+        }
+        /* منطقة الإخراج */
+        #outputText {
+            min-height: 250px;
+            background-color: #f7f9fc; /* خلفية فاتحة للنتائج */
+            direction: ltr; 
+            text-align: left;
+            font-family: monospace;
+            color: #333;
+        }
+
+        /* مجموعة الأزرار */
+        .controls-panel {
             display: flex;
-            justify-content: space-between;
-            gap: 15px;
-            margin-top: 20px;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 20px 0;
         }
+        
         button {
-            flex-grow: 1; /* لجعل الأزرار تتمدد بشكل متساوٍ */
-            padding: 12px 15px;
+            padding: 10px 15px;
             border: none;
-            border-radius: 8px;
+            border-radius: 6px;
             cursor: pointer;
-            font-size: 16px;
+            font-size: 15px;
             font-weight: bold;
-            transition: background-color 0.3s, transform 0.2s;
+            transition: background-color 0.3s, transform 0.1s;
+            flex-grow: 1; /* للسماح للأزرار بالتمدد */
+            min-width: 120px;
         }
-        /* زر التنسيق */
+        button:active {
+            transform: scale(0.98);
+        }
+        button:disabled {
+            background-color: #ccc !important;
+            cursor: not-allowed;
+        }
+
+        /* تنسيق زر التنسيق الأساسي */
         #formatBtn {
-            background-color: #4caf50; /* أخضر */
+            background-color: #4CAF50; /* أخضر */
             color: white;
+            flex-grow: 2; /* جعله أطول قليلاً */
         }
         #formatBtn:hover {
             background-color: #43a047;
-            transform: translateY(-2px);
         }
-        /* زر النسخ */
+
+        /* تنسيق زر النسخ */
         #copyBtn {
-            background-color: #ff9800; /* برتقالي */
+            background-color: #2196F3; /* أزرق */
             color: white;
         }
         #copyBtn:hover {
+            background-color: #1e88e5;
+        }
+
+        /* تنسيق زر اللصق */
+        #pasteBtn {
+            background-color: #FF9800; /* برتقالي */
+            color: white;
+        }
+        #pasteBtn:hover {
             background-color: #fb8c00;
-            transform: translateY(-2px);
         }
-        /* تخصيص مظهر منطقة الإخراج */
-        #outputText {
-            background-color: #f7f9fc;
-            border: 2px dashed #bbdefb;
-            direction: ltr; /* لعرض الروابط بشكل صحيح */
-            text-align: left;
-            font-family: monospace;
+
+        /* تنسيق زر المسح */
+        #clearBtn {
+            background-color: #f44336; /* أحمر */
+            color: white;
         }
-        .status-message {
-            margin-top: 10px;
+        #clearBtn:hover {
+            background-color: #e53935;
+        }
+
+        /* رسالة الحالة */
+        #statusMessage {
+            margin-top: 15px;
+            padding: 10px;
+            border-radius: 6px;
             font-weight: bold;
-            color: #e53935; /* أحمر مبدئي */
+            text-align: center;
+            visibility: hidden;
+            background-color: #fff3e0; /* خلفية صفراء فاتحة */
+            color: #ff9800;
+        }
+        .success {
+            background-color: #e8f5e9 !important;
+            color: #4CAF50 !important;
+        }
+        .error {
+            background-color: #ffebee !important;
+            color: #f44336 !important;
         }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <h1>✨ أداة التنسيق السريع ✨</h1>
+    <h1>منسق العناوين والروابط <span role="img" aria-label="Tool icon">🛠️👇</span></h1>
     
-    <p>➡️ الصق النصوص هنا: (كل عنوان ورابطه في سطرين متتاليين أو يفصلهما مسافات)</p>
-    <textarea id="inputText" placeholder="مثال:
-دليل الباطنة للامتياز   
-https://t.me/doctorhypo/8583
+    <p>**1. الصق النص:** أدخل العناوين والروابط في الصندوق التالي:</p>
+    <textarea id="inputText" placeholder="الصق نصوصك هنا: (عنوان ثم رابط في السطر التالي)..."></textarea>
     
-كتاب الجراحة 
-https://t.me/doctorhypo/8000"></textarea>
-    
-    <div class="button-group">
-        <button id="formatBtn" onclick="processText()">تنسيق النص (إضافة 👇 وحذف https://)</button>
-        <button id="copyBtn" onclick="copyOutput()" disabled>نسخ النتائج</button>
+    <div class="controls-panel">
+        <button id="formatBtn" onclick="processText()">تنفيذ التنسيق (إضافة 👇 وحذف https://)</button>
+        <button id="pasteBtn" onclick="pasteText()">لصق النص</button>
+        <button id="clearBtn" onclick="clearTextareas()">مسح الصندوقين</button>
     </div>
     
-    <p id="statusMessage" class="status-message" style="visibility: hidden;">تم النسخ بنجاح!</p>
+    <div id="statusMessage">رسالة الحالة هنا</div>
     
-    <p style="margin-top: 30px;">✅ النتائج المنسقة جاهزة للنسخ:</p>
+    <p>**2. النتائج:** النص المنسق جاهز للنسخ:</p>
     <textarea id="outputText" readonly placeholder="ستظهر هنا النصوص المنسقة..." style="min-height: 250px;"></textarea>
+
+    <div class="controls-panel">
+        <button id="copyBtn" onclick="copyOutput()" disabled style="flex-grow: 1;">نسخ النص المنسق</button>
+    </div>
+
 </div>
 
 <script>
-    function processText() {
-        const inputText = document.getElementById('inputText').value;
-        const outputTextArea = document.getElementById('outputText');
-        const copyBtn = document.getElementById('copyBtn');
-        const statusMessage = document.getElementById('statusMessage');
+    const inputText = document.getElementById('inputText');
+    const outputText = document.getElementById('outputText');
+    const copyBtn = document.getElementById('copyBtn');
+    const statusMessage = document.getElementById('statusMessage');
 
-        // إخفاء رسالة الحالة وتفعيل زر النسخ
-        statusMessage.style.visibility = 'hidden';
-        copyBtn.disabled = true;
-
-        // تقسيم النص إلى سطور (مع الاحتفاظ بالسطور الفارغة مؤقتاً لتسهيل الفصل)
-        let lines = inputText.split('\n');
+    // --- وظيفة عرض رسائل الحالة ---
+    function showStatus(message, type = 'info') {
+        statusMessage.innerText = message;
+        statusMessage.className = '';
+        statusMessage.style.visibility = 'visible';
         
+        if (type === 'success') {
+            statusMessage.classList.add('success');
+        } else if (type === 'error') {
+            statusMessage.classList.add('error');
+        }
+        // إخفاء الرسالة بعد 5 ثوانٍ
+        setTimeout(() => { statusMessage.style.visibility = 'hidden'; }, 5000);
+    }
+
+    // --- 1. وظيفة التنسيق الرئيسية ---
+    function processText() {
+        const input = inputText.value;
+        if (input.trim() === "") {
+            showStatus('صندوق الإدخال فارغ! يرجى لصق النص أولاً.', 'error');
+            return;
+        }
+
+        let lines = input.split('\n');
         let outputLines = [];
         let currentTitle = null;
         
+        // منطق التنسيق
         for (let i = 0; i < lines.length; i++) {
             let line = lines[i].trim();
             
-            // تخطي السطور الفارغة أو البيضاء تماماً
-            if (line === '') {
-                continue;
-            }
+            if (line === '') continue;
             
-            // 1. معالجة العنوان (إذا لم نكن قد عثرنا على عنوان بعد)
-            // نعتبر أن أي سطر لا يبدأ بـ 'http' هو عنوان محتمل
             if (!line.toLowerCase().startsWith('http') && !currentTitle) {
-                // إزالة أي مسافات زائدة من نهاية العنوان وإضافة علامة (👇)
-                // يستخدم `replace(/\s+$/, '')` لإزالة جميع أنواع المسافات في النهاية
+                // العنوان: إزالة المسافات في النهاية وإضافة العلامة 👇
                 currentTitle = line.replace(/\s+$/, '') + '👇';
             } 
-            
-            // 2. معالجة الرابط (إذا كان لدينا عنوان متاح)
             else if (line.toLowerCase().startsWith('http') && currentTitle) {
-                // إزالة البادئة https:// أو http:// أو أي بادئة أخرى
+                // الرابط: إزالة البادئة https:// أو http://
                 let cleanedLink = line.replace(/^(https?:\/\/(www\.)?)/i, '');
                 
-                // إضافة العنوان واللينك المنسقين إلى المخرجات
                 outputLines.push(currentTitle);
                 outputLines.push(cleanedLink);
+                outputLines.push(''); // سطر فارغ للفصل
                 
-                // إضافة سطر فارغ واحد بين المدخلات
-                outputLines.push(''); 
-                
-                // إعادة تعيين العنوان الحالي للبحث عن مدخلة جديدة
                 currentTitle = null;
             }
-            // ملاحظة: إذا كان هناك سطر رابط دون عنوان سابق، يتم تجاهله.
         }
         
-        // تصفية أي سطر فارغ زائد في نهاية المخرجات
+        // تصفية أي سطر فارغ زائد في النهاية
         while (outputLines.length > 0 && outputLines[outputLines.length - 1] === '') {
             outputLines.pop();
         }
 
-        // عرض النتائج المنسقة وتفعيل زر النسخ
-        outputTextArea.value = outputLines.join('\n');
+        // عرض النتائج
+        outputText.value = outputLines.join('\n');
         copyBtn.disabled = false;
-        
-        // عرض رسالة نجاح بسيطة
-        statusMessage.style.color = '#1e88e5'; // أزرق للنجاح
-        statusMessage.innerText = 'تم التنسيق بنجاح! يمكنك الآن النسخ.';
-        statusMessage.style.visibility = 'visible';
+        showStatus('تم التنسيق بنجاح! الأداة جاهزة للنسخ.', 'success');
     }
 
+    // --- 2. وظيفة النسخ ---
     function copyOutput() {
-        const outputTextArea = document.getElementById('outputText');
-        const statusMessage = document.getElementById('statusMessage');
-
-        if (outputTextArea.value.trim() === "") {
-            statusMessage.style.color = '#e53935';
-            statusMessage.innerText = 'لا يوجد نص لنسخه.';
-            statusMessage.style.visibility = 'visible';
+        if (outputText.value.trim() === "") {
+            showStatus('لا يوجد نص في صندوق النتائج لنسخه.', 'error');
             return;
         }
 
-        outputTextArea.select();
-        outputTextArea.setSelectionRange(0, 99999); // لتحديد النص بالكامل في الهواتف
+        outputText.select();
+        outputText.setSelectionRange(0, 99999); 
         
         try {
             document.execCommand('copy');
-            statusMessage.style.color = '#4caf50'; // أخضر للنسخ
-            statusMessage.innerText = '✅ تم نسخ النص المنسق بنجاح إلى الحافظة!';
-            statusMessage.style.visibility = 'visible';
+            showStatus('✅ تم نسخ النص المنسق بنجاح إلى الحافظة!', 'success');
         } catch (err) {
-            statusMessage.style.color = '#e53935';
-            statusMessage.innerText = '❌ فشل النسخ التلقائي. يرجى النسخ يدوياً.';
-            statusMessage.style.visibility = 'visible';
+            showStatus('❌ فشل النسخ التلقائي. يرجى النسخ يدوياً.', 'error');
         }
-        // إلغاء تحديد النص بعد النسخ
         window.getSelection().removeAllRanges();
     }
+
+    // --- 3. وظيفة اللصق (تتطلب تفاعل المستخدم أولاً في بعض المتصفحات) ---
+    async function pasteText() {
+        try {
+            // استخدام Clipboard API الحديث
+            const text = await navigator.clipboard.readText();
+            inputText.value = text;
+            showStatus('تم لصق النص بنجاح في صندوق الإدخال.', 'info');
+        } catch (err) {
+            // الرجوع إلى الطريقة القديمة إذا فشلت أو كان المتصفح لا يدعم
+            showStatus('فشل اللصق التلقائي! يرجى استخدام (Ctrl+V) أو النقر بالزر الأيمن.', 'error');
+        }
+    }
+
+    // --- 4. وظيفة المسح ---
+    function clearTextareas() {
+        inputText.value = '';
+        outputText.value = '';
+        copyBtn.disabled = true;
+        showStatus('تم مسح جميع الصناديق بنجاح.', 'info');
+    }
+
 </script>
 
 </body>
