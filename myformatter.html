@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>أداة تنسيق العناوين والروابط</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f9;
+            direction: rtl; /* لضمان دعم اللغة العربية بشكل صحيح */
+            text-align: right;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #007bff;
+            border-bottom: 2px solid #007bff;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        textarea {
+            width: 100%;
+            min-height: 200px;
+            padding: 15px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            box-sizing: border-box; /* لضمان بقاء الحجم ضمن 100% */
+            resize: vertical;
+        }
+        button {
+            background-color: #28a745;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 18px;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #1e7e34;
+        }
+        /* تصميم خاص لنتائج الإخراج */
+        #output {
+            margin-top: 20px;
+            border: 1px dashed #007bff;
+            padding: 15px;
+            background-color: #e9f7ff;
+            white-space: pre-wrap; /* للحفاظ على تنسيق السطور الجديدة */
+            text-align: left; /* لروابط اللينك */
+            direction: ltr; /* لروابط اللينك */
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>أداة تنسيق العناوين والروابط 📝</h1>
+    
+    <p>أدخل النص الذي يحتوي على العناوين والروابط بالصيغة: "العنوان *مسافة* الرابط" في الصندوق التالي:</p>
+    
+    <textarea id="inputText" placeholder="الصق نصوصك هنا..."></textarea>
+    
+    <button onclick="processText()">تنسيق النص وتصديره ✨</button>
+    
+    <h3>النتائج المنسقة:</h3>
+    <textarea id="outputText" readonly placeholder="ستظهر النتائج المنسقة هنا..." style="min-height: 300px; direction: ltr; text-align: left;"></textarea>
+
+</div>
+
+<script>
+    function processText() {
+        const inputText = document.getElementById('inputText').value;
+        
+        // تقسيم النص إلى سطور
+        let lines = inputText.split('\n');
+        
+        let outputLines = [];
+        let currentTitle = null;
+        
+        for (let i = 0; i < lines.length; i++) {
+            let line = lines[i].trim();
+            
+            // تخطي السطور الفارغة تمامًا
+            if (line === '') {
+                continue;
+            }
+            
+            // 1. معالجة العنوان (إذا لم نكن قد عثرنا على عنوان بعد)
+            // نعتبر أن أي سطر لا يبدأ بـ 'http' أو 'https' هو عنوان
+            if (!line.toLowerCase().startsWith('http') && !currentTitle) {
+                // إزالة أي مسافات زائدة من نهاية العنوان وإضافة علامة (👇)
+                currentTitle = line.trim() + '👇';
+            } 
+            
+            // 2. معالجة الرابط (إذا كان لدينا عنوان متاح)
+            else if (line.toLowerCase().startsWith('http') && currentTitle) {
+                // إزالة البادئة https:// أو http:// أو أي بادئة أخرى
+                let cleanedLink = line.replace(/^(https?:\/\/(www\.)?)/i, '');
+                
+                // إضافة العنوان واللينك المنسقين إلى المخرجات
+                outputLines.push(currentTitle);
+                outputLines.push(cleanedLink);
+                
+                // إضافة سطر فارغ بين المدخلات
+                outputLines.push(''); 
+                
+                // إعادة تعيين العنوان الحالي للبحث عن مدخلة جديدة
+                currentTitle = null;
+            }
+            // في حال وجود سطر آخر بين العنوان والرابط (مثل مسافة أو سطر خاطئ)
+            // أو في حال وجود سطر رابط دون عنوان سابق، يتم تجاهله ضمن المنطق الحالي
+        }
+        
+        // تصفية أي سطر فارغ زائد في نهاية المخرجات
+        while (outputLines.length > 0 && outputLines[outputLines.length - 1] === '') {
+            outputLines.pop();
+        }
+
+        // عرض النتائج المنسقة
+        document.getElementById('outputText').value = outputLines.join('\n');
+    }
+</script>
+
+</body>
+</html>
