@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>أداة إضافة الواصلة</title>
+    <style>
+        :root {
+            --primary-color: #007bff; /* أزرق أساسي */
+            --secondary-color: #f8f9fa; /* خلفية فاتحة */
+            --border-color: #ced4da;
+            --font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            font-family: var(--font-family);
+            background-color: #e9ecef;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 600px;
+            text-align: center;
+        }
+
+        h2 {
+            color: var(--primary-color);
+            margin-bottom: 25px;
+            font-size: 1.8em;
+        }
+
+        textarea {
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 20px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            box-sizing: border-box;
+            resize: vertical;
+            min-height: 150px;
+            font-size: 1em;
+            direction: rtl; /* لضمان الكتابة من اليمين لليسار */
+            text-align: right;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        textarea:focus {
+            border-color: var(--primary-color);
+        }
+
+        .button-group {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            flex-grow: 1;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: bold;
+            transition: background-color 0.3s, transform 0.1s;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+            transform: translateY(-1px);
+        }
+
+        .btn-secondary {
+            background-color: #6c757d;
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background-color: #5a6268;
+            transform: translateY(-1px);
+        }
+
+        .btn-success {
+            background-color: #28a745;
+            color: white;
+        }
+
+        .btn-success:hover {
+            background-color: #1e7e34;
+            transform: translateY(-1px);
+        }
+
+        #statusMessage {
+            margin-top: 15px;
+            padding: 10px;
+            border-radius: 8px;
+            display: none; /* إخفاء في البداية */
+            font-weight: bold;
+        }
+
+        .success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .info {
+            background-color: #cce5ff;
+            color: #004085;
+            border: 1px solid #b8daff;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>🔗 أداة تحويل المسافات إلى واصلات</h2>
+    <p>أدخل النص في المربع أدناه، ثم اضغط على "إضافة الواصلة".</p>
+
+    <textarea id="inputText" placeholder="أدخل النص هنا... مثال: جاء محمد مسرعًا"></textarea>
+    <textarea id="outputText" placeholder="النتيجة ستظهر هنا... مثال: جاء-محمد-مسرعًا" readonly></textarea>
+
+    <div class="button-group">
+        <button class="btn btn-primary" onclick="addHyphens()">
+            ✨ إضافة الواصلة
+        </button>
+        <button class="btn btn-secondary" onclick="copyResult()">
+            📋 نسخ النتيجة
+        </button>
+    </div>
+
+    <div class="button-group">
+        <button class="btn btn-secondary" onclick="clearAll()">
+            🗑️ مسح الكل
+        </button>
+        <button class="btn btn-success" onclick="swapText()">
+            🔄 تبديل (استخدام النتيجة كمدخل)
+        </button>
+    </div>
+
+    <div id="statusMessage"></div>
+</div>
+
+<script>
+    /**
+     * الوظيفة الرئيسية: إضافة علامة الواصلة (-) بدلًا من المسافات بين الكلمات.
+     * @param {string} text - النص المراد تحويله.
+     * @returns {string} - النص بعد إضافة الواصلات.
+     */
+    function addHyphens() {
+        const inputTextElement = document.getElementById('inputText');
+        const outputTextElement = document.getElementById('outputText');
+        const statusMessageElement = document.getElementById('statusMessage');
+
+        // 1. استخلاص قيمة النص
+        let text = inputTextElement.value.trim();
+
+        if (text === "") {
+            showMessage("الرجاء إدخال بعض النصوص أولاً.", "info");
+            outputTextElement.value = "";
+            return;
+        }
+
+        // 2. معالجة النص:
+        // - استخدام تعبير نمطي (Regex) للبحث عن مسافة واحدة أو أكثر (\s+)
+        // - واستبدالها بعلامة الواصلة (-).
+        // - استخدام .replace(/\s+/g, '-') يضمن التعامل مع المسافات المتعددة بين الكلمات.
+        let result = text.replace(/\s+/g, '-');
+
+        // 3. عرض النتيجة
+        outputTextElement.value = result;
+        showMessage("تم إضافة الواصلة بنجاح! مثال: " + result.substring(0, 30) + (result.length > 30 ? '...' : ''), "success");
+    }
+
+    /**
+     * نسخ محتوى حقل النتيجة إلى حافظة المستخدم.
+     */
+    function copyResult() {
+        const outputTextElement = document.getElementById('outputText');
+        if (outputTextElement.value.trim() === "") {
+            showMessage("لا يوجد شيء لنسخه.", "info");
+            return;
+        }
+
+        // تحديد ونسخ النص
+        outputTextElement.select();
+        outputTextElement.setSelectionRange(0, 99999); // للأجهزة المحمولة
+
+        try {
+            document.execCommand('copy');
+            showMessage("تم نسخ النتيجة إلى الحافظة!", "success");
+        } catch (err) {
+            console.error('فشل في النسخ', err);
+            showMessage("فشل النسخ، يرجى النسخ يدوياً.", "info");
+        }
+    }
+
+    /**
+     * مسح محتوى حقول الإدخال والنتيجة.
+     */
+    function clearAll() {
+        document.getElementById('inputText').value = '';
+        document.getElementById('outputText').value = '';
+        showMessage("تم مسح جميع الحقول.", "info");
+    }
+
+    /**
+     * تبديل المحتوى: وضع محتوى حقل النتيجة في حقل الإدخال.
+     */
+    function swapText() {
+        const inputTextElement = document.getElementById('inputText');
+        const outputTextElement = document.getElementById('outputText');
+
+        if (outputTextElement.value.trim() === "") {
+            showMessage("لا توجد نتيجة لتبديلها.", "info");
+            return;
+        }
+
+        inputTextElement.value = outputTextElement.value;
+        outputTextElement.value = "";
+        showMessage("تم تبديل النص بنجاح.", "success");
+    }
+
+    /**
+     * عرض رسائل حالة للمستخدم.
+     * @param {string} message - محتوى الرسالة.
+     * @param {string} type - نوع الرسالة (success أو info).
+     */
+    function showMessage(message, type) {
+        const statusMessageElement = document.getElementById('statusMessage');
+        statusMessageElement.textContent = message;
+        statusMessageElement.className = 'status-message ' + type;
+        statusMessageElement.style.display = 'block';
+
+        // إخفاء الرسالة بعد 4 ثوانٍ
+        setTimeout(() => {
+            statusMessageElement.style.display = 'none';
+        }, 4000);
+    }
+</script>
+
+</body>
+</html>
