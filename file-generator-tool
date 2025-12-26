@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File Generator Tool | أداة إنشاء الملفات</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <h1 class="title" data-ar="أداة إنشاء الملفات" data-en="File Generator Tool">أداة إنشاء الملفات</h1>
+            <p class="subtitle" data-ar="أنشئ وحمّل ملفات بصيغ مختلفة مباشرة من المتصفح" data-en="Create and download files in various formats directly from your browser">أنشئ وحمّل ملفات بصيغ مختلفة مباشرة من المتصفح</p>
+            <button class="lang-toggle" onclick="toggleLanguage()">
+                <span class="lang-text">EN</span>
+            </button>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="input-section">
+                <label for="textInput" class="input-label" data-ar="أدخل النص هنا:" data-en="Enter your text here:">أدخل النص هنا:</label>
+                <textarea 
+                    id="textInput" 
+                    class="text-input" 
+                    placeholder="اكتب النص الذي تريد حفظه في الملف..."
+                    data-placeholder-ar="اكتب النص الذي تريد حفظه في الملف..."
+                    data-placeholder-en="Type the text you want to save in the file..."
+                    rows="10"
+                ></textarea>
+            </div>
+
+            <div class="controls-section">
+                <div class="file-type-section">
+                    <label for="fileType" class="control-label" data-ar="نوع الملف:" data-en="File Type:">نوع الملف:</label>
+                    <select id="fileType" class="file-type-select">
+                        <option value="txt">TXT - ملف نصي</option>
+                        <option value="html">HTML - صفحة ويب</option>
+                        <option value="css">CSS - ملف تنسيق</option>
+                        <option value="js">JS - ملف جافا سكريبت</option>
+                        <option value="xml">XML - ملف XML</option>
+                        <option value="docx">DOCX - مستند وورد</option>
+                    </select>
+                </div>
+
+                <div class="filename-section">
+                    <label for="fileName" class="control-label" data-ar="اسم الملف:" data-en="File Name:">اسم الملف:</label>
+                    <input 
+                        type="text" 
+                        id="fileName" 
+                        class="filename-input" 
+                        value="output"
+                        placeholder="output"
+                    >
+                    <span class="file-extension">.txt</span>
+                </div>
+            </div>
+
+            <button class="generate-btn" onclick="generateAndDownload()">
+                <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                    <polyline points="7,10 12,15 17,10"></polyline>
+                    <line x1="12" y1="15" x2="12" y2="3"></line>
+                </svg>
+                <span data-ar="إنشاء وتحميل الملف" data-en="Generate & Download">إنشاء وتحميل الملف</span>
+            </button>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p data-ar="أداة مفتوحة المصدر - متاحة على" data-en="Open source tool - Available on">أداة مفتوحة المصدر - متاحة على</p>
+            <a href="#" class="github-link" target="_blank">GitHub</a>
+        </footer>
+    </div>
+
+    <script src="jszip.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
