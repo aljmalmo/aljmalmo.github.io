@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>محول نصوص زاد الطب</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f7f6; padding: 20px; }
+        .container { max-width: 800px; margin: auto; background: white; padding: 25px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        h2 { color: #2c3e50; text-align: center; }
+        textarea { width: 100%; height: 200px; padding: 10px; border: 2px solid #ddd; border-radius: 8px; margin-bottom: 15px; resize: vertical; box-sizing: border-box; }
+        .buttons { display: flex; gap: 10px; flex-wrap: wrap; }
+        button { flex: 1; padding: 12px; border: none; border-radius: 6px; cursor: pointer; font-weight: bold; transition: 0.3s; }
+        .btn-to-text { background-color: #27ae60; color: white; }
+        .btn-to-json { background-color: #2980b9; color: white; }
+        button:hover { opacity: 0.9; transform: translateY(-2px); }
+        .copy-btn { background-color: #7f8c8d; color: white; margin-top: 10px; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>🔄 محول النصوص التبادلي</h2>
+    
+    <textarea id="inputArea" placeholder="أدخل النصوص هنا..."></textarea>
+    
+    <div class="buttons">
+        <button class="btn-to-text" onclick="convertToText()">تحويل إلى نص (فيسبوك/تلجرام) 👇</button>
+        <button class="btn-to-json" onclick="convertToJson()">تحويل إلى كود (JSON) ⚙️</button>
+    </div>
+
+    <button class="copy-btn" onclick="copyText()">نسخ النص الناتج ✨</button>
+</div>
+
+<script>
+    const inputArea = document.getElementById('inputArea');
+
+    // وظيفة التحويل من JSON إلى نص بسيط
+    function convertToText() {
+        try {
+            const rawValue = inputArea.value.trim();
+            // معالجة النصوص للتأكد من أنها مصفوفة صالحة
+            let cleanValue = rawValue;
+            if (!rawValue.startsWith('[')) cleanValue = `[${rawValue}]`;
+            if (cleanValue.endsWith(',')) cleanValue = cleanValue.slice(0, -1) + ']';
+            
+            // استخدام eval بحذر لتحويل النصوص التي تشبه كود JS إلى مصفوفة
+            const data = eval(cleanValue);
+            
+            let result = "";
+            data.forEach(item => {
+                result += `${item.title}👇\n${item.url}\n\n`;
+            });
+            inputArea.value = result.trim();
+        } catch (e) {
+            alert("تنسيق الكود غير صحيح، تأكد من وضع الكود بشكل سليم.");
+        }
+    }
+
+    // وظيفة التحويل من نص بسيط إلى JSON
+    function convertToJson() {
+        const text = inputArea.value.trim();
+        const lines = text.split('\n').filter(line => line.trim() !== "");
+        let jsonResult = [];
+
+        for (let i = 0; i < lines.length; i += 2) {
+            let title = lines[i].replace('👇', '').trim();
+            let url = lines[i + 1] ? lines[i + 1].trim() : "";
+            
+            if (title && url) {
+                jsonResult.push(`{ title: "${title}", url: "${url}" }`);
+            }
+        }
+
+        inputArea.value = "[\n  " + jsonResult.join(',\n  ') + "\n]";
+    }
+
+    // وظيفة النسخ
+    function copyText() {
+        inputArea.select();
+        document.execCommand('copy');
+        alert("تم النسخ إلى الحافظة!");
+    }
+</script>
+
+</body>
+</html>
