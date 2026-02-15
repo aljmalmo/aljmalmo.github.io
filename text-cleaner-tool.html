@@ -1,65 +1,3 @@
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
-    <meta charset="UTF-8">
-    <title>مُنقّي ومُعالج النصوص الاحترافي</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.4.21/mammoth.browser.min.js"></script>
-    <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f8f9fa; padding: 20px; color: #333; }
-        .container { max-width: 900px; margin: auto; background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
-        h2 { text-align: center; color: #2c3e50; margin-top: 0; font-size: 24px; border-bottom: 2px solid #eee; padding-bottom: 15px; }
-        
-        .upload-section { border: 2px dashed #3498db; padding: 25px; text-align: center; border-radius: 10px; margin-bottom: 20px; background: #f0f7fd; transition: 0.3s; }
-        .upload-section:hover { background: #e1f0fa; border-color: #2980b9; }
-        input[type="file"] { display: none; }
-        .file-label { cursor: pointer; color: #2980b9; font-weight: bold; text-decoration: underline; }
-
-        textarea { width: 100%; height: 180px; padding: 15px; border: 1px solid #ddd; border-radius: 8px; font-size: 16px; box-sizing: border-box; resize: vertical; margin-bottom: 20px; background: #fff; }
-        
-        .controls { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 15px; margin-bottom: 20px; background: #fcfcfc; padding: 20px; border-radius: 8px; border: 1px solid #eee; }
-        .checkbox-group { display: flex; align-items: center; gap: 10px; cursor: pointer; font-size: 15px; }
-        .checkbox-group input { cursor: pointer; width: 20px; height: 20px; }
-        
-        .actions { display: flex; gap: 10px; }
-        button { flex: 1; padding: 14px; font-size: 16px; border: none; border-radius: 8px; cursor: pointer; transition: 0.3s; font-weight: 600; }
-        .btn-process { background-color: #2ecc71; color: white; }
-        .btn-process:hover { background-color: #27ae60; }
-        .btn-download { background-color: #3498db; color: white; }
-        .btn-download:hover { background-color: #2980b9; }
-        #output { background: #f9f9f9; border-color: #ccd1d1; }
-        .status-msg { font-size: 13px; color: #7f8c8d; display: block; margin-top: 10px; }
-    </style>
-</head>
-<body>
-
-<div class="container">
-    <h2>مُنقّي ومُعالج النصوص الذكي</h2>
-    
-    <div class="upload-section" id="dropZone">
-        <p>اسحب الملف هنا أو <label class="file-label" for="fileInput">اختر ملفاً (TXT أو DOCX)</label></p>
-        <input type="file" id="fileInput" accept=".txt,.docx">
-        <span id="fileName" class="status-msg">يمكنك رفع ملفات نصية أو مستندات وورد لمعالجتها مباشرة</span>
-    </div>
-
-    <textarea id="inputText" placeholder="أدخل النص هنا أو قم برفع ملف..."></textarea>
-
-    <div class="controls">
-        <label class="checkbox-group"><input type="checkbox" id="delLinks"> حذف كافة الروابط</label>
-        <label class="checkbox-group"><input type="checkbox" id="delEmoji"> حذف الإيموجي والرموز</label>
-        <label class="checkbox-group"><input type="checkbox" id="delNumbers"> حذف الأرقام</label>
-        <label class="checkbox-group"><input type="checkbox" id="delText"> حذف النصوص (الحروف)</label>
-    </div>
-
-    <div class="actions">
-        <button class="btn-process" onclick="processText()">بدء المعالجة والفلترة</button>
-    </div>
-    
-    <br>
-    <textarea id="output" placeholder="النتيجة النهائية ستظهر هنا..." readonly></textarea>
-    
-    <button class="btn-download" onclick="downloadText()">تحميل النتيجة كملف نصي (.txt)</button>
-</div>
-
 <script>
     // معالجة الملفات المرفوعة
     document.getElementById('fileInput').addEventListener('change', function(e) {
@@ -86,33 +24,43 @@
         }
     });
 
-    // دالة المعالجة الأساسية
     function processText() {
         let text = document.getElementById('inputText').value;
         if (!text) { alert("يرجى إدخال نص أو اختيار ملف أولاً"); return; }
 
+        // 1. حذف الروابط - تحديث ليشمل t.me وأي دومين مع مسارات
         if (document.getElementById('delLinks').checked) {
-            text = text.replace(/https?:\/\/[^\s]+|www\.[^\s]+/g, '');
+            //Regex مطور لصيد الروابط بجميع أشكالها حتى بدون http
+            const globalUrlPattern = /(https?:\/\/[^\s]+)|(www\.[^\s]+)|([a-zA-Z0-9][-a-zA-Z0-9]*\.[a-z]{2,}(?:\/[^\s]*)?)/gi;
+            text = text.replace(globalUrlPattern, '');
         }
 
+        // 2. حذف الإيموجي والرموز - تحديث ليشمل الأسهم والرموز الخاصة
         if (document.getElementById('delEmoji').checked) {
-            text = text.replace(/[\u{1F600}-\u{1F64F}\u{1F300}-\u{1F5FF}\u{1F680}-\u{1F6FF}\u{1F1E0}-\u{1F1FF}\u{2600}-\u{26FF}\u{2700}-\u{27BF}]/gu, '');
+            // نطاق شامل لكل الرموز التعبيرية والرموز الغرافيكية بما فيها الأسهم
+            const emojiPattern = /[\u{1F000}-\u{1F9FF}]|[\u{2100}-\u{27BF}]/gu;
+            text = text.replace(emojiPattern, '');
         }
 
+        // 3. حذف الأرقام
         if (document.getElementById('delNumbers').checked) {
             text = text.replace(/[0-9٠-٩]/g, '');
         }
 
+        // 4. حذف النصوص (الحروف)
         if (document.getElementById('delText').checked) {
             text = text.replace(/[a-zA-Z\u0600-\u06FF]/g, '');
         }
 
-        // تحسين مظهر النص النهائي (إزالة المسافات المتكررة والأسطر الفارغة الزائدة)
-        text = text.replace(/[ ]+/g, ' ').replace(/\n\s*\n/g, '\n').trim();
+        // تنظيف المسافات الفارغة الناتجة عن الحذف لتحسين المظهر
+        text = text.split('\n')
+                   .map(line => line.trim()) 
+                   .filter(line => line.length > 0)
+                   .join('\n');
+
         document.getElementById('output').value = text;
     }
 
-    // تحميل النتيجة
     function downloadText() {
         const text = document.getElementById('output').value;
         if (!text) { alert("لا يوجد محتوى لتحميله"); return; }
@@ -123,6 +71,3 @@
         anchor.click();
     }
 </script>
-
-</body>
-</html>
