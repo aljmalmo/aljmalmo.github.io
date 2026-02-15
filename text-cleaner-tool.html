@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>مُصفي النصوص الذكي</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f7f6; padding: 20px; color: #333; }
+        .container { max-width: 800px; margin: auto; background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        h2 { text-align: center; color: #2c3e50; }
+        textarea { width: 100%; height: 200px; padding: 15px; border: 2px solid #ddd; border-radius: 8px; font-size: 16px; box-sizing: border-box; resize: vertical; margin-bottom: 20px; }
+        .controls { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; margin-bottom: 20px; background: #f9f9f9; padding: 15px; border-radius: 8px; }
+        .checkbox-group { display: flex; align-items: center; gap: 8px; cursor: pointer; }
+        .checkbox-group input { cursor: pointer; width: 18px; height: 18px; }
+        button { width: 100%; padding: 12px; font-size: 18px; border: none; border-radius: 8px; cursor: pointer; transition: 0.3s; margin-bottom: 10px; }
+        .btn-process { background-color: #27ae60; color: white; }
+        .btn-process:hover { background-color: #219150; }
+        .btn-download { background-color: #2980b9; color: white; }
+        .btn-download:hover { background-color: #1f6391; }
+        #output { background: #eef2f3; border: 1px dashed #7f8c8d; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>أداة تنقية وتصنيف النصوص</h2>
+    
+    <textarea id="inputText" placeholder="ضع النص الكبير هنا..."></textarea>
+
+    <div class="controls">
+        <label class="checkbox-group"><input type="checkbox" id="delLinks"> حذف الروابط</label>
+        <label class="checkbox-group"><input type="checkbox" id="delEmoji"> حذف الإيموجي</label>
+        <label class="checkbox-group"><input type="checkbox" id="delNumbers"> حذف الأرقام</label>
+        <label class="checkbox-group"><input type="checkbox" id="delText"> حذف النصوص (الحروف)</label>
+    </div>
+
+    <button class="btn-process" onclick="processText()">تنفيذ التنقية</button>
+    
+    <textarea id="output" placeholder="النتيجة ستظهر هنا..." readonly></textarea>
+    
+    <button class="btn-download" onclick="downloadText()">تحميل النتيجة كملف Text</button>
+</div>
+
+<script>
+    function processText() {
+        let text = document.getElementById('inputText').value;
+
+        // 1. حذف الروابط (HTTP, HTTPS, WWW)
+        if (document.getElementById('delLinks').checked) {
+            const urlPattern = /https?:\/\/[^\s]+|www\.[^\s]+/g;
+            text = text.replace(urlPattern, '');
+        }
+
+        // 2. حذف الإيموجي والرموز التعبيرية
+        if (document.getElementById('delEmoji').checked) {
+            const emojiPattern = /[\u{1F600}-\u{1F64F}\u{1F300}-\u{1F5FF}\u{1F680}-\u{1F6FF}\u{1F1E0}-\u{1F1FF}\u{2600}-\u{26FF}\u{2700}-\u{27BF}]/gu;
+            text = text.replace(emojiPattern, '');
+        }
+
+        // 3. حذف الأرقام
+        if (document.getElementById('delNumbers').checked) {
+            const numPattern = /[0-9٠-٩]/g;
+            text = text.replace(numPattern, '');
+        }
+
+        // 4. حذف النصوص (الحروف العربية والانجليزية)
+        if (document.getElementById('delText').checked) {
+            const textPattern = /[a-zA-Z\u0600-\u06FF]/g;
+            text = text.replace(textPattern, '');
+        }
+
+        // تنظيف المسافات الزائدة الناتجة عن الحذف
+        text = text.replace(/[ ]+/g, ' ').trim();
+
+        document.getElementById('output').value = text;
+    }
+
+    function downloadText() {
+        const text = document.getElementById('output').value;
+        if (!text) {
+            alert("لا يوجد نص لتحميله!");
+            return;
+        }
+        const blob = new Blob([text], { type: 'text/plain' });
+        const anchor = document.createElement('a');
+        anchor.download = 'cleaned_text.txt';
+        anchor.href = window.URL.createObjectURL(blob);
+        anchor.click();
+    }
+</script>
+
+</body>
+</html>
