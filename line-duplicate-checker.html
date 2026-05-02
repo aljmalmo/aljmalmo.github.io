@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>فاحص النصوص الذكي</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Tajawal', sans-serif; background-color: #f8fafc; }
+        .glass { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); border: 1px solid rgba(226, 232, 240, 1); }
+    </style>
+</head>
+<body class="p-4 md:p-8">
+
+    <div class="max-w-5xl mx-auto">
+        <!-- Header -->
+        <header class="mb-8 text-center">
+            <h1 class="text-3xl font-bold text-slate-800 mb-2">فاحص تكرار السطور</h1>
+            <p class="text-slate-500">أداة احترافية لتنقية النصوص وفلترة البيانات المكررة</p>
+        </header>
+
+        <div class="grid grid-cols-1 gap-6">
+            <!-- Input Section -->
+            <div class="glass p-6 rounded-2xl shadow-sm">
+                <label class="block text-sm font-medium text-slate-700 mb-2">أدخل النص هنا:</label>
+                <textarea id="inputText" rows="8" class="w-full p-4 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all resize-none" placeholder="ضع كل سطر في جهة مستقلة..."></textarea>
+                
+                <button onclick="processText()" class="mt-4 w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 rounded-xl transition-all shadow-lg shadow-blue-200">
+                    بدء الفحص والتحليل
+                </button>
+            </div>
+
+            <!-- Results Section -->
+            <div id="resultsArea" class="grid grid-cols-1 md:grid-cols-2 gap-6 hidden">
+                
+                <!-- Duplicates Only -->
+                <div class="glass p-6 rounded-2xl shadow-sm border-r-4 border-red-400">
+                    <div class="flex justify-between items-center mb-3">
+                        <h2 class="font-bold text-red-600">الأسطر المكررة فقط</h2>
+                        <button onclick="copyText('duplicatesText')" class="text-xs bg-slate-100 hover:bg-slate-200 px-2 py-1 rounded">نسخ</button>
+                    </div>
+                    <textarea id="duplicatesText" rows="10" readonly class="w-full bg-transparent text-sm text-slate-600 outline-none resize-none"></textarea>
+                </div>
+
+                <!-- Clean Text -->
+                <div class="glass p-6 rounded-2xl shadow-sm border-r-4 border-green-400">
+                    <div class="flex justify-between items-center mb-3">
+                        <h2 class="font-bold text-green-600">النص المنقح (بدون تكرار)</h2>
+                        <button onclick="copyText('cleanText')" class="text-xs bg-slate-100 hover:bg-slate-200 px-2 py-1 rounded">نسخ</button>
+                    </div>
+                    <textarea id="cleanText" rows="10" readonly class="w-full bg-transparent text-sm text-slate-600 outline-none resize-none"></textarea>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function processText() {
+            const input = document.getElementById('inputText').value;
+            if (!input.trim()) return alert('يرجى إدخال نص أولاً');
+
+            const lines = input.split(/\r?\n/);
+            const seen = new Set();
+            const duplicates = new Set();
+            const cleanLines = [];
+
+            lines.forEach(line => {
+                const trimmedLine = line.trim();
+                if (trimmedLine === "") return; // تجاهل السطور الفارغة
+
+                if (seen.has(trimmedLine)) {
+                    duplicates.add(trimmedLine);
+                } else {
+                    seen.add(trimmedLine);
+                    cleanLines.push(line);
+                }
+            });
+
+            // تحديث النتائج في الواجهة
+            document.getElementById('duplicatesText').value = Array.from(duplicates).join('\n');
+            document.getElementById('cleanText').value = cleanLines.join('\n');
+            
+            // إظهار منطقة النتائج
+            document.getElementById('resultsArea').classList.remove('hidden');
+        }
+
+        function copyText(id) {
+            const textArea = document.getElementById(id);
+            textArea.select();
+            document.execCommand('copy');
+            alert('تم نسخ النص بنجاح');
+        }
+    </script>
+</body>
+</html>
